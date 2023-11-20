@@ -1,4 +1,5 @@
-<%@include file= "includes/header.jsp" %>>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file= "includes/header.jsp" %>
 
 
 <body>
@@ -16,7 +17,7 @@
 	<nav class="site-nav">
 		<div class="container">
 			<div class="site-navigation">
-				<a href="index.html" class="logo m-0">Tour <span class="text-primary">.</span></a>
+				<a href="index.html" class="logo m-0">한글싸랑 <span class="text-primary">.</span></a>
 
 				<ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
 					<li class="active"><a href="index.html">Home</a></li>

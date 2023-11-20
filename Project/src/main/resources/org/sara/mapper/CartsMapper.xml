@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="org.sara.mapper.CartsMapper">
+	<select id = "getCartList" resultType = "org.sara.domain.CartsVO">
+		SELECT * FROM carts c
+				 JOIN users u ON u.users_id = c.user_id_id
+		WHERE u.users_id = #{c.user_id_id}
+		ORDER BY carts_id DESC;
+	 </select>
+</mapper>
