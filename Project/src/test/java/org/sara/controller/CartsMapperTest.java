@@ -1,10 +1,8 @@
 package org.sara.controller;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.sara.domain.CartsVO;
+import org.mybatis.spring.annotation.MapperScan;
 import org.sara.mapper.CartsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -15,21 +13,16 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/root-context.xml",
-						"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"
-})
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class CartsMapperTest {
 	@Setter(onMethod_ = {@Autowired})
-	public CartsMapper mapper;
+	private CartsMapper cartsMapper;
 	
-	@Test
-	public void getCartList() {
-		List<CartsVO> list = mapper.getCartList(1);
-		for(CartsVO cart : list) {
-			log.info(cart);
-			log.info("init cart : " + cart);
-		}
-	}
+//	@Test
+//	public void testList() {
+//	   cartsMapper.getList().forEach(carts->{
+//	      log.info(carts);
+//	   });
+//	}
 }

@@ -28,4 +28,5 @@
 	<link rel="stylesheet" href="../resources/css/style.css">
 
 	<title>한클</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>

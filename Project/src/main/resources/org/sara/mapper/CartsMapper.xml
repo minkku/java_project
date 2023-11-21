@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.sara.mapper.CartsMapper">
-	<select id = "getCartList" resultType = "org.sara.domain.CartsVO">
-		SELECT * FROM carts c
-				 JOIN users u ON u.users_id = c.user_id_id
-		WHERE u.users_id = #{c.user_id_id}
-		ORDER BY carts_id DESC;
-	 </select>
+	<select id = "getCartsList" resultType = "org.sara.domain.CartsVO">
+		SELECT 
+			c.carts_id, 
+			b.img, 
+			b.name, 
+			CONCAT(LEFT(b.content, 10), '...') AS content, 
+			c.quantity, 
+			b.price * c.quantity AS price
+		FROM carts c
+		JOIN books b ON b.books_id = c.books_id_id
+		JOIN users u ON u.users_id = c.users_id_id
+		WHERE u.users_id = 1
+		ORDER BY c.carts_id ASC;
+	</select>
+	<delete id = "deleteAllCartsList">
+		DELETE FROM carts
+		WHERE users_id_id = #{users_id};
+	</delete>
+<!-- 테스트용	<select id = "getList" resultType = "org.sara.domain.CartsVO"> 
+		SELECT * FROM carts
+		WHERE carts_id > 0
+	</select> 테스트용 -->
 </mapper>
