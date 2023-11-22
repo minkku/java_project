@@ -12,13 +12,18 @@
 		FROM carts c
 		JOIN books b ON b.books_id = c.books_id_id
 		JOIN users u ON u.users_id = c.users_id_id
-		WHERE u.users_id = 1
+		WHERE u.users_id = #{users_id}
 		ORDER BY c.carts_id ASC;
 	</select>
-	<delete id = "deleteAllCartsList">
+	<delete id="deleteCarts">
+		DELETE FROM carts
+		WHERE users_id_id = #{users_id}
+		  AND carts_id = #{carts_id}
+	</delete>
+<!-- 	<delete id = "deleteAllCartsList">
 		DELETE FROM carts
 		WHERE users_id_id = #{users_id};
-	</delete>
+	</delete> -->
 <!-- 테스트용	<select id = "getList" resultType = "org.sara.domain.CartsVO"> 
 		SELECT * FROM carts
 		WHERE carts_id > 0
