@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-<%@include file= "includes/header.jsp" %>
-=======
 <%@include file= "includes/header.jsp" %>>
 
->>>>>>> e3d1fb0200e3eb83cedff080516c23e4ff203fad
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
