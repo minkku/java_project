@@ -10,6 +10,6 @@ public interface CartsService {
 	
 	public boolean deleteAllCartsList(@Param("users_id") int users_id);
 	
-	public boolean deleteCarts(@Param("users_id") int users_id, List<Integer> carts_id);
+	public boolean deleteCarts(@Param("users_id") int users_id, @Param("carts_id") List<Integer> carts_id);
 //	public List<CartsVO> getList(); // 테스트용
 }

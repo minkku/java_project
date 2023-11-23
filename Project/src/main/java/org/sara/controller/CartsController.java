@@ -24,7 +24,7 @@ public class CartsController {
 	
 	@GetMapping("/carts")
 	public String carts(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
-		log.info("get - carts");
+		log.info("get - carts-------------------------------");
 		session.setAttribute("users_id", users_id);
 		model.addAttribute("carts", service.getCartsList(users_id));
 		
@@ -35,9 +35,16 @@ public class CartsController {
 	public String carts(@RequestParam(name = "action") String action,
                         @RequestParam(name = "carts_id", required = false) List<Integer> carts_id,
                         Model model, HttpSession session) {
-		log.info("post - carts");
+		log.info("post - carts---------------------------------");
 		int users_id = (int) session.getAttribute("users_id");
-		log.info("users_id의 값 => " + users_id);
+		log.info("controller(POST)------------------------users_id---------> " + users_id);
+		try {
+			for (Integer id : carts_id) {
+				log.info(id);
+			}
+		} catch (Exception e) {
+			log.info("controller error------------------->" + e.getMessage());
+		}
 	    if ("장바구니에서 제거".equals(action)) {
 	    	service.deleteCarts(users_id, carts_id);
 	    } else if ("구매하기".equals(action)) {

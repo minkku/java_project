@@ -15,7 +15,7 @@ public interface CartsMapper{
 
 
 //	*장바구니에서 선택된것들을 장바구니 목록에서 삭제
-	public int deleteCarts(@Param("users_id") int user_id, @Param("carts_id") int carts_id);
+	public int deleteCarts(@Param("users_id") int user_id, @Param("carts_id") Integer carts_id);
 //	=> 유저 id값을 인자로 받은 리스트 화면에서 인자로 받은 carts_id 값들을 삭제
 //
 //	*장바구니에서 선택된것들을 오더페이지로 이동
