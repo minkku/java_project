@@ -1,5 +1,8 @@
 package org.sara.controller;
 
+import java.util.List;
+
+import org.sara.domain.BookVO;
 import org.sara.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,11 +38,17 @@ public class MainController {
 		return "book/bestseller";
 	}
 	@GetMapping("/list")
-	public String getlist(Model model )  {
-		log.info("/listall");
-		model.addAttribute("list",service.getList());
-		return "book/list2";
-	}
+	public String getAllBooks(Model model, @RequestParam(defaultValue = "1") int page) {
+        int pageSize = 10; // 페이지당 아이템 수
+        List<BookVO> books = service.getAllBooks(page, pageSize);
+        int totalPages = (int) Math.ceil((double) service.countBooks() / pageSize);
+        log.info("www");
+        model.addAttribute("list", books);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+
+        return "book/list2";
+    }
 	@GetMapping("/mypage")
 	public String my() {
 		return "book/Mypage";

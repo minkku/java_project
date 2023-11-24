@@ -29,7 +29,8 @@ public class HomeController {
 	public String home(Model model) {
 		logger.info("main");
 		
-		model.addAttribute("list",service.getList());
+		model.addAttribute("bestlist",service.getBestList());
+		model.addAttribute("commendlist",service.getCommendList());
 		
 		return "main";
 	}

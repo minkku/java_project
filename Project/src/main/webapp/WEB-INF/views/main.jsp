@@ -18,9 +18,9 @@
 				</div>
 				<div class="col-lg-5">
 					<div class="slides">
-						<c:forEach var="book" items="${list}">
+						<c:forEach var="book" items="${bestlist}">
 							<img src="../resources/images/${book.img}"
-								class="img-fluid active style=" max-width: 100%; height:auto">
+								class="img-fluid active style="max-width: 100%; height:auto">
 						</c:forEach>
 					</div>
 				</div>
@@ -36,85 +36,35 @@
 				</div>
 			</div>
 			<div class="owl-carousel owl-3-slider">
-				<div class="item">
-					<c:forEach var="book" items="${list}">
-						<a class="media-thumb" href="../resources/images/'${book.img}'"
-							data-fancybox="gallery">
-							<div class="media-text">
-								<h3>
-									<c:out value="${book.name}" />
-								</h3>
-								<span class="location">
-								 <c:choose>
-										<c:when test="${book.categories_id_id==1}">
-											<p>만화</p>
-										</c:when>
-										<c:when test="${book.categories_id_id==2}">
-											<p>소설</p>
-										</c:when>
-										<c:otherwise>
-											<p>교육</p>
-										</c:otherwise>
-									</c:choose>
-								</span>
-							
-							</div> 
-								 <img src="../resources/images/${book.img}" class="img-fluid">
-						</a>
-					</c:forEach>
-                
-				</div>
-
-				<div class="item">
-					<a class="media-thumb" href="../resources/images/remi.jpg"
-						data-fancybox="gallery">
-						<div class="media-text">
-							<h3>레미제라블</h3>
-							<span class="location">액션</span>
-						</div> <img src="../resources/images/remi.jpg" alt="Image"
-						class="img-fluid">
-					</a>
-				</div>
-
-				<div class="item">
-					<a class="media-thumb" href="../resources/images/no7.jpg"
-						data-fancybox="gallery">
-						<div class="media-text">
-							<h3>7번방의 선물</h3>
-							<span class="location">액션</span>
-						</div> <img src="../resources/images/no7.jpg" alt="Image"
-						class="img-fluid">
-					</a>
-				</div>
-
-
-				<div class="item">
-					<a class="media-thumb" href="../resources/images/be.jpg"
-						data-fancybox="gallery">
-						<div class="media-text">
-							<h3>베를린</h3>
-							<span class="location">액션</span>
-						</div> <img src="../resources/images/be.jpg" alt="Image"
-						class="img-fluid">
-					</a>
-				</div>
-
-				<div class="item">
-					<a class="media-thumb" href="../resources/images/faker.jpg"
-						data-fancybox="gallery">
-						<div class="media-text">
-							<h3>페이커</h3>
-							<span class="location">United States</span>
-						</div> <img src="../resources/images/faker.jpg" alt="Image"
-						class="img-fluid">
-					</a>
-				</div>
-
-			</div>
+  <c:forEach var="book" items="${commendlist}">
+    <div class="item">
+      <a class="media-thumb" href="../resources/images/${book.img}" data-fancybox="gallery">
+        <div class="media-text">
+          <h3>
+            <c:out value="${book.name}" />
+          </h3>
+          <span class="location">
+            <c:choose>
+              <c:when test="${book.categories_id_id==1}">
+                <p>만화</p>
+              </c:when>
+              <c:when test="${book.categories_id_id==2}">
+                <p>소설</p>
+              </c:when>
+              <c:otherwise>
+                <p>교육</p>
+              </c:otherwise>
+            </c:choose>
+          </span>
+        </div>
+        <img src="../resources/images/${book.img}" class="img-fluid">
+      </a>
+    </div>
+  </c:forEach>
+</div>
 
 		</div>
 	</div>
-
 
 
 	<div class="untree_co-section">
@@ -126,27 +76,27 @@
 				</div>
 			</div>
 			<div class="row">
+			<c:forEach var="best" items="${bestlist}">
 				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
 					<div class="media-1">
-						<c:forEach var="book" items="${list}">
 							<a
-								href='/book/bookdetail?books_id=<c:out value="${book.books_id}"/>'
+								href='/book/bookdetail?books_id=<c:out value="${best.books_id}"/>'
 								class="d-block mb-3"><img
-								src="../resources/images/${book.img}" alt="Image"
+								src="../resources/images/${best.img}" alt="Image"
 								class="img-fluid"></a>
 							<div class="d-flex align-items-center">
 								<div>
 									<h3>
-										<c:out value="${book.name}" />
+										<c:out value="${best.name}" />
 									</h3>
 									<div class="price ml-auto">
-										<span> ${book.price}원</span>
+										<span> ${best.price}원</span>
 									</div>
 								</div>
 							</div>
-						</c:forEach>
 					</div>
 				</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

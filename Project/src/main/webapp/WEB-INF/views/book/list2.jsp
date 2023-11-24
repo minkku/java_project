@@ -7,8 +7,44 @@
 <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="../resources/css/style.css">
 <link rel="stylesheet" href="../resources/css/Liststyle.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <style>
+        .book-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .book-item {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .pagination {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .pagination li {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            background-color: #f2f2f2;
+        }
+
+        .pagination .active a {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
+ 
 <%@ include file="../includes/nav.jsp" %>
 
   <div class="hero hero-inner">
@@ -28,7 +64,7 @@
 		<div class="fixed_img_col">
 			<ul>
 				<c:forEach items="${list}" var="book">
-					<li><a href="#"> 
+					<li><a href='/book/bookdetail?books_id=<c:out value="${book.books_id}"/>' >
 					<span class="thumb"> 
 					<img src="../resources/images/${book.img}" alt=""> 
 					<em>${book.name}</em>
@@ -41,6 +77,14 @@
 			</ul>
 		</div>
 	</div>
-	
+	<div>
+        <ul class="pagination">
+             <c:forEach begin="1" end="${totalPages}" varStatus="loop">
+                <li class="${loop.index == currentPage ? 'active' : ''}">
+                    <a href="/book/list?page=${loop.index}" data-page="${loop.index}">${loop.index}</a>
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
 </body>
 </html>

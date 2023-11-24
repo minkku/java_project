@@ -4,10 +4,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.sara.mapper.BookMapper">
 
-<select id="getList" resultType="org.sara.domain.BookVO">
-select * from books 
-</select>
-<select id="read" resultType="org.sara.domain.BookVO">
-select * from books where books_id= #{books_id}
-</select>
+	<select id="getList" resultType="org.sara.domain.BookVO">
+		select * from books
+	</select>
+	<select id="read" resultType="org.sara.domain.BookVO">
+		select * from books where books_id= #{books_id}
+	</select>
+	<select id="getAllBooks" resultType="org.sara.domain.BookVO">
+		SELECT * FROM books
+		LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</select>
+
+	<select id="countBooks" resultType="int">
+		SELECT COUNT(*) FROM books
+	</select>
+	<select id="getBestList" resultType="org.sara.domain.BookVO">
+		select * from books limit 4
+	</select>
+	<select id="getCommendList" resultType="org.sara.domain.BookVO">
+		select * from books limit 5
+	</select>
 </mapper>
