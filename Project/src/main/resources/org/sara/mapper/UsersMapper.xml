@@ -4,19 +4,21 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.sara.mapper.UsersMapper">
-	<insert id="registerUser">
+	<insert id="registerUser" parameterType="org.sara.domain.UserVO">
 		INSERT INTO users (
 				name		AS name,
 				email		AS id,
 				pw			AS password,
 				address		AS address,
-				gender		AS sex
+				gender		AS gender
+				point		AS point
 		) VALUES (
 				#{name},
 				#{email},
 				#{pw},
 				#{address},
-				#{gender}
+				#{gender},
+				10000
 		)
 	</insert>
 </mapper>
