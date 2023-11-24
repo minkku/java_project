@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="org.sara.mapper.BookMapper">
+
+
+<select id="loginCheck" resultType="org.sara.domain.UserVO">
+select * from users where users_id= #{users_id}
+</select>
+</mapper>
