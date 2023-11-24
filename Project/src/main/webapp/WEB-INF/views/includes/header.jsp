@@ -32,9 +32,13 @@
 	<style>
 		.carts_div {
 			position: relative;
-		    text-align: center;
+		    /* text-align: center; */
 		    align-content: center;
     		padding: 20px 400px 20px 400px;
+		}
+		.carts_title {
+			text-align: center;
+			padding: 0px 0px 110px 0px
 		}
 		.carts_tile1 {
 		    width: 100%;
@@ -70,5 +74,36 @@
         	margin-top: -7px;
         	margin-right: 5px;
         }
+        .all_select_container2 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-top: 160px;
+            margin-right: 400px;
+            display: flex;
+    		align-items: center;
+        }
+        .carts_Buy {
+        	margin-top: 100px;
+        	margin-: 100px;
+        	text-align: center;
+        }
+        .buyButton {
+        	padding: 20px 40px
+        }
+        
+        input[type=checkbox] {
+			zoom: 1.5;
+		}
+		
+		.total {
+			position: absolute;
+            bottom: 0;
+            right: 0;
+            margin-bottom: 100px;
+            margin-right: 400px;
+            display: flex;
+    		align-items: center;
+		}
 	</style>
 </head>

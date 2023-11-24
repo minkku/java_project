@@ -6,9 +6,9 @@
 			c.carts_id, 
 			b.img, 
 			b.name, 
-			CONCAT(LEFT(b.content, 10), '...') AS content, 
+			CONCAT(LEFT(b.content, 30), '...') AS content, 
 			c.quantity, 
-			b.price * c.quantity AS price
+			b.price<!--  * c.quantity AS price -->
 		FROM carts c
 		JOIN books b ON b.books_id = c.books_id_id
 		JOIN users u ON u.users_id = c.users_id_id
