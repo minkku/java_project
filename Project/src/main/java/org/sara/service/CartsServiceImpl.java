@@ -3,7 +3,7 @@ package org.sara.service;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.sara.domain.CartsVO;
+import org.sara.domain.CartsListDTO;
 import org.sara.mapper.CartsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class CartsServiceImpl implements CartsService{
 	private CartsMapper cartsMapper;
 
 	@Override
-	public List<CartsVO> getCartsList(@Param("users_id") int users_id) {
+	public List<CartsListDTO> getCartsList(@Param("users_id") int users_id) {
 		log.info("cartsList-----------소환요 -> users_id_id값 ---------->" + users_id);
 		return cartsMapper.getCartsList(users_id);
 	}
@@ -47,10 +47,23 @@ public class CartsServiceImpl implements CartsService{
 	        return false;
 	    }
 	}
-	
-//	@Override // 테스트용
-//	public List<CartsVO> getList() {
-//		log.info("텟흐트");
-//		return cartsMapper.getList();
-//	}
+
+	@Override
+	public boolean updateCarts(@Param("users_id") int users_id, @Param("carts_id") int carts_id,
+							   @Param("books_id") int books_id, @Param("quantity") int quantity) {
+		try {
+	            if (carts_id < 0) {
+	            	log.info("장바구니 선택삭제 실패함--------------------------");
+	                return false;
+	            } else {
+	            	log.info("updateCarts-----carts_id값----------" + carts_id);
+	            }
+			cartsMapper.updateCarts(carts_id, users_id, books_id, quantity);
+			return true;
+		} catch (Exception e) {
+			log.info("update false----------------------------------");
+			log.error("service error--------------------------------" + e.getMessage());
+			return false;
+		}
+	}
 }

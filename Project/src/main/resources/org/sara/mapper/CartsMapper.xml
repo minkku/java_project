@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.sara.mapper.CartsMapper">
-	<select id = "getCartsList" resultType = "org.sara.domain.CartsVO">
+	<select id = "getCartsList" resultType = "org.sara.domain.CartsListDTO">
 		SELECT 
 			c.carts_id, 
+			b.books_id,
 			b.img, 
 			b.name, 
 			CONCAT(LEFT(b.content, 30), '...') AS content, 
@@ -20,12 +21,11 @@
 		WHERE users_id_id = #{users_id}
 		  AND carts_id = #{carts_id}
 	</delete>
-<!-- 	<delete id = "deleteAllCartsList">
-		DELETE FROM carts
-		WHERE users_id_id = #{users_id};
-	</delete> -->
-<!-- 테스트용	<select id = "getList" resultType = "org.sara.domain.CartsVO"> 
-		SELECT * FROM carts
-		WHERE carts_id > 0
-	</select> 테스트용 -->
+	<update id="updateCarts" parameterType="org.sara.domain.CartsVO">
+		UPDATE carts
+		   SET quantity = #{quantity}
+		 WHERE users_id_id = #{users_id}
+		   AND books_id_id = #{books_id}
+		   AND carts_id = #{carts_id}
+	</update>
 </mapper>

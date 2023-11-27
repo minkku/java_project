@@ -32,6 +32,7 @@
 					</td>
 					<td class="carts_tile2"><img src="/resource/images/${info.img}"/></td>
 					<td class="carts_tile4">
+						<input type="hidden" name="books_id" value="${info.books_id}">
 						<c:out value="${info.name}" /><br>
 						<c:out value="${info.content}" /><br>
 						<button type="button" class="increment">+</button> 
@@ -48,8 +49,8 @@
 			</c:forEach>
 		</table>
 		<div class="total">
-			
-			<input style="text-align: left"type="hidden" name="totalPrice"><span style="font-size: 24px"><strong>&nbsp;&nbsp;&nbsp;</strong></span>
+			<input style="text-align: left" type="hidden" name="totalPrice">
+			<span style="font-size: 24px"><strong>&nbsp;&nbsp;&nbsp;</strong></span>
 			<span style="font-size: 16px">총 상품 가격</span>
 		</div>
 		<div class="carts_Buy">
