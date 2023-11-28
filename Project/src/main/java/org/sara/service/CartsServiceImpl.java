@@ -51,6 +51,10 @@ public class CartsServiceImpl implements CartsService{
 	@Override
 	public boolean updateCarts(@Param("users_id") int users_id, @Param("carts_id") int carts_id,
 							   @Param("books_id") int books_id, @Param("quantity") int quantity) {
+		log.info("service updateQuantity------------------------users_id---------> " + users_id);
+		log.info("service updateQuantity --------------- carts_id -------------->" + carts_id);
+		log.info("service updateQuantity --------------- books_id -------------->" + books_id);
+		log.info("service updateQuantity --------------- quantity -------------->" + quantity);
 		try {
 	            if (carts_id < 0) {
 	            	log.info("장바구니 선택삭제 실패함--------------------------");
@@ -58,7 +62,7 @@ public class CartsServiceImpl implements CartsService{
 	            } else {
 	            	log.info("updateCarts-----carts_id값----------" + carts_id);
 	            }
-			cartsMapper.updateCarts(carts_id, users_id, books_id, quantity);
+			cartsMapper.updateCarts(users_id, carts_id, books_id, quantity);
 			return true;
 		} catch (Exception e) {
 			log.info("update false----------------------------------");

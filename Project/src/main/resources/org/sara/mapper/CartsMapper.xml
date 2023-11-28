@@ -21,7 +21,7 @@
 		WHERE users_id_id = #{users_id}
 		  AND carts_id = #{carts_id}
 	</delete>
-	<update id="updateCarts" parameterType="org.sara.domain.CartsVO">
+	<update id="updateCarts">
 		UPDATE carts
 		   SET quantity = #{quantity}
 		 WHERE users_id_id = #{users_id}

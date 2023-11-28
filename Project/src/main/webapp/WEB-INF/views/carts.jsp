@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="includes/header.jsp"%>
 <body>
 	<div class="hero">
@@ -29,10 +28,10 @@
 					<td class="carts_tile2">
 						<input type="checkbox" class="selectedCarts_id"	value="${info.carts_id}">
 						<input type="hidden" name="carts_id" value="${info.carts_id}">
+						<input type="hidden" name="books_id" value="${info.books_id}">
 					</td>
 					<td class="carts_tile2"><img src="/resource/images/${info.img}"/></td>
 					<td class="carts_tile4">
-						<input type="hidden" name="books_id" value="${info.books_id}">
 						<c:out value="${info.name}" /><br>
 						<c:out value="${info.content}" /><br>
 						<button type="button" class="increment">+</button> 
@@ -66,27 +65,13 @@ $(document).ready(function() {
     });
 
     $(".selectedCarts_id").change(function() {
-        var carts_id = $(this).val();
-        if ($(this).prop("checked")) {
-            $("<input>").attr({
-                type : "hidden",
-                name : "carts_id",
-                value : carts_id
-            }).appendTo("form");
-        } else {
-            $("input[name='carts_id'][value='" + carts_id + "']").remove();
-        }
-
         updateSumAndTotalPrice();
     });
 
     $(".increment, .decrement").click(function() {
         var row = $(this).closest("tr");
         var quantityInput = row.find("input[name='quantity']");
-        var priceInput = row.find("input[name='price']");
-        var sumPriceSpan = row.find(".sumPrice");
         var quantity = parseInt(quantityInput.val(), 10);
-        var price = parseFloat(priceInput.val());
 
         if ($(this).hasClass("increment") && quantity < 99) {
             quantity += 1;
@@ -96,23 +81,56 @@ $(document).ready(function() {
 
         quantityInput.val(quantity);
 
-        var sumPrice = quantity * price;
-        sumPriceSpan.text(sumPrice.toLocaleString());
-
-        updateSumAndTotalPrice();
+        // 장바구니 갱신을 위한 AJAX 호출
+        updateQuantity(row, quantity); // quantity를 updateQuantity 함수에 전달
     });
+
+    function updateQuantity(row, quantity) {
+        var users_id = $("input[name='users_id']").val();
+        var carts_id = row.find("input[name='carts_id']").val();
+        var books_id = row.find("input[name='books_id']").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/updateQuantity",
+            data: {
+                users_id: users_id,
+                carts_id: carts_id,
+                books_id: books_id,
+                quantity: quantity
+            },
+            success: function(response) {
+                console.log("Quantity updated successfully");
+                console.log("Response:", response); // 확인을 위해 추가
+
+                var price = parseFloat(response.price);
+                var sumPrice = quantity * price;
+                row.find(".sumPrice").text(sumPrice.toLocaleString());
+
+                updateSumAndTotalPrice();
+            },
+            error: function(error) {
+                console.error("Error updating quantity: " + error);
+            }
+        });
+    }
 
     function updateSumAndTotalPrice() {
         var total = 0;
 
-        $(".selectedCarts_id:checked").each(function() {
+        $(".selectedCarts_id:checked").each(function () {
             var row = $(this).closest("tr");
-            var sumPrice = parseFloat(row.find(".sumPrice").text().replace(",", ""));
-            total += sumPrice;
+            var sumPriceText = row.find(".sumPrice").text().replace(",", "");
+
+            // 값이 유효하고 비어 있지 않은지 확인
+            if (sumPriceText && !isNaN(sumPriceText)) {
+                var sumPrice = parseFloat(sumPriceText);
+                total += sumPrice;
+            }
         });
 
         $("input[name='totalPrice']").val(total);
-        $(".total span strong").text(total.toLocaleString());
+        $(".total span strong").text(total.toFixed(0)); // 숫자 형식화를 사용하여 소수점 이하 2자리까지 표시
     }
 
     updateSumAndTotalPrice();

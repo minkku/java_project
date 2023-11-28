@@ -1,6 +1,8 @@
 package org.sara.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -54,26 +56,36 @@ public class CartsController {
 	    if ("장바구니에서 제거".equals(action)) {
 	    	service.deleteCarts(users_id, carts_id);
 	    } else if ("구매하기".equals(action)) {
+	    	
+//	    	return "redirect:/orders?users_id=" + users_id;
 	    } 
 	    return "redirect:/carts?users_id=" + users_id;
 	}
 	
-	@PostMapping("/updateQuantity")
 	@ResponseBody
-	public ResponseEntity<String> updateQuantity(@RequestParam("carts_id") int carts_id,
-												 @RequestParam("books_id") int books_id,
-	                                            @RequestParam("quantity") int quantity, HttpSession session, Model model) {
-		log.info("post - updateQuantity---------------------------------");
-		int users_id = (int) session.getAttribute("users_id");
-		log.info("updateQuantity(POST)------------------------users_id---------> " + users_id);
+	@PostMapping(value = "/updateQuantity", produces = "application/json; charset=utf-8")
+	public ResponseEntity<Map<String, Object>> updateQuantity(@RequestParam("users_id") int users_id,
+	                                                          @RequestParam("carts_id") int carts_id,
+	                                                          @RequestParam("books_id") int books_id,
+	                                                          @RequestParam("quantity") int quantity,
+	                                                          HttpSession session, Model model) {
 	    try {
 	        service.updateCarts(users_id, carts_id, books_id, quantity);
-	        
+
 	        List<CartsListDTO> updatedCarts = service.getCartsList(users_id);
 	        model.addAttribute("carts", updatedCarts);
-	        return new ResponseEntity<>("Quantity updated successfully", HttpStatus.OK);
+
+	        Map<String, Object> result = new HashMap<>();
+	        result.put("result", "success");
+	        result.put("price", updatedCarts.get(0).getPrice()); // 가격 정보를 응답에 포함
+
+	        return new ResponseEntity<>(result, HttpStatus.OK);
 	    } catch (Exception e) {
-	        return new ResponseEntity<>("Error updating quantity", HttpStatus.INTERNAL_SERVER_ERROR);
+	        Map<String, Object> result = new HashMap<>();
+	        result.put("result", "error");
+	        result.put("message", e.getMessage());
+
+	        return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	}
 }

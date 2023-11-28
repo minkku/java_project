@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html14/loose.dtd">
@@ -35,6 +34,9 @@
 		    /* text-align: center; */
 		    align-content: center;
     		padding: 20px 400px 20px 400px;
+		}
+		.carts_tile2, .carts_tile3, .carts_tile4 {
+    		width: 20%; /* 각 열의 너비를 20%로 설정 (총 100%를 유지) */
 		}
 		.carts_title {
 			text-align: center;
