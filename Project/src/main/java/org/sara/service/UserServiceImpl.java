@@ -13,14 +13,8 @@ import lombok.extern.log4j.Log4j;
 public class UserServiceImpl implements UserService {
 	private UserMapper mapper;
 
-	@Override
-	public void signupUser(UserVO vo) throws Exception {
-		try {
-			if (vo == null) log.info("값이 안 들어왔어유");
-		} catch (Exception e) {
-			log.info("error" + e.getMessage());
-		}
-		mapper.registerUser(vo);
-	}
-	
+	 @Override
+	    public void reg(UserVO vo) throws Exception {
+	        mapper.reg(vo);
+	    }
 }

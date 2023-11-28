@@ -17,30 +17,16 @@
                 </div>
                 <div class="card-body">
                     <!-- Your login form -->
-                    <form action="login.jsp" method="get">
-                    	 <div class="form-group">
-                            <label for="username">이름 :</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
+                    <form action="/login" method="get">
                         
                         <div class="form-group">
-                            <label for="userId">이메일 :</label>
+                            <label for="email">이메일 :</label>
                             <input type="text" class="form-control" id="email" name="userEamil" required>
                         </div>
                         
                         <div class="form-group">
                             <label for="password">비밀번호 :</label>
                             <input type="password" class="form-control" id="pw" name="pw" required>
-                        </div>
-                        
-                         <div class="form-group">
-                            <label for="checkpw">비밀번호 확인 :</label>
-                            <input type="password" class="form-control" id="pwCheck" name="pwCh" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="address">주소 :</label>
-                            <input type="text" class="form-control" id="password" name="password" required>
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Login</button>
