@@ -6,21 +6,30 @@
 <mapper namespace="org.sara.mapper.UserMapper">
 	<insert id="reg" parameterType="org.sara.domain.UserVO">
 		INSERT INTO users (
-				name		AS name,
-				email		AS email,
-				pw			AS password,
-				address		AS address,
-				mobile		AS mobile,
-				gender		AS gender,
+				email,
+				pw,
+				name,
+				address,
+				mobile,
+				gender,
 				point		
 		) VALUES (
-				#{name},
 				#{email},
 				#{pw},
+				#{name},
 				#{address},
 				#{mobile},
 				#{gender},
 				10000
 		)
 	</insert>
+	
+	<!-- 이메일 중복확인을 위한 쿼리 -->
+	<select id="email_check" resultType="int">
+		SELECT COUNT(*)
+		FROM
+			users
+		WHERE
+			email = #{email}
+	</select>
 </mapper>

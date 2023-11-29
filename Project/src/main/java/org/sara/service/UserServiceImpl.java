@@ -14,7 +14,12 @@ public class UserServiceImpl implements UserService {
 	private UserMapper mapper;
 
 	 @Override
-	    public void reg(UserVO vo) throws Exception {
-	        mapper.reg(vo);
-	    }
+	 public void reg(UserVO vo) throws Exception {
+	    mapper.reg(vo);
+	 }
+	 
+	 @Override
+	 public int emailCheck(String email) throws Exception {
+		 return mapper.emailCheck(email);
+	 }
 }
