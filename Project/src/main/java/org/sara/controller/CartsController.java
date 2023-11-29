@@ -3,10 +3,11 @@ package org.sara.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
-import org.sara.domain.CartsListDTO;
+import org.sara.domain.CartsListVO;
 import org.sara.service.CartsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,19 +34,19 @@ public class CartsController {
 		log.info("get - carts-------------------------------");
 		session.setAttribute("users_id", users_id);
 		model.addAttribute("carts", service.getCartsList(users_id));
-		
+
 		return "carts";
 	}
 	
 	@PostMapping("/carts")
 	public String postCarts(@RequestParam(name = "action") String action,
-                        @RequestParam(name = "carts_id", required = false) List<Integer> carts_id,
-                        @RequestParam(name = "books_id", required = false) List<Integer> books_id,
-                        @RequestParam(name = "quantity", required = false) List<Integer> quantity,
+                            @RequestParam(name = "carts_id", required = false) List<Integer> carts_id,
                         Model model, HttpSession session) {
 		log.info("post - carts---------------------------------");
+		
 		int users_id = (int) session.getAttribute("users_id");
 		log.info("controller(POST)------------------------users_id---------> " + users_id);
+		
 		try {
 			for (Integer id : carts_id) {
 				log.info("carts_id---------------" + id);
@@ -53,12 +54,20 @@ public class CartsController {
 		} catch (Exception e) {
 			log.info("controller error------------------->" + e.getMessage());
 		}
+		
 	    if ("장바구니에서 제거".equals(action)) {
 	    	service.deleteCarts(users_id, carts_id);
 	    } else if ("구매하기".equals(action)) {
-	    	
-//	    	return "redirect:/orders?users_id=" + users_id;
-	    } 
+//			session.removeAttribute("selectCarts");
+	    	session.setAttribute("selectCarts", service.getSelectCartsList(users_id, carts_id));
+	    	try {
+	    		log.info(session.getAttribute("selectCarts-----구매하기"));
+	    	} catch (Exception e) {
+	    		log.info("selectCarts가 session에 들어오지 않음" + e.getMessage());
+	    	}
+	    	return "redirect:/orders/list?users_id=" + users_id;
+	    }
+	    
 	    return "redirect:/carts?users_id=" + users_id;
 	}
 	
@@ -72,12 +81,12 @@ public class CartsController {
 	    try {
 	        service.updateCarts(users_id, carts_id, books_id, quantity);
 
-	        List<CartsListDTO> updatedCarts = service.getCartsList(users_id);
+	        List<CartsListVO> updatedCarts = service.getCartsList(users_id);
 	        model.addAttribute("carts", updatedCarts);
 
 	        Map<String, Object> result = new HashMap<>();
 	        result.put("result", "success");
-	        result.put("price", updatedCarts.get(0).getPrice()); // 가격 정보를 응답에 포함
+	        result.put("prices", updatedCarts.stream().map(CartsListVO::getPrice).collect(Collectors.toList()));
 
 	        return new ResponseEntity<>(result, HttpStatus.OK);
 	    } catch (Exception e) {

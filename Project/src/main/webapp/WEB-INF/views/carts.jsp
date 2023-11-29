@@ -35,7 +35,7 @@
 						<c:out value="${info.name}" /><br>
 						<c:out value="${info.content}" /><br>
 						<button type="button" class="increment">+</button> 
-						<input style="width: 30px" type="text" name="quantity" value="${info.quantity}" min="1" max="99">
+						<input style="width: 30px" type="text" name="quantity" value="${info.quantity}" min="1" max="99" readonly>
 						<button type="button" class="decrement">-</button>
 					</td>
 					<td class="carts_tile2">
@@ -48,9 +48,9 @@
 			</c:forEach>
 		</table>
 		<div class="total">
-			<input style="text-align: left" type="hidden" name="totalPrice">
+			<input style="text-align: left" type="hidden" name="totalPrice" value="${totalPrice}">
 			<span style="font-size: 24px"><strong>&nbsp;&nbsp;&nbsp;</strong></span>
-			<span style="font-size: 16px">총 상품 가격</span>
+			<span style="font-size: 16px">총 상품 금액</span>
 		</div>
 		<div class="carts_Buy">
 			<input class="buyButton" type="submit" name="action" value="구매하기">
@@ -63,30 +63,34 @@ $(document).ready(function() {
 	$(".allSelectCarts_id").change(function () {
         $(".selectedCarts_id").prop('checked', $(this).prop("checked")).change();
     });
-	
-	$(".selectedCarts_id").change(function() {
-	    var carts_id = $(this).val();
-	    if ($(this).prop("checked")) {
-	        $("<input>").attr({
-	            type : "hidden",
-	            name : "carts_id",
-	            value : carts_id
-	        }).appendTo("form");
 
-        	var books_id = $("input[name='books_id'][value='" + carts_id + "']").val();
-	        $("<input>").attr({
-	            type : "hidden",
-	            name : "books_id",
-	            value : books_id
-	        }).appendTo("form");
-	    } else {
-	        $("input[name='carts_id'][value='" + carts_id + "']").remove();
-	        $("input[name='books_id'][value='" + carts_id + "']").remove();
-	    }
-	    updateSumAndTotalPrice();
-	});
-    
-    $(".increment, .decrement").click(function() {
+    $(".selectedCarts_id").change(function () {
+        var carts_id = $(this).val();
+        if ($(this).prop("checked")) {
+            if ($("input[name='carts_id'][value='" + carts_id + "']").length === 0) {
+                $("<input>").attr({
+                    type: "hidden",
+                    name: "carts_id",
+                    value: carts_id
+                }).appendTo("form");
+
+                var books_id = $("input[name='books_id'][value='" + carts_id + "']").val();
+                if ($("input[name='books_id'][value='" + carts_id + "']").length === 0) {
+                    $("<input>").attr({
+                        type: "hidden",
+                        name: "books_id",
+                        value: books_id
+                    }).appendTo("form");
+                }
+            }
+        } else {
+            $("input[name='carts_id'][value='" + carts_id + "']").remove();
+            $("input[name='books_id'][value='" + carts_id + "']").remove();
+        }
+        updateSumAndTotalPrice();
+    });
+
+    $(".increment, .decrement").click(function () {
         var row = $(this).closest("tr");
         var quantityInput = row.find("input[name='quantity']");
         var quantity = parseInt(quantityInput.val(), 10);
@@ -107,6 +111,12 @@ $(document).ready(function() {
         var carts_id = row.find("input[name='carts_id']").val();
         var books_id = row.find("input[name='books_id']").val();
 
+        if (row.data("processing")) {
+            return;
+        }
+
+        row.data("processing", true);
+
         $.ajax({
             type: "POST",
             url: "/updateQuantity",
@@ -116,18 +126,43 @@ $(document).ready(function() {
                 books_id: books_id,
                 quantity: quantity
             },
-            success: function(response) {
+            success: function (response) {
                 console.log("Quantity updated successfully");
                 console.log("Response:", response);
 
-                var price = parseFloat(response.price);
-                var sumPrice = quantity * price;
-                row.find(".sumPrice").text(sumPrice.toLocaleString());
+                try {
+                    var prices = response.prices;
+                    if (!Array.isArray(prices)) {
+                        console.error("Invalid prices array");
+                        return;
+                    }
 
-                updateSumAndTotalPrice();
+                    var priceIndex = row.index();
+                    if (priceIndex < 0 || priceIndex >= prices.length) {
+                        console.error("Invalid price index");
+                        return;
+                    }
+
+                    var price = parseFloat(prices[priceIndex]);
+
+                    if (isNaN(price)) {
+                        console.error("Invalid price value");
+                        return;
+                    }
+
+                    var sumPrice = quantity * price;
+                    row.find(".sumPrice").text(sumPrice.toLocaleString());
+
+                    updateSumAndTotalPrice();
+                } catch (error) {
+                    console.error("Error updating quantity:", error);
+                }
             },
-            error: function(error) {
-                console.error("Error updating quantity: " + error);
+            error: function (error) {
+                console.error("Error updating quantity:", error);
+            },
+            complete: function () {
+                row.data("processing", false);
             }
         });
     }
@@ -137,10 +172,12 @@ $(document).ready(function() {
 
         $(".selectedCarts_id:checked").each(function () {
             var row = $(this).closest("tr");
-            var sumPriceText = row.find(".sumPrice").text().replace(",", "");
+            var priceText = row.find("input[name='price']").val();
+            var quantity = parseInt(row.find("input[name='quantity']").val(), 10);
 
-            if (sumPriceText && !isNaN(sumPriceText)) {
-                var sumPrice = parseFloat(sumPriceText);
+            if (!isNaN(quantity) && !isNaN(priceText)) {
+                var price = parseFloat(priceText);
+                var sumPrice = price * quantity;
                 total += sumPrice;
             }
         });

@@ -3,7 +3,7 @@ package org.sara.domain;
 import lombok.Data;
 
 @Data
-public class CartsListDTO {
+public class CartsListVO {
 	int carts_id;
 	int books_id;
 	String img;

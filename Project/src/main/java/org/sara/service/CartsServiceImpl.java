@@ -1,9 +1,10 @@
 package org.sara.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.sara.domain.CartsListDTO;
+import org.sara.domain.CartsListVO;
 import org.sara.mapper.CartsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class CartsServiceImpl implements CartsService{
 	private CartsMapper cartsMapper;
 
 	@Override
-	public List<CartsListDTO> getCartsList(@Param("users_id") int users_id) {
+	public List<CartsListVO> getCartsList(@Param("users_id") int users_id) {
 		log.info("cartsList-----------소환요 -> users_id_id값 ---------->" + users_id);
 		return cartsMapper.getCartsList(users_id);
 	}
@@ -69,5 +70,18 @@ public class CartsServiceImpl implements CartsService{
 			log.error("service error--------------------------------" + e.getMessage());
 			return false;
 		}
+	}
+
+	@Override
+	public List<CartsListVO> getSelectCartsList(@Param("users_id") int users_id, @Param("carts_id") List<Integer> carts_id) {
+		List<CartsListVO> cvo = new ArrayList<CartsListVO>();
+		try {
+			for (Integer id : carts_id) {
+				cvo.add(cartsMapper.getSelectCartsList(users_id, id));
+			}
+		} catch (Exception e) {
+			log.error("service error------------------------" + e.getMessage());
+		}
+		return cvo;
 	}
 }

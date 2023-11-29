@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.sara.mapper.CartsMapper">
-	<select id = "getCartsList" resultType = "org.sara.domain.CartsListDTO">
+	<select id = "getCartsList" resultType = "org.sara.domain.CartsListVO">
 		SELECT 
 			c.carts_id, 
 			b.books_id,
@@ -14,6 +14,22 @@
 		JOIN books b ON b.books_id = c.books_id_id
 		JOIN users u ON u.users_id = c.users_id_id
 		WHERE u.users_id = #{users_id}
+		ORDER BY c.carts_id ASC;
+	</select>
+	<select id = "getSelectCartsList" resultType = "org.sara.domain.CartsListVO">
+		SELECT 
+			c.carts_id, 
+			b.books_id,
+			b.img, 
+			b.name, 
+			CONCAT(LEFT(b.content, 30), '...') AS content, 
+			c.quantity, 
+			b.price<!--  * c.quantity AS price -->
+		FROM carts c
+		JOIN books b ON b.books_id = c.books_id_id
+		JOIN users u ON u.users_id = c.users_id_id
+		WHERE u.users_id = #{users_id}
+		AND c.carts_id = #{carts_id}
 		ORDER BY c.carts_id ASC;
 	</select>
 	<delete id="deleteCarts">
