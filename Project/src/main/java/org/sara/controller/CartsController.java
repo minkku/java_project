@@ -29,7 +29,7 @@ public class CartsController {
 	private CartsService service;
 	
 	@GetMapping("/carts")
-	public String carts(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
+	public String getCarts(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
 		log.info("get - carts-------------------------------");
 		session.setAttribute("users_id", users_id);
 		model.addAttribute("carts", service.getCartsList(users_id));
@@ -38,7 +38,7 @@ public class CartsController {
 	}
 	
 	@PostMapping("/carts")
-	public String carts(@RequestParam(name = "action") String action,
+	public String postCarts(@RequestParam(name = "action") String action,
                         @RequestParam(name = "carts_id", required = false) List<Integer> carts_id,
                         @RequestParam(name = "books_id", required = false) List<Integer> books_id,
                         @RequestParam(name = "quantity", required = false) List<Integer> quantity,

@@ -63,11 +63,29 @@ $(document).ready(function() {
 	$(".allSelectCarts_id").change(function () {
         $(".selectedCarts_id").prop('checked', $(this).prop("checked")).change();
     });
+	
+	$(".selectedCarts_id").change(function() {
+	    var carts_id = $(this).val();
+	    if ($(this).prop("checked")) {
+	        $("<input>").attr({
+	            type : "hidden",
+	            name : "carts_id",
+	            value : carts_id
+	        }).appendTo("form");
 
-    $(".selectedCarts_id").change(function() {
-        updateSumAndTotalPrice();
-    });
-
+        	var books_id = $("input[name='books_id'][value='" + carts_id + "']").val();
+	        $("<input>").attr({
+	            type : "hidden",
+	            name : "books_id",
+	            value : books_id
+	        }).appendTo("form");
+	    } else {
+	        $("input[name='carts_id'][value='" + carts_id + "']").remove();
+	        $("input[name='books_id'][value='" + carts_id + "']").remove();
+	    }
+	    updateSumAndTotalPrice();
+	});
+    
     $(".increment, .decrement").click(function() {
         var row = $(this).closest("tr");
         var quantityInput = row.find("input[name='quantity']");
@@ -81,8 +99,7 @@ $(document).ready(function() {
 
         quantityInput.val(quantity);
 
-        // 장바구니 갱신을 위한 AJAX 호출
-        updateQuantity(row, quantity); // quantity를 updateQuantity 함수에 전달
+        updateQuantity(row, quantity);
     });
 
     function updateQuantity(row, quantity) {
@@ -101,7 +118,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 console.log("Quantity updated successfully");
-                console.log("Response:", response); // 확인을 위해 추가
+                console.log("Response:", response);
 
                 var price = parseFloat(response.price);
                 var sumPrice = quantity * price;
@@ -122,7 +139,6 @@ $(document).ready(function() {
             var row = $(this).closest("tr");
             var sumPriceText = row.find(".sumPrice").text().replace(",", "");
 
-            // 값이 유효하고 비어 있지 않은지 확인
             if (sumPriceText && !isNaN(sumPriceText)) {
                 var sumPrice = parseFloat(sumPriceText);
                 total += sumPrice;
@@ -130,7 +146,7 @@ $(document).ready(function() {
         });
 
         $("input[name='totalPrice']").val(total);
-        $(".total span strong").text(total.toFixed(0)); // 숫자 형식화를 사용하여 소수점 이하 2자리까지 표시
+        $(".total span strong").text(total.toFixed(0));
     }
 
     updateSumAndTotalPrice();
