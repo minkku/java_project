@@ -16,10 +16,13 @@
 		function initialize() {
 			var email = document.getElementById("email");
 			var password = document.getElementById("pw");
-			var pwCheck = document.getElementById("pwCheck")
-			
+			var pwCheck = document.getElementById("pwCheck");
+			var names = document.getElementById("name");
+			var address = document.getElementById("address");
+			var mobile = document.getElementById("mobile");
+			console.log( name);
 			document.getElementById("signupForm").onsubmit = function () {
-				return validation(email, password,pwCheck);
+				return validation(email, password, pwCheck, name, address, mobile);
 			};
 		}
 
@@ -35,8 +38,8 @@
 			} else {
 				document.getElementById("emailErr").innerText = "";
 			}
-
-			if (password.value === "") {
+			console.log("되는거 맞아?");
+			if (password.value.length === "") {
 				document.getElementById("pwErr").innerText = "비밀번호를 입력하세요";
 				password.focus();
 				return false;
@@ -60,8 +63,28 @@
 	            document.getElementById("pwChErr").innerText = "";
 	        }
 			
-			if (email.value === "" && password.value === "") {
-				document.getElementById("error").innerText = "모든 칸을 채워주세요"
+			if (names.value === "") {
+				document.getElementById("nameErr").innerText = "이름을 입력 해주세요";
+				names.focus();
+				return false;
+			} else {
+				document.getElementById("nameErr").innerText = "";
+			}
+			
+			if (address.value === "") {
+				document.getElementById("addErr").innerText = "주소란을 작성해 주세요";
+				address.focus();
+				return false;
+			} else {
+				document.getElementById("addErr").innerText = "";
+			}
+			
+			if (mobile.value === "") {
+				document.getElementById("numErr").innerText = "전화번호를 입력해 주세요";
+				mobile.focus();
+				return false;
+			} else {
+				document.getElementById("numErr").innerText = "";
 			}
 
 			return true;
@@ -78,7 +101,7 @@
 
 		<div>
 			<label for="password">비밀번호</label>
-			<input type="password" id="password" name="pw" placeholder="영문, 숫자, 특수문자 조합하여 5~12자" value="${users.pw}"/>${users.pw}
+			<input type="password" id="pw" name="pw" placeholder="영문, 숫자, 특수문자 조합하여 5~12자" value="${users.pw}"/>${users.pw}
 			<span id="pwErr" class="error-message"></span>
 		</div>
 
@@ -89,18 +112,21 @@
 		</div>
 
 		<div>
-			<label for="name">이름</label>
-			<input type="text" id="name" name="name" value="${users.name}"> ${users.name}
+			<label for="names">이름</label>
+			<input type="text" id="names" name="names" value="${users.name}"> ${users.name}
+			<span id="nameErr" class="error-message"></span>
 		</div>
 
 		<div>
 			<label for="address">주소</label>
 			<input type="text" id="address" name="address" value ="${users.address}"/>${users.address}
+			<span id="addErr" class="error-message"></span>
 		</div>
 		
 		<div>
 			<label for="mobile">전화번호</label>
 			<input type="text" id="mobile" name="mobile" value ="${users.mobile}"/>${users.mobile}
+			<span id="numErr" class="error-message"></span>
 		</div>
 
 		<div>
@@ -110,7 +136,6 @@
 				<option value="남">남</option>
 				<option value="여">여</option>
 			</select>
-			<span id="gederErr" class="error-message"></span>
 		</div>
 
 		<div>
