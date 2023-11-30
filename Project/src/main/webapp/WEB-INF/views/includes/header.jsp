@@ -25,6 +25,7 @@
 	<link rel="stylesheet" href="/resources/css/daterangepicker.css">
 	<link rel="stylesheet" href="/resources/css/aos.css">
 	<link rel="stylesheet" href="/resources/css/style.css">
+	<link rel="stylesheet" href="/resources/css/ordersList.css">
 
 	<title>한클</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -87,7 +88,7 @@
         }
         .carts_Buy {
         	margin-top: 100px;
-        	margin-: 100px;
+        	margin-: 200px;
         	text-align: center;
         }
         .buyButton {
@@ -99,6 +100,15 @@
 		}
 		
 		.total {
+			position: absolute;
+            bottom: 0;
+            right: 0;
+            margin-bottom: 130px;
+            margin-right: 400px;
+            display: flex;
+    		align-items: center;
+		}
+		.have_point {
 			position: absolute;
             bottom: 0;
             right: 0;

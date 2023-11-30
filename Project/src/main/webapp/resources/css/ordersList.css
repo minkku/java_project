@@ -1,0 +1,40 @@
+.ordersList_Body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.ordersList_container {
+	max-width: 800px;
+	padding: 20px;
+    text-align: left
+    left: 0;
+    margin-left: -20px;
+}
+
+.section-title {
+	font-size: 18px;
+	color: #333;
+	margin-bottom: 10px;
+}
+
+.ordersList_info-table {
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+.ordersList_info-table th, .ordersList_info-table td {
+	border: 1px solid #ddd;
+	padding: 12px;
+	text-align: left;
+}
+
+.ordersList_input-field {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.ordersList_input-field[readonly] {
+	background-color: #eee;
+}
