@@ -17,16 +17,17 @@
 			var email = document.getElementById("email");
 			var password = document.getElementById("pw");
 			var pwCheck = document.getElementById("pwCheck");
-			var names = document.getElementById("name");
+			// name은 이미 브라우저에서 제공하는 전역 개체 window 속성중 하나여서 매개 변수 사용시 오류 발생하니 바꿔주자
+			var user_name = document.getElementById("user_name");
 			var address = document.getElementById("address");
 			var mobile = document.getElementById("mobile");
-			console.log( name);
+			console.log(email, password, pwCheck, user_name, address, mobile);
 			document.getElementById("signupForm").onsubmit = function () {
-				return validation(email, password, pwCheck, name, address, mobile);
+				return validation(email, password, pwCheck, user_name, address, mobile);
 			};
 		}
 
-		function validation(email, password, pwCheck) {
+		function validation(email, password, pwCheck, user_name, address, mobile) {
 			if (email.value === "") {
 				document.getElementById("emailErr").innerText = "아이디를 입력하세요";
 				email.focus();
@@ -63,9 +64,10 @@
 	            document.getElementById("pwChErr").innerText = "";
 	        }
 			
-			if (names.value === "") {
+			if (user_name.value.length === "") {
 				document.getElementById("nameErr").innerText = "이름을 입력 해주세요";
-				names.focus();
+				user_name.focus();
+				console.log("되는거 맞아222?");
 				return false;
 			} else {
 				document.getElementById("nameErr").innerText = "";
@@ -92,7 +94,7 @@
 	</script>
 
 	<h2>회원가입</h2>
-	<form id="signupForm" action="/signup" method="post">
+	<form id="signupForm" action="/signup" method="post" modelAttribute="user">
 		<div>
 			<label for="email">이메일</label>
 			<input type="text" id="email" name="email" placeholder="이메일" value="${users.email}"/>${users.email}
@@ -100,7 +102,7 @@
 		</div>
 
 		<div>
-			<label for="password">비밀번호</label>
+			<label for="pw">비밀번호</label>
 			<input type="password" id="pw" name="pw" placeholder="영문, 숫자, 특수문자 조합하여 5~12자" value="${users.pw}"/>${users.pw}
 			<span id="pwErr" class="error-message"></span>
 		</div>
@@ -112,8 +114,8 @@
 		</div>
 
 		<div>
-			<label for="names">이름</label>
-			<input type="text" id="names" name="names" value="${users.name}"> ${users.name}
+			<label for="user_name">이름</label>
+			<input type="text" id="user_name" name="user_name" value="${users.user_name}"> ${users.user_name}
 			<span id="nameErr" class="error-message"></span>
 		</div>
 

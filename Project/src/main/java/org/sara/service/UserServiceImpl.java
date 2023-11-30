@@ -14,8 +14,9 @@ public class UserServiceImpl implements UserService {
 	private UserMapper mapper;
 
 	 @Override
-	 public void reg(UserVO vo) throws Exception {
-	    mapper.reg(vo);
+	 public void reg(UserVO user) throws Exception {
+		 log.info("Registering user: " + user);
+	    mapper.reg(user);
 	 }
 	 
 	 @Override

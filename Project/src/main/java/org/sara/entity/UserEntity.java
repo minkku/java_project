@@ -9,7 +9,7 @@ public class UserEntity {
 	private int user_id;
 	private String email;
 	private String pw;
-	private String name;
+	private String user_name;
 	private String gender;
 	private String mobile;
 	
@@ -19,7 +19,7 @@ public class UserEntity {
 		users.setEmail(userVO.getEmail());
 		String pw = passwordEncoder.encode(userVO.getPw());
 		users.setPw(userVO.getPw());
-		users.setName(userVO.getName());
+		users.setUser_name(userVO.getUser_name());
 		users.setGender(userVO.getGender());
 		users.setMobile(userVO.getMobile());
 		

@@ -20,7 +20,7 @@ public class UserMapperTest {
 	@Test
 	public void signupTest() throws Exception {
 		UserVO user = new UserVO();
-		user.setName("testName");
+		user.setUser_name("testName");
 		user.setEmail("testEmail@m.com");
 		user.setPw("test1234");
 		user.setAddress("testestest");
