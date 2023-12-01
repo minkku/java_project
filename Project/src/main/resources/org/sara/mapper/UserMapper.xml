@@ -12,7 +12,7 @@
 				address,
 				mobile,
 				gender,
-				point		
+				point
 		) VALUES (
 				#{email},
 				#{pw},

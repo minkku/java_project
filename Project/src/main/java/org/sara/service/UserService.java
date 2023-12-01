@@ -1,5 +1,6 @@
 package org.sara.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.sara.domain.UserVO;
 
 public interface UserService {

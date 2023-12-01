@@ -26,9 +26,8 @@ public class UserController {
 	
 	@GetMapping("/signup")
 	public String signupPg(Model model) {
-		log.info("signup Page=========");
+		log.info("Get == signup Mapping");
 		model.addAttribute("user", new UserVO());
-		log.info("user");
 		return "book/signup";
 	}
 	
@@ -37,10 +36,24 @@ public class UserController {
 		try {
 			log.info(user);
 			us.reg(user);
-			return "redirect:/book/signin";
+			return "redirect: /signin";
 		} catch (Exception e) {
 			redirectA.addFlashAttribute("error", "Registration failed");
-			return "redirect:/book/signup";
+			return "redirect: /signup";
+		}
+	}
+	
+	@GetMapping("/signin")
+	public String signin() {
+		log.info("signin pg ====");
+		return "book/signin";
+	}
+	
+	@PostMapping("/signin")
+	public String signinToMain() {
+		log.info("signin success");
+		try {
+			return 
 		}
 	}
 }
