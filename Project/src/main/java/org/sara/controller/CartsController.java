@@ -65,7 +65,7 @@ public class CartsController {
 	    	} catch (Exception e) {
 	    		log.info("selectCarts가 session에 들어오지 않음" + e.getMessage());
 	    	}
-	    	return "redirect:/orders/list?users_id=" + users_id;
+	    	return "redirect:/orders/payment?users_id=" + users_id;
 	    }
 	    
 	    return "redirect:/carts?users_id=" + users_id;

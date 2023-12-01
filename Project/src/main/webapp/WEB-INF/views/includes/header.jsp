@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="/resources/css/daterangepicker.css">
 	<link rel="stylesheet" href="/resources/css/aos.css">
 	<link rel="stylesheet" href="/resources/css/style.css">
-	<link rel="stylesheet" href="/resources/css/ordersList.css">
+	<link rel="stylesheet" href="/resources/css/ordersPayment.css">
 
 	<title>한클</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

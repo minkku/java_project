@@ -119,13 +119,13 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "/updateQuantity",
+            url: "/updateQuantity", 
             data: {
                 users_id: users_id,
                 carts_id: carts_id,
                 books_id: books_id,
                 quantity: quantity
-            },
+            },  
             success: function (response) {
                 console.log("Quantity updated successfully");
                 console.log("Response:", response);

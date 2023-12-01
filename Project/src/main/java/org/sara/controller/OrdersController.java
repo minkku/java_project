@@ -9,6 +9,7 @@ import org.sara.service.OrdersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,10 +23,17 @@ import lombok.extern.log4j.Log4j;
 public class OrdersController {
 	private OrdersService service;
 	
-	@GetMapping("/list")
-	public String getCarts(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
-		log.info("get - orders/list-------------------------------");
+	@GetMapping("/payment")
+	public String getPayment(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
+		log.info("get - orders/payment-------------------------------");
         model.addAttribute("selectCarts", session.getAttribute("selectCarts"));
-		return "ordersList";
+        model.addAttribute("users", service.getUsersInfo(users_id));
+		return "payment";
+	}
+	
+	@PostMapping("/payment")
+	public String postPayment(HttpSession session, Model model) {
+		
+		return "";
 	}
 }
