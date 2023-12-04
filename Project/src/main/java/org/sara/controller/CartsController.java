@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.sara.domain.CartsListVO;
 import org.sara.service.CartsService;
+import org.sara.service.OrdersService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,6 @@ public class CartsController {
 		log.info("get - carts-------------------------------");
 		session.setAttribute("users_id", users_id);
 		model.addAttribute("carts", service.getCartsList(users_id));
-
 		return "carts";
 	}
 	
@@ -58,7 +58,6 @@ public class CartsController {
 	    if ("장바구니에서 제거".equals(action)) {
 	    	service.deleteCarts(users_id, carts_id);
 	    } else if ("구매하기".equals(action)) {
-//			session.removeAttribute("selectCarts");
 	    	session.setAttribute("selectCarts", service.getSelectCartsList(users_id, carts_id));
 	    	try {
 	    		log.info(session.getAttribute("selectCarts-----구매하기"));

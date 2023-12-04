@@ -28,12 +28,30 @@ public class OrdersController {
 		log.info("get - orders/payment-------------------------------");
         model.addAttribute("selectCarts", session.getAttribute("selectCarts"));
         model.addAttribute("users", service.getUsersInfo(users_id));
+        session.setAttribute("users_id", users_id);
+        log.info(service.ranOrdersNum());
 		return "payment";
 	}
 	
 	@PostMapping("/payment")
-	public String postPayment(HttpSession session, Model model) {
-		
-		return "";
+	public String postPayment(@RequestParam("new_name") String new_name, @RequestParam("user_name") String user_name,
+							  @RequestParam("new_adress") String new_adress, @RequestParam("user_adress") String user_adress,
+							  @RequestParam("new_mobile") String new_mobile, @RequestParam("user_mobile") String user_mobile,
+							  @RequestParam("comment") String comment, @RequestParam("books_id") List<Integer> books_id,
+							  @RequestParam("quantity") List<Integer> quantity, @RequestParam("user_info") String user_info,
+							  HttpSession session, Model model) {
+		int users_id = (int) session.getAttribute("users_id");
+		String OrdersNum = service.ranOrdersNum();
+		if (user_info.equals("new_data")) {
+			
+		} else {
+			
+		}
+		log.info("new_name" + new_name + "/user_name" + user_name +  "/new_adress" + new_adress +  "/user_adress" + user_adress +  
+				 "/new_mobile" + new_mobile +  "/user_mobile" + user_mobile +  "/comment" + comment);
+		log.info("books_id " + books_id);
+		log.info("quantity " + quantity);
+		service.insertOrdersDetail(OrdersNum, users_id, books_id, quantity);
+		return "main";
 	}
 }

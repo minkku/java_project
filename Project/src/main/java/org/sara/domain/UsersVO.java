@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class UsersVO {
 	int users_id;
-	String name;
+	String user_name;
 	String pw;
-	String address; // 수정해야함
+	String adress; // 수정해야함
 	String gender;
 	String email;
 	String mobile;

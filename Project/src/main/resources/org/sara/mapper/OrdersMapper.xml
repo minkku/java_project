@@ -3,9 +3,9 @@
 <mapper namespace="org.sara.mapper.OrdersMapper">
 	<select id = "getUsersInfo" resultType = "org.sara.domain.UsersVO"> <!-- 민규형 끝나면 수정해서 넣어야함 -->
 		SELECT users_id,
-			   name,
+			   user_name,
 			   pw,
-			   address, <!-- adress로 변경해야 함 테이블 합쳐서 만들때 수정예정 -->
+			   adress, <!-- adress로 변경해야 함 테이블 합쳐서 만들때 수정예정 -->
 			   gender,
 			   email,
 			   mobile,
@@ -13,4 +13,22 @@
 		  FROM users
 		 WHERE users_id = #{users_id}
 	</select>
+	<insert id = "insertOrdersDetail">
+		INSERT INTO orders_detail VALUES(
+			#{orders_num},
+			#{users_id},
+			#{books_id},
+			#{quantity}
+		)
+	</insert>
+	
+	<resultMap id="ordersNumCheckResultMap" type="int">
+        <result property="count" column="count" />
+    </resultMap>
+
+    <select id="ordersNumCheck" resultMap="ordersNumCheckResultMap">
+        SELECT COUNT(orders_num) AS count
+        FROM orders_detail
+        WHERE orders_num = #{orders_num}
+    </select>
 </mapper>
