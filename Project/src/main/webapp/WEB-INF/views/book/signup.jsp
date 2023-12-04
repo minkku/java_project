@@ -93,17 +93,17 @@
 		}
 	</script>
 
-	<h2>회원가입</h2>
-	<form id="signupForm" action="/signup" method="post" modelAttribute="user">
+	<form id="signupForm" action="/signup" method="post">
+		<h2>회원가입</h2>
 		<div>
 			<label for="email">이메일</label>
-			<input type="text" id="email" name="email" placeholder="이메일" value="${users.email}"/>${users.email}
+			<input type="text" id="email" name="email" value="${users.email}"/>${users.email}
 			<span id="emailErr" class="error-message"></span>
 		</div>
 
 		<div>
 			<label for="pw">비밀번호</label>
-			<input type="password" id="pw" name="pw" placeholder="영문, 숫자, 특수문자 조합하여 5~12자" value="${users.pw}"/>${users.pw}
+			<input type="password" id="pw" name="pw" placeholder="영문, 숫자, 특수문자 조합하여 5~12자리 이상 입력해 주세요" value="${users.pw}"/>${users.pw}
 			<span id="pwErr" class="error-message"></span>
 		</div>
 

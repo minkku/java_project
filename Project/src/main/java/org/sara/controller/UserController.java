@@ -49,11 +49,9 @@ public class UserController {
 		return "book/signin";
 	}
 	
-	@PostMapping("/signin")
-	public String signinToMain() {
-		log.info("signin success");
-		try {
-			return 
-		}
-	}
+//	@PostMapping("/signin")
+//	public String signinToMain() {
+//		log.info("signin success");
+//		return "redirect: /main"
+//	}
 }
