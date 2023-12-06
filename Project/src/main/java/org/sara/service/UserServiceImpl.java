@@ -1,8 +1,5 @@
 package org.sara.service;
 
-import java.util.Random;
-
-import org.apache.ibatis.annotations.Param;
 import org.sara.domain.UserVO;
 import org.sara.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -27,4 +24,8 @@ public class UserServiceImpl implements UserService {
 		 return mapper.emailCheck(email);
 	 }
 
+	@Override
+	public UserVO login(UserVO vo) throws Exception {
+		return mapper.getUserByEmail(vo);
+	}
 }

@@ -16,11 +16,11 @@
 
 				<ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
 					<li class="active">
-						<c:if test="${users.email == null}">
-						<a href="/signup">Login</a>
+						<c:if test="${uVo.email == null}">
+						<a href="/signin">Login</a>
 						</c:if>
 						
-						<c:if test="${users.email != null}">
+						<c:if test="${uVo.email != null}">
 						<a href="/logout">Logout</a>
 						</c:if>
 					</li>

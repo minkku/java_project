@@ -32,4 +32,11 @@
 		WHERE
 			email = #{email}
 	</select>
+	
+	<select id="getUserByEmail" resultType="org.sara.domain.UserVO">
+        SELECT * FROM 
+        	users 
+        WHERE
+        	email = #{email}
+    </select>
 </mapper>

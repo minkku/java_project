@@ -18,8 +18,8 @@
                 </div>
                 <div class="card-body">
                     <!-- Your login form -->
-                    <form action="/login" method="get">
-                        
+                    <form action="/signin" method="post">
+                       
                         <div class="form-group">
                             <label for="email">이메일</label>
                             <input type="text" class="form-control" id="email" name="email" value="${users.email}">${users.email}
