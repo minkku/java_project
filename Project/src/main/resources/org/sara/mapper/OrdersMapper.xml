@@ -16,9 +16,21 @@
 	<insert id = "insertOrdersDetail">
 		INSERT INTO orders_detail VALUES(
 			#{orders_num},
-			#{users_id},
 			#{books_id},
 			#{quantity}
+		)
+	</insert>
+	<insert id = "insertOrders">
+		INSERT INTO orders VALUES (
+			NULL,
+			#{users_id},
+			#{orders_name},
+			#{orders_adress},
+			#{orders_mobile},
+			#{comment},
+			#{orders_num},
+			NOW(),
+			#{status}			
 		)
 	</insert>
 	
@@ -30,5 +42,29 @@
         SELECT COUNT(orders_num) AS count
         FROM orders_detail
         WHERE orders_num = #{orders_num}
+    </select>
+    
+    <select id="getBuyBooksAndCount">
+    	SELECT b.img,
+    		   b.name,
+    		   COUNT(b.books_id)
+    	  FROM books b
+    	  JOIN orders_detail od ON b.books_id = od.books_id_id
+    	 WHERE od.orders_num = #{orders_num}
+    	 LIMIT 1
+    </select>
+    <select id="getOrdersInfo" resultType="org.sara.domain.OrdersVO">
+    	SELECT orders_id,
+    		   users_id_id,
+    		   orders_name,
+    		   orders_adress,
+    		   orders_mobile,
+    		   comment,
+    		   orders_num,
+    		   orders_date,
+    		   status
+		  FROM orders
+		 WHERE users_id = #{users_id}
+		   AND orders_num = #{orders_num}
     </select>
 </mapper>

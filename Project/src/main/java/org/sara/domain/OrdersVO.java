@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class OrdersVO {
 	int orders_id; 
+	int users_id;
 	String orders_name; 
 	String orders_adress; 
 	String orders_mobile; 

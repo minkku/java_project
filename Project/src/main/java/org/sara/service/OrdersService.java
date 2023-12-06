@@ -13,10 +13,14 @@ public interface OrdersService {
 	
 	public UsersVO getUsersInfo(@Param("users_id") int users_id);
 	
-	public void insertOrdersDetail(@Param("orders_num") String orders_num, @Param("users_id") int users_id,
-			   					   @Param("books_id") List<Integer> books_id, @Param("quantity") List<Integer> quantity);
+	public void insertOrdersDetail(@Param("orders_num") String orders_num, @Param("books_id") List<Integer> books_id,
+								   @Param("quantity") List<Integer> quantity);
 	
 	public String ranOrdersNum();
 	
-	public void insertOrders(String orders_name, String orders_adress, String orders_mobile, String comment, String orders_num, int status_id);
+	public void insertOrders(@Param("users_id") int users_id, @Param("orders_name") String orders_name, @Param("orders_adress") String orders_adress,
+							 @Param("orders_mobile") String orders_mobile, @Param("comment") String comment, @Param("orders_num") String orders_num,
+							 @Param("status") int status);
+	
+	public boolean deleteCarts(@Param("users_id") int users_id, @Param("carts_id") List<Integer> carts_id);
 }

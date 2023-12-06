@@ -5,7 +5,7 @@
     <div class="hero">
         <%@ include file="includes/nav.jsp"%>
     </div>
-    <form action="/orders/payment" method="post">
+    <form action="/orders/payment" method="post" onsubmit="return validateForm()">
         <input type="hidden" name="users_id" value="${users_id}"> 
         <div class="carts_div">
             <table class="carts_tile1">
@@ -120,59 +120,95 @@
 </div>
 <%@include file="includes/footer.jsp"%>
 <script>
-    function handleRadioChange() {
-        var newRadio = document.getElementById('newDataRadio');
-        var userInputSection_name = document.getElementById('userInputSection_name');
-        var readonlySection_name = document.getElementById('readonlySection_name');
-        var userInputSection_address = document.getElementById('userInputSection_adress');
-        var readonlySection_address = document.getElementById('readonlySection_adress');
-        var userInputSection_mobile = document.getElementById('userInputSection_mobile');
-        var readonlySection_mobile = document.getElementById('readonlySection_mobile');
+function validateForm() {
+    // 선택된 라디오 버튼 가져오기
+    var newDataRadio = document.getElementById('newDataRadio');
 
-        if (newRadio.checked) {
-            userInputSection_name.style.display = 'table-row';
-            readonlySection_name.style.display = 'none';
-            userInputSection_address.style.display = 'table-row';
-            readonlySection_address.style.display = 'none';
-            userInputSection_mobile.style.display = 'table-row';
-            readonlySection_mobile.style.display = 'none';
-        } else {
-            userInputSection_name.style.display = 'none';
-            readonlySection_name.style.display = 'table-row';
-            userInputSection_address.style.display = 'none';
-            readonlySection_address.style.display = 'table-row';
-            userInputSection_mobile.style.display = 'none';
-            readonlySection_mobile.style.display = 'table-row';
+    // 이름, 주소, 전화번호 입력 필드 가져오기
+    var newNameInput = document.getElementById('new_name');
+    var newAddressInput = document.getElementById('new_adress');
+    var newMobileInput = document.getElementById('new_mobile');
+
+    console.log('newDataRadio.checked:', newDataRadio.checked);
+    console.log('newNameInput.value:', newNameInput.value);
+    console.log('newAddressInput.value:', newAddressInput.value);
+    console.log('newMobileInput.value:', newMobileInput.value);
+    // 선택된 라디오 버튼이 'new_data'이면서, 이름, 주소, 전화번호 중 하나라도 입력되지 않았을 경우
+    if (newDataRadio && newNameInput && newAddressInput && newMobileInput && newDataRadio.checked) {
+        var messages = [];
+        if (newNameInput.value.trim() === '') {
+            messages.push('이름을 입력해주세요.');
+        }
+        if (newAddressInput.value.trim() === '') {
+            messages.push('주소를 입력해주세요.');
+        }
+        if (newMobileInput.value.trim() === '') {
+            messages.push('전화번호를 입력해주세요.');
+        }
+
+        // 메시지가 하나 이상인 경우에만 알림 띄우기
+        if (messages.length > 0) {
+            alert(messages.join('\n'));
+            return false; // 폼 제출을 중지
         }
     }
 
-    function showInput(selectElement) {
-        var customInput = document.getElementById("customComment");
-        if (selectElement.value === "직접입력") {
-            customInput.style.display = "inline-block";
-        } else {
-            customInput.style.display = "none";
-        }
+    // 그 외의 경우에는 폼을 제출
+    return true;
+}
+function handleRadioChange() {
+    var newRadio = document.getElementById('newDataRadio');
+    var userInputSection_name = document.getElementById('userInputSection_name');
+    var readonlySection_name = document.getElementById('readonlySection_name');
+    var userInputSection_address = document.getElementById('userInputSection_adress');
+    var readonlySection_address = document.getElementById('readonlySection_adress');
+    var userInputSection_mobile = document.getElementById('userInputSection_mobile');
+    var readonlySection_mobile = document.getElementById('readonlySection_mobile');
+
+    if (newRadio.checked) {
+        userInputSection_name.style.display = 'table-row';
+        readonlySection_name.style.display = 'none';
+        userInputSection_address.style.display = 'table-row';
+        readonlySection_address.style.display = 'none';
+        userInputSection_mobile.style.display = 'table-row';
+        readonlySection_mobile.style.display = 'none';
+    } else {
+        userInputSection_name.style.display = 'none';
+        readonlySection_name.style.display = 'table-row';
+        userInputSection_address.style.display = 'none';
+        readonlySection_address.style.display = 'table-row';
+        userInputSection_mobile.style.display = 'none';
+        readonlySection_mobile.style.display = 'table-row';
+    }
+}
+
+function showInput(selectElement) {
+    var customInput = document.getElementById("customComment");
+    if (selectElement.value === "직접입력") {
+        customInput.style.display = "inline-block";
+    } else {
+        customInput.style.display = "none";
+    }
+}
+
+// 합계 계산 함수
+function calculateTotal() {
+    var sumPrices = document.getElementsByClassName('sumPrice');
+    var totalPrice = 0;
+
+    // 각 항목의 가격을 합산
+    for (var i = 0; i < sumPrices.length; i++) {
+        totalPrice += parseFloat(sumPrices[i].innerText);
     }
 
-    // 합계 계산 함수
-    function calculateTotal() {
-        var sumPrices = document.getElementsByClassName('sumPrice');
-        var totalPrice = 0;
+    // 최종 결제 금액을 출력
+    var finalTotalElement = document.getElementById('finalTotal');
+    finalTotalElement.innerText = totalPrice.toFixed(0); // 소수점 둘째 자리까지 표시
+}
 
-        // 각 항목의 가격을 합산
-        for (var i = 0; i < sumPrices.length; i++) {
-            totalPrice += parseFloat(sumPrices[i].innerText);
-        }
-
-        // 최종 결제 금액을 출력
-        var finalTotalElement = document.getElementById('finalTotal');
-        finalTotalElement.innerText = totalPrice.toFixed(0); // 소수점 둘째 자리까지 표시
-    }
-
-    // 페이지 로드 시 초기 호출
-    calculateTotal();
-    handleRadioChange();
+// 페이지 로드 시 초기 호출
+calculateTotal();
+handleRadioChange();
 </script>
 </body>
 </html>

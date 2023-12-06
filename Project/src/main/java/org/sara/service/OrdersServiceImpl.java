@@ -34,18 +34,19 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 
 	@Override
-	public void insertOrdersDetail(String orders_num, @Param("users_id") int users_id,
-								   @Param("books_id") List<Integer> books_id, @Param("quantity") List<Integer> quantity) {
+	public void insertOrdersDetail(String orders_num, @Param("books_id") List<Integer> books_id,
+								   @Param("quantity") List<Integer> quantity) {
 		for (int i = 0; i < books_id.size(); i++) {
-			ordersMapper.insertOrdersDetail(orders_num, users_id, books_id.get(i), quantity.get(i));
-			log.info("one comp " + orders_num + "<---orders_num" + users_id + "<---users_id" + books_id.get(i) + "<---books_id" + quantity.get(i) + "<---quantity");
+			ordersMapper.insertOrdersDetail(orders_num, books_id.get(i), quantity.get(i));
+			log.info("one comp " + orders_num + "<---orders_num" + books_id.get(i) + "<---books_id" + quantity.get(i) + "<---quantity");
 		}
 	}
 
 	@Override
-	public void insertOrders(String orders_name, String orders_adress, String orders_mobile, String comment,
-							 String orders_num, int status_id) {
-		ordersMapper.insertOrders(orders_name, orders_adress, orders_mobile, comment, orders_num, status_id);
+	public void insertOrders(@Param("users_id") int users_id, @Param("orders_name") String orders_name, @Param("orders_adress") String orders_adress,
+							 @Param("orders_mobile") String orders_mobile, @Param("comment") String comment, @Param("orders_num") String orders_num,
+							 @Param("status") int status) {
+		ordersMapper.insertOrders(users_id, orders_name, orders_adress, orders_mobile, comment, orders_num, status);
 	}
 	
 	@Override
@@ -70,6 +71,11 @@ public class OrdersServiceImpl implements OrdersService{
 
 	    // 최대 시도 횟수를 초과한 경우, 예외 또는 특별한 처리를 수행할 수 있음
 	    throw new RuntimeException("Failed to generate a unique orders number after " + maxAttempts + " attempts.");
+	}
+
+	@Override
+	public boolean deleteCarts(int users_id, List<Integer> carts_id) {
+		return cartsService.deleteCarts(users_id, carts_id);
 	}
 
 }
