@@ -74,6 +74,7 @@ public class UserController {
 	    }
 	}
 	
+	// Á¾·á½Ã session expire
 	@RequestMapping(value = "/logout", method = {RequestMethod.GET, RequestMethod.POST})
 	public String logout(HttpSession session) {
 		session.invalidate();
