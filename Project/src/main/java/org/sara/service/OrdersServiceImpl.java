@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Random;
 
 import org.apache.ibatis.annotations.Param;
+import org.sara.domain.BooksImgVO;
 import org.sara.domain.CartsListVO;
-import org.sara.domain.OrdersDetailVO;
+import org.sara.domain.OrdersListVO;
+import org.sara.domain.OrdersVO;
 import org.sara.domain.UsersVO;
 import org.sara.mapper.OrdersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +78,27 @@ public class OrdersServiceImpl implements OrdersService{
 	@Override
 	public boolean deleteCarts(int users_id, List<Integer> carts_id) {
 		return cartsService.deleteCarts(users_id, carts_id);
+	}
+	
+	@Override
+	public OrdersVO getOrdersInfo(@Param("users_id") int users_id, @Param("orders_num") String orders_num) {
+		
+		return ordersMapper.getOrdersInfo(users_id, orders_num);
+	}
+
+	@Override
+	public int getBuyBooksCount(String orders_num) {
+		return ordersMapper.getBuyBooksCount(orders_num);
+	}
+
+	@Override
+	public BooksImgVO getBuyBook(String orders_num) {
+		return ordersMapper.getBuyBook(orders_num);
+	}
+
+	@Override
+	public List<OrdersListVO> getOrderList(int users_id) {
+		return ordersMapper.getOrderList(users_id);
 	}
 
 }

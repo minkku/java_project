@@ -8,6 +8,7 @@ import org.sara.domain.CartsListVO;
 import org.sara.service.OrdersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ public class OrdersController {
         model.addAttribute("users", service.getUsersInfo(users_id));
         session.setAttribute("users_id", users_id);
         log.info(service.ranOrdersNum());
-		return "payment";
+		return "orders/payment";
 	}
 	
 	@PostMapping("/payment")
@@ -57,19 +58,48 @@ public class OrdersController {
 	@GetMapping("/complete")
 	public String getComplete(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
 		log.info("get - orders/complete-------------------------------");
+//		int users_id = (int) session.getAttribute("users_id");
 		String orders_num = (String) session.getAttribute("orders_num");
 		model.addAttribute("orders_num", orders_num);
 		model.addAttribute("users", service.getUsersInfo(users_id));
-//		int users_id = (int) session.getAttribute("users_id");
-		return "complete";
+		model.addAttribute("orders", service.getOrdersInfo(users_id, orders_num));
+		model.addAttribute("buyBook", service.getBuyBook(orders_num));
+		if (service.getBuyBooksCount(orders_num) > 1) {
+			model.addAttribute("buyBookCount", service.getBuyBooksCount(orders_num) - 1);
+		} else {
+			model.addAttribute("buyBookCount", service.getBuyBooksCount(orders_num));
+		}
+		return "orders/complete";
 	}
 	
-	@GetMapping("/cancel")
-	public String getCancel(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
+	@GetMapping("/listInfo")
+	public String getListInfo(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
 		log.info("get - orders/cancel-------------------------------");
 		String orders_num = (String) session.getAttribute("orders_num");
-		model.addAttribute("orders_num", orders_num);
 //		int users_id = (int) session.getAttribute("users_id");
-		return "cancel";
+		model.addAttribute("orders_num", orders_num);
+		model.addAttribute("users", service.getUsersInfo(users_id));
+		model.addAttribute("orders", service.getOrdersInfo(users_id, orders_num));
+		model.addAttribute("buyBook", service.getBuyBook(orders_num));
+		if (service.getBuyBooksCount(orders_num) > 1) {
+			model.addAttribute("buyBookCount", service.getBuyBooksCount(orders_num) - 1);
+		} else {
+			model.addAttribute("buyBookCount", service.getBuyBooksCount(orders_num));
+		}
+		return "orders/listInfo";
+	}
+	
+	@PostMapping("/listInfo")
+	public String postListInfo(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
+		
+		return "redirect:/orders/complete?users_id=" + users_id;
+	}
+	
+	@GetMapping("/list")
+	public String getList(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
+		log.info("get - orders/list-------------------------------");
+//		int users_id = (int) session.getAttribute("users_id");
+		model.addAttribute("ordersList", service.getOrderList(users_id));
+		return "orders/list";
 	}
 }

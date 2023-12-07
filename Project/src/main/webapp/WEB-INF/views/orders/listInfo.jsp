@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="includes/header.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 <body>
 <div class="ordersPayment_Body">
     <div class="hero">
-        <%@ include file="includes/nav.jsp"%>
+        <%@ include file="../includes/nav.jsp"%>
     </div>
-    <form action="/orders/payment" method="post" onsubmit="return validateForm()">
+    <form action="/orders/listInfo" method="post">
         <input type="hidden" name="users_id" value="${users_id}"> 
         <div class="carts_div">
             <table class="carts_tile1">
-                <h1 class="carts_title">주문하기</h1>
+                <h1 class="carts_title">주문 상세보기</h1>
                 <thead>
                     <tr>
                         <th class="carts_tile3" colspan="2">목록</th>
@@ -18,10 +18,9 @@
                         <th class="carts_tile3">합계금액</th>
                     </tr>
                 </thead>
-                <c:forEach items="${selectCarts}" var="info">
+                <c:forEach items="${selectOrders}" var="info">
                     <tr>
                         <td class="carts_tile2"><img src="/resource/images/${info.img}"/>
-                            <input type="hidden" name="carts_id" value="${info.carts_id}">
                             <input type="hidden" name="books_id" value="${info.books_id}">
                         </td>
                         <td class="carts_tile4">
@@ -40,6 +39,11 @@
                     </tr>
                 </c:forEach>
             </table>
+            <div class="total">
+                <input style="text-align: left" type="hidden" name="totalPrice">
+                <span style="font-size: 24px"><strong id="finalTotal">&nbsp;&nbsp;&nbsp;</strong></span>
+                <span style="font-size: 16px">최종 결제 금액</span>
+            </div>
             <div class="ordersPayment_container">
                 <h5 class="section-title">회원 정보</h5>
                 <table class="ordersPayment_info-table">
@@ -60,25 +64,28 @@
                 <table class="ordersPayment_info-table">
                     <tr>
                         <td>수령인</td>
-                        <td colspan="3"><input class="input-field" type="text" name="orders_name" value="${orders.orders_name}" readonly></td>
+                        <td colspan="3"><input type="text" value="${orders.orders_name}" readonly></td>
                     </tr>
                     <tr>
                         <td>배송지</td>
-                        <td colspan="3"><input class="input-field" type="text" name="orders_adress" value="${orders.orders_adress}" readonly></td>
+                        <td colspan="3"><input type="text" value="${orders.orders_adress}" readonly></td>
                     </tr>
                     <tr>
                         <td>전화번호</td>
-                        <td colspan="3"><input class="input-field" type="text" name="orders_mobile" value="${orders.orders_mobile}" readonly></td>
+                        <td colspan="3"><input type="text" value="${orders.orders_mobile}" readonly></td>
                     </tr>
                     <tr>
                         <td>요청사항</td>
-                        <td colspan="3"><input type="text" name="comment" value="${orders.comment}" readonly></td>
+                        <td colspan="3"><input type="text" value="${orders.comment}" readonly></td>
                     </tr>
                 </table>
+            </div>
+            <div class="carts_Buy">
+                <input class="buyButton" type="submit" value="주문취소">
             </div>
         </div>
     </form>
 </div>
-<%@include file="includes/footer.jsp"%>
+<%@include file="../includes/footer.jsp"%>
 </body>
 </html>

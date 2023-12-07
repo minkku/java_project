@@ -35,7 +35,7 @@ public class CartsController {
 		log.info("get - carts-------------------------------");
 		session.setAttribute("users_id", users_id);
 		model.addAttribute("carts", service.getCartsList(users_id));
-		return "carts";
+		return "orders/carts";
 	}
 	
 	@PostMapping("/carts")

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="includes/header.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 <body>
 	<div class="hero">
-		<%@ include file="includes/nav.jsp"%>
+		<%@ include file="../includes/nav.jsp"%>
 	</div>
 	<form action="/carts" method="post">
 	<input type="hidden" name="users_id" value="${users_id}"> 
@@ -57,7 +57,7 @@
 		</div>
 	</div>
 	</form>
-	<%@include file="includes/footer.jsp"%>
+	<%@include file="../includes/footer.jsp"%>
 <script>
 $(document).ready(function() {
 	$(".allSelectCarts_id").change(function () {

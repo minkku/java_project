@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="includes/header.jsp"%>
+<%@ include file="../includes/header.jsp"%>
 <body>
 <div class="ordersPayment_Body">
     <div class="hero">
-        <%@ include file="includes/nav.jsp"%>
+        <%@ include file="../includes/nav.jsp"%>
     </div>
     <form action="/orders/payment" method="post" onsubmit="return validateForm()">
         <input type="hidden" name="users_id" value="${users_id}"> 
@@ -118,7 +118,7 @@
         </div>
     </form>
 </div>
-<%@include file="includes/footer.jsp"%>
+<%@include file="../includes/footer.jsp"%>
 <script>
 function validateForm() {
     // 선택된 라디오 버튼 가져오기
