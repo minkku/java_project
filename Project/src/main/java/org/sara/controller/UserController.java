@@ -64,7 +64,7 @@ public class UserController {
 	    if (vo != null) {
 	        // Check if the entered password matches the one stored in the database
 	        if (uVo.getPassword().equals(vo.getPassword())) {
-	            String loginCheckResult = us.loginCheck(uVo, session);
+	            String loginCheckResult = us.loginCheck(email,pw);
 
 	            session.setAttribute("getLoginInfo", 202);
 	            session.setAttribute("uVo", vo);

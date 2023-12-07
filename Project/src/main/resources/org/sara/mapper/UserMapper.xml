@@ -42,7 +42,7 @@
         	email = #{email}
     </select>
     
-    <select id="loginCheck" resultType="String">
+    <select id="loginCheck" resultType="org.sara.domain.UserVO">
 		SELECT
 			email  		
 		FROM

@@ -11,5 +11,5 @@ public interface UserService {
 	
 	public UserVO login(UserVO uVo) throws Exception;
 	
-	public String loginCheck(UserVO uVo, HttpSession session) throws Exception;
+	public String loginCheck(String email, String pw) throws Exception;
 }

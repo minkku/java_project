@@ -32,12 +32,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String loginCheck(UserVO uVo, HttpSession session) throws Exception {
-		String result = mapper.loginCheck(uVo);
-		if(result != null) {
-			session.setAttribute("email", uVo.getEmail());
-			session.setAttribute("result", result);
-		}
-		return result;
+	public String loginCheck(String email, String pw) throws Exception {
+		return mapper.loginCheck(email,pw);
 	}
 }

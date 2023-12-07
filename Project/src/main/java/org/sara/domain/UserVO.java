@@ -12,14 +12,6 @@ public class UserVO {
 	private String email;
 	private String mobile;
 	private int point;
-	
-	public String getPassword() {
-        return pw;
-    }
-
-    public void setPassword(String password) {
-        this.pw = password;
-    }
 }
 
 
