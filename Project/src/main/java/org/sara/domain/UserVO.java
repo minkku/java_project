@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class UserVO {
-	private int users_id;
+	private int id;
 	private String user_name;
 	private String pw;
 	private String address;
@@ -12,6 +12,14 @@ public class UserVO {
 	private String email;
 	private String mobile;
 	private int point;
+	
+	public String getPassword() {
+        return pw;
+    }
+
+    public void setPassword(String password) {
+        this.pw = password;
+    }
 }
 
 

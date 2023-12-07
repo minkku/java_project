@@ -1,6 +1,7 @@
 package org.sara.service;
 
-import org.apache.ibatis.annotations.Param;
+import javax.servlet.http.HttpSession;
+
 import org.sara.domain.UserVO;
 
 public interface UserService {
@@ -9,4 +10,6 @@ public interface UserService {
 	public int emailCheck(String email) throws Exception;
 	
 	public UserVO login(UserVO uVo) throws Exception;
+	
+	public String loginCheck(UserVO uVo, HttpSession session) throws Exception;
 }

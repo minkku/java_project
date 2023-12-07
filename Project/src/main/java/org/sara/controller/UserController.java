@@ -62,16 +62,29 @@ public class UserController {
 	    log.info("working?");
 
 	    if (vo != null) {
-	        session.setAttribute("getLoginInfo", 202);
-	        session.setAttribute("uVo", vo);
-	        log.info(vo);
-	        // 로그인 성공 시 main 페이지로 리다이렉트
-	        return "redirect:/";
+	        // Check if the entered password matches the one stored in the database
+	        if (uVo.getPassword().equals(vo.getPassword())) {
+	            String loginCheckResult = us.loginCheck(uVo, session);
+
+	            session.setAttribute("getLoginInfo", 202);
+	            session.setAttribute("uVo", vo);
+	            log.info(vo);
+
+	            if ("email".equals(loginCheckResult) || "pw".equals(loginCheckResult)) {
+	                // Redirect to the main page only if both email and password are valid
+	                return "redirect:/";
+	            } else {
+	                // Redirect to the login page in case of invalid email or password
+	                session.setAttribute("fail", "Failed to get user info");
+	                return "redirect:/signin";
+	            }
+	        }
 	    } else {
-	        session.setAttribute("fail", "Failed to get user info");
-	        // 로그인 실패 시 다른 처리를 수행하거나, 로그인 페이지로 다시 이동하도록 설정
+	        // Redirect to the login page in case of invalid user
+	        session.setAttribute("fail", "Invalid user");
 	        return "redirect:/signin";
 	    }
+	    return "redirect:/";
 	}
 	
 	// 종료시 session expire

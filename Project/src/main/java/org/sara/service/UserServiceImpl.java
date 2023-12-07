@@ -1,5 +1,7 @@
 package org.sara.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.sara.domain.UserVO;
 import org.sara.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -27,5 +29,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserVO login(UserVO vo) throws Exception {
 		return mapper.getUserByEmail(vo);
+	}
+
+	@Override
+	public String loginCheck(UserVO uVo, HttpSession session) throws Exception {
+		String result = mapper.loginCheck(uVo);
+		if(result != null) {
+			session.setAttribute("email", uVo.getEmail());
+			session.setAttribute("result", result);
+		}
+		return result;
 	}
 }
