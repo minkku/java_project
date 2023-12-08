@@ -6,50 +6,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ㅅㅏㄹㅏ</title>
+<script src="/resources/js/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" href="../../../resources/sign/sign.css">
 </head>
-<body onload="initialize()">
-	<script type="text/javascript">
-		var regEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-		function initialize() {
-			var email = document.getElementById("email");
-			var password = document.getElementById("pw");
-			console.log(email, password);
-			if (email && password) {
-				document.getElementById("signinForm").onsubmit = function() {
-					return validation(email, password);
-				}
-			}
-		}
-
-		function validation(email, password) {
-			if (email.value === "") {
-				document.getElementById("emailErr").innerText = "이메일을 입력하세요";
-				email.focus();
-				return false;
-			} else if (!regEmail.test(email.value)) {
-				document.getElementById("emailErr").innerText = "이메일 형식에 맞게 입력해주세요";
-				email.focus();
-				return false;
-			} else {
-				document.getElementById("emailErr").innerText = "";
-			}
-
-			if (password.value.length === "") {
-				document.getElementById("pwErr").innerText = "비밀번호를 입력하세요";
-				password.focus();
-				return false;
-			} else if (!regPw.test(password.value)) {
-				document.getElementById("pwErr").innerText = "비밀번호 형식에 맞게 입력해주세요";
-				password.focus();
-				return false;
-			} else {
-				document.getElementById("pwErr").innerText = "";
-			}
-			return true;
-		}
-	</script>
+<body>
 	<div class="container mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
@@ -63,17 +23,15 @@
 
 							<div class="form-group">
 								<label for="email">이메일</label>
-								<input type="text" class="form-control" id="email" name="email" value="${uVo.email}">${uVo.email}
-								<span id="emailErr"class="error-message"></span>
+								<input type="text" class="form-control" id="email" name="email" value="${signin.email}">${signin.email}
 							</div>
 
 							<div class="form-group">
 								<label for="pw">비밀번호</label> 
-								<input type="password" class="form-control" id="pw" name="pw" value="${uVo.pw}">${uVo.pw} 
-								<span id="pwErr" class="error-message"></span>
+								<input type="password" class="form-control" id="pw" name="pw" value="${signin.pw}">${signin.pw} 
 							</div>
 
-							<button type="submit" class="btn btn-primary">로그인</button>
+							<button id="signin" type="submit" class="btn btn-primary">로그인</button>
 						</form>
 					</div>
 				</div>
@@ -81,4 +39,33 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		if(${result} != 1){
+			alert("아이디 또는 비밀번호가 일치하지 않습네다");
+			return false;
+		}
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(e){
+		$('#signin').on("click",function(){
+
+			// 입력 값 체크
+			if($.trim($('#email').val()) == ''){
+				alert("아이디를 입력해 주세요.");
+				$('#email').focus();
+				return false;
+			} else if($.trim($('#pw').val()) == ''){
+				alert("패스워드를 입력해 주세요.");
+				$('#pw').focus();
+				return false;
+			}
+			//전송
+			$('#signinForm').submit();
+		});
+		return true;
+	});
+</script>
 </html>

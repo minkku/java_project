@@ -27,24 +27,16 @@
 	</insert>
 	
 	<!-- 이메일 중복확인을 위한 쿼리 -->
-	<select id="email_check" resultType="int">
-		SELECT COUNT(*)
+    <select id="login" resultType="org.sara.domain.UserVO">
+		SELECT * 	
 		FROM
 			users
 		WHERE
-			email = #{email}
+			email = #{email} AND pw = #{pw}
 	</select>
 	
-	<select id="getUserByEmail" resultType="org.sara.domain.UserVO">
-        SELECT * FROM 
-        	users 
-        WHERE
-        	email = #{email}
-    </select>
-    
-    <select id="loginCheck" resultType="org.sara.domain.UserVO">
-		SELECT
-			email  		
+	<select id="loginck" resultType="int">
+		SELECT COUNT(*) 	
 		FROM
 			users
 		WHERE

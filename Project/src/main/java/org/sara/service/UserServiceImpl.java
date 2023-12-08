@@ -1,7 +1,4 @@
 package org.sara.service;
-
-import javax.servlet.http.HttpSession;
-
 import org.sara.domain.UserVO;
 import org.sara.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -20,19 +17,16 @@ public class UserServiceImpl implements UserService {
 		 log.info("Registering user: " + user);
 	    mapper.reg(user);
 	 }
-	 
-	 @Override
-	 public int emailCheck(String email) throws Exception {
-		 return mapper.emailCheck(email);
-	 }
 
 	@Override
-	public UserVO login(UserVO vo) throws Exception {
-		return mapper.getUserByEmail(vo);
+	public UserVO login(UserVO uVo) throws Exception {
+		
+		return mapper.login(uVo);
 	}
 
 	@Override
-	public String loginCheck(String email, String pw) throws Exception {
-		return mapper.loginCheck(email,pw);
+	public int loginck(String email, String pw) throws Exception {
+		return mapper.loginck(email, pw);
 	}
+
 }
