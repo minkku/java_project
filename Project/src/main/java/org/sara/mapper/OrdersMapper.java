@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.sara.domain.BooksImgVO;
+import org.sara.domain.CartsListVO;
 import org.sara.domain.OrdersListVO;
 import org.sara.domain.OrdersVO;
 import org.sara.domain.UsersVO;
@@ -29,4 +30,10 @@ public interface OrdersMapper {
 	public BooksImgVO getBuyBook(@Param("orders_num") String orders_num);
 	
 	public List<OrdersListVO> getOrderList(@Param("users_id") int users_id);
+	
+	public List<CartsListVO> getOrdersListInfo(@Param("users_id") int users_id, @Param("orders_num") String orders_num);
+	
+	public void setStatus(@Param("status") int status, @Param("orders_num") String orders_num, @Param("users_id") int users_id);
+	
+	public int statusCheck(@Param("status") int status, @Param("orders_num") String orders_num, @Param("users_id") int users_id);
 }

@@ -101,4 +101,18 @@ public class OrdersServiceImpl implements OrdersService{
 		return ordersMapper.getOrderList(users_id);
 	}
 
+	@Override
+	public List<CartsListVO> getOrdersListInfo(int users_id, String orders_num) {
+		return ordersMapper.getOrdersListInfo(users_id, orders_num);
+	}
+
+	@Override
+	public void setStatus(int status, String orders_num, int users_id) {
+		ordersMapper.setStatus(status, orders_num, users_id);
+	}
+
+	@Override
+	public boolean statusCheck(int status, String orders_num, int users_id) {
+		return ordersMapper.statusCheck(status, orders_num, users_id) == 0;
+	}
 }

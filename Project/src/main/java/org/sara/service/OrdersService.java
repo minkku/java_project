@@ -32,4 +32,10 @@ public interface OrdersService {
 	public BooksImgVO getBuyBook(@Param("orders_num") String orders_num);
 	
 	public List<OrdersListVO> getOrderList(@Param("users_id") int users_id);
+	
+	public List<CartsListVO> getOrdersListInfo(@Param("users_id") int users_id, @Param("orders_num") String orders_num);
+	
+	public void setStatus(@Param("status") int status, @Param("orders_num") String orders_num, int users_id);
+	
+	public boolean statusCheck(@Param("status") int status, @Param("orders_num") String orders_num, @Param("users_id") int users_id);
 }

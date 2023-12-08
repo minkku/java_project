@@ -73,14 +73,22 @@ public class OrdersController {
 	}
 	
 	@GetMapping("/listInfo")
-	public String getListInfo(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
-		log.info("get - orders/cancel-------------------------------");
-		String orders_num = (String) session.getAttribute("orders_num");
+	public String getListInfo(@RequestParam("users_id") int users_id, @RequestParam("orders_num") String orders_num,
+						      Model model, HttpSession session) {
+		log.info("get - orders/listInfo-------------------------------");
+//		String orders_num = (String) session.getAttribute("orders_num");
 //		int users_id = (int) session.getAttribute("users_id");
+		session.setAttribute("users_id", users_id);
+		model.addAttribute("users_id", session.getAttribute("users_id"));
 		model.addAttribute("orders_num", orders_num);
+		log.info("getUsersInfo" + service.getUsersInfo(users_id));
+		log.info("getOrdersInfo" + service.getOrdersInfo(users_id, orders_num));
+		log.info("getBuyBook" + service.getBuyBook(orders_num));
+		log.info("getBuyBooksCount" + service.getBuyBooksCount(orders_num));
 		model.addAttribute("users", service.getUsersInfo(users_id));
 		model.addAttribute("orders", service.getOrdersInfo(users_id, orders_num));
 		model.addAttribute("buyBook", service.getBuyBook(orders_num));
+		model.addAttribute("ordersListInfo", service.getOrdersListInfo(users_id, orders_num));
 		if (service.getBuyBooksCount(orders_num) > 1) {
 			model.addAttribute("buyBookCount", service.getBuyBooksCount(orders_num) - 1);
 		} else {
@@ -90,9 +98,21 @@ public class OrdersController {
 	}
 	
 	@PostMapping("/listInfo")
-	public String postListInfo(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
-		
-		return "redirect:/orders/complete?users_id=" + users_id;
+	public String postListInfo(@RequestParam("orders_num") String orders_num, @RequestParam(name = "action") String action,
+							   Model model, HttpSession session) {
+		int users_id = (int) session.getAttribute("users_id");
+		if (action.equals("주문취소")) {
+			if (service.statusCheck(99, orders_num, users_id)) {
+				service.setStatus(99, orders_num, users_id);
+				return "redirect:/orders/list?users_id=" + users_id;
+			}
+		} else if (action.equals("재주문")) {
+			if (service.statusCheck(1, orders_num, users_id)) {
+				service.setStatus(1, orders_num, users_id);
+				return "redirect:/orders/list?users_id=" + users_id;
+			}
+		}
+		return "redirect:/orders/list?users_id=" + users_id;
 	}
 	
 	@GetMapping("/list")
