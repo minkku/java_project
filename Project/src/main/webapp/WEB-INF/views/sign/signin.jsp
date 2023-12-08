@@ -39,6 +39,7 @@
 		</div>
 	</div>
 </body>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		if(${result} != 1){
