@@ -30,8 +30,13 @@
 								<label for="pw">비밀번호</label> 
 								<input type="password" class="form-control" id="pw" name="pw" value="${signin.pw}">${signin.pw} 
 							</div>
+							
+							<div class="form-group">
+								<label for="signup">아이디가 없으시면 회원가입 해주세요</label>
+							</div>
 
 							<button id="signin" type="submit" class="btn btn-primary">로그인</button>
+							<button id="signup2" type="button" class="btn btn-primary" onclick="location.href='/signup'">회원가입</button>
 						</form>
 					</div>
 				</div>

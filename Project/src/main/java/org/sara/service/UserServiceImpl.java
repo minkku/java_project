@@ -29,4 +29,9 @@ public class UserServiceImpl implements UserService {
 		return mapper.loginck(email, pw);
 	}
 
+	@Override
+	public void updateUser(UserVO updateUser) throws Exception {
+		mapper.updateUser(updateUser);
+	}
+	
 }

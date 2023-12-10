@@ -7,4 +7,5 @@ public interface UserMapper {
 	public void reg(UserVO users) throws Exception;
 	public UserVO login(UserVO uVo) throws Exception;
 	public int loginck(@Param("email") String email, @Param("pw") String pw) throws Exception;
+	public void updateUser(UserVO uVo) throws Exception;
 }

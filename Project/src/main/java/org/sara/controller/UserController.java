@@ -28,7 +28,7 @@ public class UserController {
 	@Autowired
 	private UserService us;
 	
-	// »∏ø¯∞°¿‘ ±∏«ˆ ∫Œ∫–
+	// sign up part
 	@GetMapping("/signup")
 	public String signupPg(Model model) {
 		log.info("Get == signup Mapping");
@@ -48,7 +48,7 @@ public class UserController {
 		}
 	}
 	
-	// ∑Œ±◊¿Œ ±∏«ˆ ∫Œ∫–
+	// sign up part
 	@GetMapping("/signin")
 	public String signinPg() {
 		log.info("signin pg ====");
@@ -75,44 +75,36 @@ public class UserController {
 	    return "redirect:/";
 	}
 	
-	// ¡æ∑·Ω√ session expire
+	//session expire
 	@RequestMapping(value = "/logout", method = {RequestMethod.GET, RequestMethod.POST})
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
 	}
+	
+	//update user page
+	@GetMapping("/updateUser")
+	public String getUpdateUser() {
+		log.info("go to update pg ------");
+		return "sign/updateUser";
+	}
+	
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public String userUpdate(@ModelAttribute UserVO updatedUser, HttpSession session, Model model) {
+	    UserVO loginedUser = (UserVO) session.getAttribute("signin");
+	    
+	    if(loginedUser != null && loginedUser.getEmail().equals(updatedUser.getEmail())) {
+	        try {
+	            us.updateUser(updatedUser);
+	            
+	            // ÏÑ∏ÏÖòÏóêÏÑú ÌòÑÏû¨ Î°úÍ∑∏Ïù∏Îêú ÏÇ¨Ïö©Ïûê Ï†ïÎ≥¥ ÏóÖÎç∞Ïù¥Ìä∏
+	            session.setAttribute("signin", updatedUser);
+	            
+	            model.addAttribute("updateSuccess", true);
+	        } catch (Exception e) {
+	            model.addAttribute("updateSuccess", false);
+	        }
+	    }
+	    return "redirect:/";
+	}
 }
-
-
-//@PostMapping(value = "/signin")
-//public String userSignin(HttpServletRequest req, @ModelAttribute UserVO uVo) throws Exception {
-//    HttpSession session = req.getSession();
-//    log.info("get session");
-//    UserVO vo = us.login(uVo);
-//    log.info("working?");
-//
-//    if (vo != null) {
-//        // Check if the entered password matches the one stored in the database
-//        if (uVo.getPassword().equals(vo.getPassword())) {
-//            String loginCheckResult = us.loginCheck(email,pw);
-//
-//            session.setAttribute("getLoginInfo", 202);
-//            session.setAttribute("uVo", vo);
-//            log.info(vo);
-//
-//            if ("email".equals(loginCheckResult) || "pw".equals(loginCheckResult)) {
-//                // Redirect to the main page only if both email and password are valid
-//                return "redirect:/";
-//            } else {
-//                // Redirect to the login page in case of invalid email or password
-//                session.setAttribute("fail", "Failed to get user info");
-//                return "redirect:/signin";
-//            }
-//        }
-//    } else {
-//        // Redirect to the login page in case of invalid user
-//        session.setAttribute("fail", "Invalid user");
-//        return "redirect:/signin";
-//    }
-//    return "redirect:/";
-//}

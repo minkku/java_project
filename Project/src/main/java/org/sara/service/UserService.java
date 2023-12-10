@@ -10,4 +10,6 @@ public interface UserService {
 	public UserVO login(UserVO uVo) throws Exception;
 	
 	public int loginck(String email, String pw) throws Exception;
+	
+	public void updateUser(UserVO updateUser) throws Exception;
 }

@@ -56,6 +56,13 @@
 						<li><a href="review_board">review-board</a></li>
 					</ul></li>
 				<li><a href="book/about"> about</a></li>
+				<li class="active">
+				    <c:choose>
+				        <c:when test="${not empty signin.email}">
+				            <a href="/updateUser">회원정보 수정</a>
+				        </c:when>
+				    </c:choose>
+				</li>
 			</ul>
 
 			<a href="#"
