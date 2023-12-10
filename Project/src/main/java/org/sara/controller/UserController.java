@@ -48,7 +48,7 @@ public class UserController {
 		}
 	}
 	
-	// sign up part
+	// sign in part
 	@GetMapping("/signin")
 	public String signinPg() {
 		log.info("signin pg ====");
@@ -84,27 +84,44 @@ public class UserController {
 	
 	//update user page
 	@GetMapping("/updateUser")
-	public String getUpdateUser() {
-		log.info("go to update pg ------");
-		return "sign/updateUser";
+	public String getUpdateUser(Model model, HttpSession session) {
+		UserVO loginedUser = (UserVO) session.getAttribute("signin");
+		if(loginedUser != null) {
+			model.addAttribute("user", loginedUser);
+			return "sign/updateUser";
+		} else {
+			return "redirect:/signin";
+		}
 	}
 	
-	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-	public String userUpdate(@ModelAttribute UserVO updatedUser, HttpSession session, Model model) {
-	    UserVO loginedUser = (UserVO) session.getAttribute("signin");
-	    
-	    if(loginedUser != null && loginedUser.getEmail().equals(updatedUser.getEmail())) {
-	        try {
-	            us.updateUser(updatedUser);
-	            
-	            // 세션에서 현재 로그인된 사용자 정보 업데이트
-	            session.setAttribute("signin", updatedUser);
-	            
-	            model.addAttribute("updateSuccess", true);
-	        } catch (Exception e) {
-	            model.addAttribute("updateSuccess", false);
-	        }
-	    }
-	    return "redirect:/";
+	@PostMapping("/updateUser")
+	public String userUpdate(@RequestParam("pw") String pw, 
+							@RequestParam("address") String address, 
+							@RequestParam("mobile") String mobile,
+							HttpSession session,
+							Model model) {
+		UserVO loginedUser = (UserVO) session.getAttribute("signin");
+		
+		if(loginedUser != null) {
+			try {
+				// include update info
+				UserVO updatedUser = new UserVO();
+				updatedUser.setEmail(loginedUser.getEmail());
+				updatedUser.setPw(pw);
+				updatedUser.setAddress(address);
+				updatedUser.setMobile(mobile);
+				
+				// update user info through userService
+				us.updateUser(updatedUser);
+				
+				// update logined user current session 
+				session.setAttribute("signin", updatedUser);
+				
+				model.addAttribute("updateSuccess", true);
+			} catch (Exception e) {
+				model.addAttribute("udateSuccess", false);
+			}
+		}
+		return "redirect:/";
 	}
 }

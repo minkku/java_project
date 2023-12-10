@@ -30,8 +30,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public UserVO getUserByEmail(String email) throws Exception {
+		return mapper.getUserByEmail(email);
+	}
+
+	@Override
 	public void updateUser(UserVO updateUser) throws Exception {
 		mapper.updateUser(updateUser);
 	}
+
 	
 }

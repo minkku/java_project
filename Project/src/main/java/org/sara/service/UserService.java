@@ -11,5 +11,7 @@ public interface UserService {
 	
 	public int loginck(String email, String pw) throws Exception;
 	
+	UserVO getUserByEmail(String email) throws Exception;
+	
 	public void updateUser(UserVO updateUser) throws Exception;
 }
