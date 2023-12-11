@@ -56,11 +56,12 @@
 		UPDATE
 			users
 		SET
-			pw 			= #{pw},
-			address		= #{address},
-			mobile		= #{mobile}
+			pw 				= #{pw},
+			user_name		= #{user_name},
+			address			= #{address},
+			mobile			= #{mobile}
 		WHERE
-			email		= #{email}
+			email			= #{email}
 	</update>
 	
 	<!--회원 탈퇴 쿼리 -->

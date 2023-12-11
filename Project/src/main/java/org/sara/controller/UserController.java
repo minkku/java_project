@@ -96,18 +96,35 @@ public class UserController {
 	
 	@PostMapping("/updateUser")
 	public String userUpdate(@RequestParam("pw") String pw, 
+							@RequestParam("user_name") String user_name,
 							@RequestParam("address") String address, 
 							@RequestParam("mobile") String mobile,
 							HttpSession session,
 							Model model) {
 		UserVO loginedUser = (UserVO) session.getAttribute("signin");
+		log.info("여기까지 들어오나? ------" + loginedUser);
 		
 		if(loginedUser != null) {
 			try {
 				// include update info
+				if(pw.isEmpty() && user_name.isEmpty() && address.isEmpty() && mobile.isEmpty()) {
+					model.addAttribute("updatedSuccess", false);
+					model.addAttribute("updateError", "모든 필수 필드를 채워주세요");
+					
+					//if fail to update show info from db
+					model.addAttribute("pw", pw);
+	                model.addAttribute("user_name", user_name);
+	                model.addAttribute("address", address);
+	                model.addAttribute("mobile", mobile);
+	                
+					return "sign/updateUser";
+				}
 				UserVO updatedUser = new UserVO();
 				updatedUser.setEmail(loginedUser.getEmail());
-				updatedUser.setPw(pw);
+				if (!pw.isEmpty()) {
+	                updatedUser.setPw(pw);
+	            }
+				updatedUser.setUser_name(user_name);
 				updatedUser.setAddress(address);
 				updatedUser.setMobile(mobile);
 				
@@ -120,6 +137,7 @@ public class UserController {
 				model.addAttribute("updateSuccess", true);
 			} catch (Exception e) {
 				model.addAttribute("udateSuccess", false);
+				return "redirect:/updateUser";
 			}
 		}
 		return "redirect:/";

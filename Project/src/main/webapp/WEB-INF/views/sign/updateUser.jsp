@@ -12,7 +12,33 @@
 
 <body onload="initialize()">
     <script type="text/javascript">
-        // 유효성 검사 등을 위한 자바스크립트 코드 추가
+	var regPw = /^(?=.*[A-Z])(?=.*[0-9!@#$%^&*()-_=+\\|{}\[\]:;<>,.?/]).{5,12}$/;
+
+	function initialize() {
+		var password = document.getElementById("pw");
+		// name은 이미 브라우저에서 제공하는 전역 개체 window 속성중 하나여서 매개 변수 사용시 오류 발생하니 바꿔주자
+		console.log(password);
+		document.getElementById("updateForm").onsubmit = function () {
+			return validation(password);
+		};
+	}
+
+	function validation(password) {
+		console.log("되는거 맞아?");
+		if (password.value.length <= 0) {
+			document.getElementById("pwErr").innerText = "비밀번호를 입력하세요";
+			password.focus();
+			return false;
+		} else if (!regPw.test(password.value)) {
+			document.getElementById("pwErr").innerText = "비밀번호 형식에 맞게 입력해주세요";
+			password.focus();
+			return false;
+		} else {
+			document.getElementById("pwErr").innerText = "";
+		}
+
+		return true;
+	}
     </script>
 
     <form id="updateForm" action="/updateUser" method="post">
@@ -21,6 +47,7 @@
         <div>
             <label for="email">이메일</label>
             <input type="text" id="email" name="email" value="${user.email}" readonly/>
+        	<span id="emailErr" class="error-message"></span>
         </div>
 
         <div>
@@ -28,7 +55,13 @@
             <input type="password" id="pw" name="pw" placeholder="영문, 숫자, 특수문자 조합하여 5~12자리 이상 입력해 주세요" />
             <span id="pwErr" class="error-message"></span>
         </div>
-
+		
+		<div>
+            <label for="user_name">이름</label>
+            <input type="text" id="user_name" name="user_name" value="${user.user_name}" />
+            <span id="nameErr" class="error-message"></span>
+        </div>
+		
         <div>
             <label for="address">주소</label>
             <input type="text" id="address" name="address" value="${user.address}" />
@@ -47,7 +80,7 @@
         </div>
 
         <div>
-            <input type="submit" value="수정하기">
+            <input type="submit" value="수정하기"> <br>
 			    <span id="updateMessage" class="update-message">
 			        <!-- 업데이트 결과 메시지를 여기에 표시하세요. -->
 			        <c:if test="${updateSuccess}">
@@ -73,11 +106,9 @@ $(document).ready(function () {
         } else {
             messageElement.text("회원 정보 업데이트에 실패하였습니다.");
         }
-
         // Show the message using jQuery UI or your custom styling
         messageElement.show().fadeOut(5000);
     }
-
     // Call the function with the update success status
     showUpdateMessage(${updateSuccess});
 });
