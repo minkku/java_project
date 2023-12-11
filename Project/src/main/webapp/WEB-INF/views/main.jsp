@@ -1,4 +1,4 @@
-<%@include file= "includes/header.jsp" %>>
+<%@include file= "includes/header.jsp" %>
 
 
 <body>

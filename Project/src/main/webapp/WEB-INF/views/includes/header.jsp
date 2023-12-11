@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Untree.co">
@@ -26,6 +27,55 @@
 	<link rel="stylesheet" href="../resources/css/daterangepicker.css">
 	<link rel="stylesheet" href="../resources/css/aos.css">
 	<link rel="stylesheet" href="../resources/css/style.css">
+	<link rel="stylesheet" href="../resources/css/board.css">
+	
 
 	<title>Tour Free Bootstrap Template for Travel Agency by Untree.co</title>
+
+<style>
+		.board_div {
+			position: relative;
+		    text-align: center;
+		    align-content: center;
+    		padding: 20px 400px 20px 400px;
+		}
+		
+		.panel-heading {
+		
+		 font-weight bold;
+		
+		
+		}
+		
+		
+		
+		
+	.pagination {  
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+		}
+
+	.pagination a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+	}
+
+	.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+	}
+
+	.pagination a:hover:not(.active) {
+    background-color: #ddd;
+	}
+
+	
+		
+
+		
+</style>
+
 </head>
