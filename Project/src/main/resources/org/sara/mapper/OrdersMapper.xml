@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "org.sara.mapper.OrdersMapper">
-	<select id = "getUsersInfo" resultType = "org.sara.domain.UsersVO"> <!-- 민규형 끝나면 수정해서 넣어야함 -->
+	<select id = "getUsersInfo" resultType = "org.sara.domain.UserVO"> <!-- 민규형 끝나면 수정해서 넣어야함 -->
 		SELECT users_id,
 			   user_name,
 			   pw,
-			   adress, <!-- adress로 변경해야 함 테이블 합쳐서 만들때 수정예정 -->
+			   address, <!-- address로 변경해야 함 테이블 합쳐서 만들때 수정예정 -->
 			   gender,
 			   email,
 			   mobile,
@@ -25,7 +25,7 @@
 			NULL,
 			#{users_id},
 			#{orders_name},
-			#{orders_adress},
+			#{orders_address},
 			#{orders_mobile},
 			#{comment},
 			#{orders_num},
@@ -60,7 +60,7 @@
     	SELECT orders_id,
     		   users_id_id,
     		   orders_name,
-    		   orders_adress,
+    		   orders_address,
     		   orders_mobile,
     		   comment,
     		   orders_num,

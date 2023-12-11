@@ -82,13 +82,13 @@
                         <td>수령인</td>
                         <td colspan="3"><input class="input-field" type="text" name="user_name" value="${users.user_name}" readonly></td>
                     </tr>
-                    <tr id="userInputSection_adress">
+                    <tr id="userInputSection_address">
                         <td>배송지</td>
-                        <td colspan="3"><input class="input-field" type="text" name="new_adress" value="${users.adress}" onfocus="this.value=''; this.style.color='black';" style="color:gray"></td>
+                        <td colspan="3"><input class="input-field" type="text" name="new_address" value="${users.address}" onfocus="this.value=''; this.style.color='black';" style="color:gray"></td>
                     </tr>
-                    <tr id="readonlySection_adress">
+                    <tr id="readonlySection_address">
                         <td>배송지</td>
-                        <td colspan="3"><input class="input-field" type="text" name="user_adress" value="${users.adress}" readonly></td>
+                        <td colspan="3"><input class="input-field" type="text" name="user_address" value="${users.address}" readonly></td>
                     </tr>
                     <tr id="userInputSection_mobile">
                         <td>전화번호</td>
@@ -126,7 +126,7 @@ function validateForm() {
 
     // 이름, 주소, 전화번호 입력 필드 가져오기
     var newNameInput = document.getElementById('new_name');
-    var newAddressInput = document.getElementById('new_adress');
+    var newAddressInput = document.getElementById('new_address');
     var newMobileInput = document.getElementById('new_mobile');
 
     console.log('newDataRadio.checked:', newDataRadio.checked);
@@ -160,8 +160,8 @@ function handleRadioChange() {
     var newRadio = document.getElementById('newDataRadio');
     var userInputSection_name = document.getElementById('userInputSection_name');
     var readonlySection_name = document.getElementById('readonlySection_name');
-    var userInputSection_address = document.getElementById('userInputSection_adress');
-    var readonlySection_address = document.getElementById('readonlySection_adress');
+    var userInputSection_address = document.getElementById('userInputSection_address');
+    var readonlySection_address = document.getElementById('readonlySection_address');
     var userInputSection_mobile = document.getElementById('userInputSection_mobile');
     var readonlySection_mobile = document.getElementById('readonlySection_mobile');
 

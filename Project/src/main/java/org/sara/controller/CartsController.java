@@ -8,8 +8,9 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 
 import org.sara.domain.CartsListVO;
+import org.sara.domain.UserVO;
 import org.sara.service.CartsService;
-import org.sara.service.OrdersService;
+import org.sara.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,11 +30,12 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class CartsController {
 	private CartsService service;
+	private UserService userService;
 	
 	@GetMapping("/carts")
-	public String getCarts(@RequestParam("users_id") int users_id, Model model, HttpSession session) {
+	public String getCarts(Model model, HttpSession session) {
 		log.info("get - carts-------------------------------");
-		session.setAttribute("users_id", users_id);
+		int users_id = (int) session.getAttribute("users_id");
 		model.addAttribute("carts", service.getCartsList(users_id));
 		return "orders/carts";
 	}
@@ -64,10 +66,10 @@ public class CartsController {
 	    	} catch (Exception e) {
 	    		log.info("selectCarts가 session에 들어오지 않음" + e.getMessage());
 	    	}
-	    	return "redirect:/orders/payment?users_id=" + users_id;
+	    	return "redirect:/orders/payment";
 	    }
 	    
-	    return "redirect:/carts?users_id=" + users_id;
+	    return "redirect:/carts";
 	}
 	
 	@ResponseBody

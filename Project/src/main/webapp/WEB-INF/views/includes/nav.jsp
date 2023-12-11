@@ -63,6 +63,20 @@
 				        </c:when>
 				    </c:choose>
 				</li>
+				<li class="active">
+				    <c:choose>
+				        <c:when test="${not empty signin.email}">
+				            <a href="/carts">장바구니</a>
+				        </c:when>
+				    </c:choose>
+				</li>
+				<li class="active">
+				    <c:choose>
+				        <c:when test="${not empty signin.email}">
+				            <a href="/orders/list">주문목록</a>
+				        </c:when>
+				    </c:choose>
+				</li>
 			</ul>
 
 			<a href="#"

@@ -5,7 +5,6 @@
 		<%@ include file="../includes/nav.jsp"%>
 	</div>
 	<form action="/carts" method="post">
-	<input type="hidden" name="users_id" value="${users_id}"> 
 	<div class="carts_div">
 		<table class="carts_tile1">
 		<h1 class="carts_title">장바구니</h1>

@@ -9,7 +9,7 @@ public class OrdersVO {
 	int orders_id; 
 	int users_id;
 	String orders_name; 
-	String orders_adress; 
+	String orders_address; 
 	String orders_mobile; 
 	String comment; 
 	String orders_num; 

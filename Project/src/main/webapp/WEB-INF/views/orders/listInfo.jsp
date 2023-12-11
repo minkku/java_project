@@ -64,7 +64,7 @@
                     </tr>
                     <tr>
                         <td>배송지</td>
-                        <td colspan="3"><input type="text" value="${orders.orders_adress}" readonly></td>
+                        <td colspan="3"><input type="text" value="${orders.orders_address}" readonly></td>
                     </tr>
                     <tr>
                         <td>전화번호</td>
