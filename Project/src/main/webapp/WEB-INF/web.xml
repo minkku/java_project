@@ -45,6 +45,7 @@
 	</filter-mapping>
 	
 <!-- <filter>
+	<!-- <filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
@@ -62,6 +63,11 @@
 	  	<param-name>contextConfigLocation</param-name>
 	  	<param-value>/WEB-INF/spring/root-context.xml
 	  			<!--  /WEB-INF/spring/security-context.xml-->	
+<!-- 	  				/WEB-INF/spring/security-context.xml -->
 	  	</param-value>
 	  </context-param>
+	  
+	  <session-config>
+	  		<session-timeout>1</session-timeout>
+	  </session-config>
 </web-app>

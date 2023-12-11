@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "org.sara.mapper.OrdersMapper">
+	<select id = "getUsersInfo" resultType = "org.sara.domain.UserVO"> <!-- 민규형 끝나면 수정해서 넣어야함 -->
+		SELECT users_id,
+			   user_name,
+			   pw,
+			   address, <!-- address로 변경해야 함 테이블 합쳐서 만들때 수정예정 -->
+			   gender,
+			   email,
+			   mobile,
+	 		   point
+		  FROM users
+		 WHERE users_id = #{users_id}
+	</select>
+	<insert id = "insertOrdersDetail">
+		INSERT INTO orders_detail VALUES(
+			#{orders_num},
+			#{books_id},
+			#{quantity}
+		)
+	</insert>
+	<insert id = "insertOrders">
+		INSERT INTO orders VALUES (
+			NULL,
+			#{users_id},
+			#{orders_name},
+			#{orders_address},
+			#{orders_mobile},
+			#{comment},
+			#{orders_num},
+			NOW(),
+			#{status}			
+		)
+	</insert>
+	<resultMap id = "ordersNumCheckResultMap" type = "int">
+        <result property = "count" column = "count" />
+    </resultMap>
+
+    <select id = "ordersNumCheck" resultMap="ordersNumCheckResultMap">
+        SELECT COUNT(orders_num) AS count
+        FROM orders_detail
+        WHERE orders_num = #{orders_num}
+    </select>
+    
+    <select id = "getBuyBook" resultType = "org.sara.domain.BooksImgVO">
+		SELECT b.img,
+		       b.name
+		FROM orders_detail od
+		JOIN books b ON b.books_id = od.books_id_id
+		WHERE od.orders_num = #{orders_num}
+		LIMIT 1
+    </select>
+    <select id = "getBuyBooksCount" resultType = "int">
+    	SELECT COUNT(*)
+  		FROM orders_detail
+ 		WHERE orders_num = #{orders_num}
+    </select>
+    <select id = "getOrdersInfo" resultType = "org.sara.domain.OrdersVO">
+    	SELECT orders_id,
+    		   users_id_id,
+    		   orders_name,
+    		   orders_address,
+    		   orders_mobile,
+    		   comment,
+    		   orders_num,
+    		   orders_date,
+    		   status_id_id
+		  FROM orders
+		 WHERE users_id_id = #{users_id}
+		   AND orders_num = #{orders_num}
+    </select>
+    <select id = "getOrderList" resultType = "org.sara.domain.OrdersListVO">
+    <![CDATA[
+		SELECT orders_num,
+		       MIN(img) AS img,
+		       MIN(name) AS name,
+		       SUM(count) AS count,
+		       MIN(orders_date) AS orders_date,
+		       MIN(status) AS status
+		FROM (SELECT o.orders_num,
+		        	 b.img,
+		        	 b.name,
+		        	 COUNT(*) AS count,
+		        	 MIN(o.orders_date) AS orders_date,
+		        	 MIN(s.name) AS status
+		    	FROM orders_detail od
+		        JOIN orders o ON o.orders_num = od.orders_num
+		        JOIN books b ON b.books_id = od.books_id_id
+		        JOIN status s ON s.status_id = o.status_id_id
+		        JOIN users u ON u.users_id = o.users_id_id
+		    WHERE u.users_id = #{users_id}
+		    GROUP BY o.orders_num, b.img, b.name
+		) AS orders_sub
+		GROUP BY orders_num
+	    ORDER BY orders_date ASC
+    ]]>
+    </select>
+    <select id = "getOrdersListInfo" resultType = "org.sara.domain.CartsListVO">
+    	SELECT b.img, 
+			   b.name, 
+			   CONCAT(LEFT(b.content, 30), '...') AS content, 
+			   od.quantity, 
+			   b.price
+		 FROM orders o
+         JOIN orders_detail od ON od.orders_num = o.orders_num
+		 JOIN books b ON b.books_id = od.books_id_id
+		 JOIN users u ON u.users_id = o.users_id_id
+		WHERE u.users_id = #{users_id}
+		  AND o.orders_num = #{orders_num}
+    </select>
+    <update id = "setStatus">
+    	UPDATE orders
+    	   SET status_id_id = #{status}
+    	 WHERE orders_num = #{orders_num}
+    	   AND users_id_id = #{users_id}
+    </update>
+    <select id = "statusCheck" resultType = "int">
+    	SELECT COUNT(*)
+  		  FROM orders
+ 		 WHERE status_id_id = #{status}
+ 		   AND orders_num = #{orders_num}
+ 		   AND users_id_id = #{users_id}
+    </select>
+</mapper>
