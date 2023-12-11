@@ -78,8 +78,7 @@ public class OrdersController {
 		log.info("get - orders/listInfo-------------------------------");
 //		String orders_num = (String) session.getAttribute("orders_num");
 //		int users_id = (int) session.getAttribute("users_id");
-		session.setAttribute("users_id", users_id);
-		model.addAttribute("users_id", session.getAttribute("users_id"));
+		model.addAttribute("users_id", users_id);
 		model.addAttribute("orders_num", orders_num);
 		log.info("getUsersInfo" + service.getUsersInfo(users_id));
 		log.info("getOrdersInfo" + service.getOrdersInfo(users_id, orders_num));

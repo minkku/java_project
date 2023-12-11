@@ -49,7 +49,7 @@
 		FROM orders_detail od
 		JOIN books b ON b.books_id = od.books_id_id
 		WHERE od.orders_num = #{orders_num}
-		LIMIT 1 str
+		LIMIT 1
     </select>
     <select id = "getBuyBooksCount" resultType = "int">
     	SELECT COUNT(*)
