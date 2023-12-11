@@ -7,21 +7,77 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getList" resultType="org.sara.domain.BookVO">
 		select * from books
 	</select>
+	
 	<select id="read" resultType="org.sara.domain.BookVO">
 		select * from books where books_id= #{books_id}
 	</select>
+	
 	<select id="getAllBooks" resultType="org.sara.domain.BookVO">
-		SELECT * FROM books
-		LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	SELECT * FROM books
+	LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
 	</select>
 
+   <select id="getEduBooks" resultType="org.sara.domain.BookVO">
+		SELECT * FROM books
+		where categories_id_id = 3
+		LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</select>
+	
+	  <select id="getCoBooks" resultType="org.sara.domain.BookVO">
+		SELECT * FROM books
+		where categories_id_id = 1
+		LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</select>
+	
+	  <select id="getFicBooks" resultType="org.sara.domain.BookVO">
+		SELECT * FROM books
+		where categories_id_id = 2
+		LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</select>
+	
 	<select id="countBooks" resultType="int">
 		SELECT COUNT(*) FROM books
 	</select>
+	
+	<select id="countEduBooks" resultType="int">
+		SELECT COUNT(*) FROM books where categories_id_id = 3
+	</select>
+	
+	<select id="countFicBooks" resultType="int">
+		SELECT COUNT(*) FROM books where categories_id_id = 2
+	</select>
+	
+	<select id="countCoBooks" resultType="int">
+		SELECT COUNT(*) FROM books where categories_id_id = 1
+	</select>
+	
 	<select id="getBestList" resultType="org.sara.domain.BookVO">
 		select * from books limit 4
 	</select>
+	
 	<select id="getCommendList" resultType="org.sara.domain.BookVO">
 		select * from books limit 5
 	</select>
+	
+	<select id="searchList" resultType="org.sara.domain.BookVO">
+		select * from books
+		<if test='searchType.equals("name")'>
+		where name like concat('%',#{keyword},'%' )
+		</if>
+		<if test='searchType.equals("author")'>
+		where author like concat('%', #{keyword}, '%')
+		 </if>
+		 LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</select>
+	
+	<select id="countkey" resultType="int">
+		SELECT COUNT(*) FROM books 
+		<if test='searchType.equals("name")'>
+		where name like concat('%',#{keyword},'%' )
+		</if>
+		<if test='searchType.equals("author")'>
+		where author like concat('%', #{keyword}, '%')
+		 </if>
+	</select>
+	
 </mapper>

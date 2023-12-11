@@ -1,13 +1,15 @@
-/*
- * package org.sara.domain;
- * 
- * import lombok.Data;
- * 
- * @Data public class UserVO {
- * 
- * private int users_id; private String name; private String pw; private String
- * address; private String gender; private String email; private String mobile;
- * private double point;
- * 
- * }
- */
+package org.sara.domain;
+
+import lombok.Data;
+
+@Data
+public class UserVO {
+	Integer users_id;
+	String name;
+	String pw;
+	String address;
+	String gender;
+	String email;
+	String mobile;
+	double point;
+}

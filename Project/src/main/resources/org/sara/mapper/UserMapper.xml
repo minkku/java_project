@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapper namespace="org.sara.mapper.BookMapper">
-
-
-<select id="loginCheck" resultType="org.sara.domain.UserVO">
-select * from users where users_id= #{users_id}
-</select>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sara.mapper.UserMapper">
+	<select id="getUserByUsers_id" resultType="org.sara.domain.UserVO">
+		 SELECT * FROM users
+        WHERE users_id = #{users_id}
+	</select>
+	<delete id="delete">
+		delete from users where users_id = #{users_id}
+	</delete>
 </mapper>

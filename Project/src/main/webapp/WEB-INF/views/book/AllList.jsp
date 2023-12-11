@@ -81,7 +81,7 @@
         <ul class="pagination">
              <c:forEach begin="1" end="${totalPages}" varStatus="loop">
                 <li class="${loop.index == currentPage ? 'active' : ''}">
-                    <a href="/book/list?page=${loop.index}" data-page="${loop.index}">${loop.index}</a>
+                    <a href="/book/allList?page=${loop.index}" data-page="${loop.index}">${loop.index}</a>
                 </li>
             </c:forEach>
         </ul>

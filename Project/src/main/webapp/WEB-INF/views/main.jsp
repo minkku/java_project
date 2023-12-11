@@ -4,6 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="includes/header.jsp"%>
 <body>
+<c:if test="${not empty sessionScope.loginUser}">
+    <%-- The session attribute "users_id" is not null --%>
+    <c:set var="users_id" value="${sessionScope.loginUser}" />
+    </c:if>
 	<%@ include file="includes/nav.jsp"%>
 	<div class="hero">
 		<div class="container">
@@ -14,7 +18,7 @@
 							<span class="d-block">Let's Enjoy Your</span> Reading <span
 								class="typed-words"></span>
 						</h1>
-					</div>
+					</div>	
 				</div>
 				<div class="col-lg-5">
 					<div class="slides">
@@ -81,8 +85,7 @@
 					<div class="media-1">
 							<a
 								href='/book/bookdetail?books_id=<c:out value="${best.books_id}"/>'
-								class="d-block mb-3"><img
-								src="../resources/images/${best.img}" alt="Image"
+								class="d-block mb-3"><img src="../resources/images/${best.img}" alt="Image"
 								class="img-fluid"></a>
 							<div class="d-flex align-items-center">
 								<div>
@@ -217,7 +220,7 @@
 			})
 
 			var typed = new Typed('.typed-words', {
-				strings: [ <c:forEach var="book" items="${list}">
+				strings: [ <c:forEach var="book" items="${bestlist}">
 			    '<c:out value="${book.name}" />',
 			    </c:forEach> ],
 				typeSpeed: 80,

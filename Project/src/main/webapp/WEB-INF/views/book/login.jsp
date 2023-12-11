@@ -1,31 +1,65 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ include file= "../includes/header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>로그인페이지</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#btnLogin").click(function(){
+            // 태크.val() : 태그에 입력된 값
+            // 태크.val("값") : 태그의 값을 변경 
+            var userId = $("#userId").val();
+            var userPw = $("#userPw").val();
+            if(userId == ""){
+                alert("아이디를 입력하세요.");
+                $("#userId").focus(); // 입력포커스 이동
+                return; // 함수 종료
+            }
+            if(userPw == ""){
+                alert("아이디를 입력하세요.");
+                $("#userPw").focus();
+                return;
+            }
+            /* // 폼 내부의 데이터를 전송할 주소
+            document.form1.action="/login"
+            // 제출
+            document.form1.submit(); */
+        });
+    });
+</script>
+</head>
 <body>
-
-<form action = "/login" method = "post" name = "frm">
-	<table align = "center">
-		<tr>
-			<td colspan = "2">로그인</td>
-		</tr>
-		<tr>
-			<td>아이디</td>
-			<td><input type = "text" name = "user_id" size = "10"></td>
-		</tr>
-		<tr>
-			<td>비밀번호</td>
-			<td><input type = "password" name = "pw" size = "10"></td>
-		</tr>
-		
-		<tr>
-			<td colspan = "2">
-				<input type = "submit" value = "로그인" onclick = "return loginCheck()">
-				<input type = "reset" value = "취소">
-			</td>
-		</tr>
-	</table>
-	<div style="color:red; text-align: center;"> ${message} </div>
-</form>
+<h2>로그인</h2>
+    <form name="form1" method="post" action="/login">
+        <table border="1" width="400px">
+            <tr>
+                <td>아이디</td>
+                <td><input name="users_id" id="userId"></td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="password" name="pw" id="userPw"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" id="btnLogin" value="로그인">
+               <%--  <c:if test="${msg == 'failure'}">
+                    <div style="color: red">
+                        아이디 또는 비밀번호가 일치하지 않습니다.
+                    </div>
+                </c:if>
+                <c:if test="${msg == 'logout'}">
+                    <div style="color: red">
+                        로그아웃되었습니다.
+                    </div>
+                </c:if> --%>
+                </td>
+            </tr>
+        </table>
+    </form>
 </body>
 </html>

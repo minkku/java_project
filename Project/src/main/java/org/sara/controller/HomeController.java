@@ -21,18 +21,17 @@ import lombok.extern.log4j.Log4j;
 public class HomeController {
 	private BookService service;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@GetMapping("/main")
+	@GetMapping("/sara")
 	public String home(Model model) {
 		logger.info("main");
-		
-		model.addAttribute("bestlist",service.getBestList());
-		model.addAttribute("commendlist",service.getCommendList());
-		
-		return "main";
+
+		model.addAttribute("bestlist", service.getBestList());
+		model.addAttribute("commendlist", service.getCommendList());
+		return "/main";
 	}
-	
+
 }

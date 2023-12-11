@@ -1,67 +1,107 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+.site-navigation {
+    display: flex;
+    align-items: center; /* 로고와 검색 바를 세로 중앙 정렬 */
+}
+
+.logo {
+    margin-right: 10px; /* 로고와 검색 바 간격 조절 */
+}
+<link rel='stylesheet'
+	href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet'
+	href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet'
+	href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet'
+	href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet'
+	href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <div class="site-mobile-menu site-navbar-target">
-		<div class="site-mobile-menu-header">
-			<div class="site-mobile-menu-close">
-				<span class="icofont-close js-menu-toggle"></span>
-			</div>
+	<div class="site-mobile-menu-header">
+		<div class="site-mobile-menu-close">
+			<span class="icofont-close js-menu-toggle"></span>
 		</div>
-		<div class="site-mobile-menu-body"></div>
 	</div>
+	<div class="site-mobile-menu-body"></div>
+</div>
 
-	<nav class="site-nav">
-		<div class="container">
-			<div class="site-navigation">
-				<a href="/main" class="logo m-0">ㅅㅏㄹㅏ <span class="text-primary">.</span></a>
-
-				<ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
+<nav class="site-nav">
+	<div class="container">
+		<div class="site-navigation">
+			 <a href="/sara" class="logo m-0">ㅅㅏㄹㅏ <span class="text-primary">.</span></a>
+            <div class="nav search">
+                <select name="searchType">
+                    <option value="name">도서명</option>
+                    <option value="author">저자</option>
+                </select>
+                <input type="text" name="keyword" />
+                <button type="button" id="searchBtn">검색</button>
+            </div>
+            
+            
+            
+			<ul	class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
 				<c:if test="${empty loginUser}">
-					<li class="active login"><a name="login" href="/book/login" style="text-decoration: none;">
-					Login</a></li> </c:if>
-					<c:if test="${!empty loginUser }">
-					<li class="active login"><a href="logout.do" style="text-decoration: none;">로그아웃</a></li>
-					</c:if>
-       				<li class="mypage">
-					<c:if test="${empty loginUser}"><a href="/book/login">Mypage</a></c:if>
-					<c:if test="${!empty loginUser}"><a href="/book/mypage" style="text-decoration: none;">Mypage</a></c:if>
-					</li>
-					<li class="has-children">
-						<a href="#">Categories</a>
+					<li class="active login"><a name="login" href="/login"
+						style="text-decoration: none;"> Login</a></li>
+				</c:if>
+				<c:if test="${!empty loginUser}">
+					<li class="has-children"><a href="#">${loginUser.name}님
+							안녕하세요.</a>
 						<ul class="dropdown">
-						<li class="categories"><a href="/book/list">전체 보기</a></li>
-							<li>
-								<a href="#">education</a>
+							<li class="categories"><a href="/book/my"> <i
+									class="fi fi-rr-user">내 정보</i></a></li>
+							<li><a href="/board/mylist"><i class="fi fi-br-list">내
+										게시물</i></a></li>
+							<li><a href="/orders/list"><i
+									class="fi fi-br-rectangle-list">주문 조회</i></a></li>
+							<li><a href="/carts"><i class="fi fi-rr-shopping-cart">장바구니</i></a>
 							</li>
-							<li >
-								<a href="#">fiction</a>
+							<li><a href="/logout"><i class="fi fi-br-exit">로그아웃</i></a>
 							</li>
-							<li >
-								<a href="#">comics</a>
-							</li>
-						</ul>
-					</li>
-					<li><a href="/book/bestseller">bestseller</a></li>
-					<li class="has-children">
-								<a href="#">board</a>
-								<ul class="dropdown">
-									<c:if test="${empty loginUser}"><a href="/book/board">자유게시판</a></c:if>
-									<c:if test="${!empty loginUser }"><a href="/book/board?users_id=<c:out value="${user.users_id}"/>" style="text-decoration: none;">자유게시판</a></c:if>
-									<li><a href="/book/review_board">review-board</a></li>
-								</ul>
-							</li>
-					<li><a href="/book/about"> about</a></li>
-					<li class="tracking">
-					<c:if test="${empty loginUser}"><a href="/book/login">order</a></c:if>
-					<c:if test="${!empty loginUser }"><a href="/book/tracking?users_id=<c:out value="${user.users_id}"/>" style="text-decoration: none;">order</a></c:if>
-					</li>
-				</ul>
 
-				<a href="#" class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
-					<span></span>
-				</a>
+						</ul></li>
+					<%-- <li><a href="/book/mypage?users_id=<c:out value='${loginUser.users_id}'/>"  style="text-decoration: none;">Mypage</a></li> --%>
+				</c:if>
+				<li class="has-children"><a href="#">Categories</a>
+					<ul class="dropdown">
+						<li class="categories"><a href="/book/allList">전체 보기</a></li>
+						<li><a href="/book/edulist">education</a></li>
+						<li><a href="/book/ficlist">fiction</a></li>
+						<li><a href="/book/colist">comics</a></li>
+					</ul></li>
+				<li><a href="/book/bestseller">bestseller</a></li>
+				<li class="has-children"><a href="#">board</a>
+					<ul class="dropdown">
+						<li class="categories"><a href="/board/notice">공지사항</a></li>
+						<li><a href="/board/list">게시판</a></li>
+					</ul></li>
+				<li><a href="/book/about"> about</a></li>
+			</ul>
 
-			</div>
+			<a href="#"
+				class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light"
+				data-toggle="collapse" data-target="#main-navbar"> <span></span>
+			</a>
+
 		</div>
-	</nav>
+	</div>
+</nav>
+<script>
+ document.getElementById("searchBtn").onclick = function () {
+    
+  let searchType = document.getElementsByName("searchType")[0].value;
+  let keyword =  document.getElementsByName("keyword")[0].value;
+  
+  console.log(searchType)
+  console.log(keyword)
+  location.href = "/book/search?" + "&searchType=" + searchType + "&keyword=" + keyword;
+ };
+</script>
+

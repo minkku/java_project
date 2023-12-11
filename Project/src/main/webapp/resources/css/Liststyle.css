@@ -64,7 +64,7 @@ display:block;
 padding:8px 0 4px;
 color:#333;
 font-weight:bold;
-line-height1.4;
+line-height: 1.4;
 }
 
 .fixed_img_col li a:hover{
