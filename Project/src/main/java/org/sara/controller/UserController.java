@@ -65,7 +65,7 @@ public class UserController {
 	    
 	    log.info(uVo.getEmail());
 	    log.info(uVo.getPw());
-	    
+	    session.setAttribute("users_id", signinUser.getUsers_id());
 	    session.setAttribute("result", result);
 	    
 	    if (us.loginck(email, pw) == 0) return "redirect:/signin";

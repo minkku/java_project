@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html14/loose.dtd">
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Untree.co">
 	<link rel="shortcut icon" href="/resources/images/favicon.png">
@@ -26,6 +25,9 @@
 	<link rel="stylesheet" href="/resources/css/daterangepicker.css">
 	<link rel="stylesheet" href="/resources/css/aos.css">
 	<link rel="stylesheet" href="/resources/css/style.css">
+	<link rel="stylesheet" href="/resources/css/ordersPayment.css">
+	<link rel="stylesheet" href="/resources/css/carts.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<title>Tour Free Bootstrap Template for Travel Agency by Untree.co</title>
 </head>
