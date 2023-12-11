@@ -2,14 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-.site-navigation {
-    display: flex;
-    align-items: center; /* 로고와 검색 바를 세로 중앙 정렬 */
-}
-
-.logo {
-    margin-right: 10px; /* 로고와 검색 바 간격 조절 */
-}
 <link rel='stylesheet'
 	href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 <link rel='stylesheet'
@@ -44,14 +36,12 @@
                 <button type="button" id="searchBtn">검색</button>
             </div>
             
-            
-            
 			<ul	class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
-				<c:if test="${empty loginUser}">
+				<c:if test="${signin.email eq null}">
 					<li class="active login"><a name="login" href="/login"
 						style="text-decoration: none;"> Login</a></li>
 				</c:if>
-				<c:if test="${!empty loginUser}">
+				<c:if test="${!signin.email eq null}">
 					<li class="has-children"><a href="#">${loginUser.name}님
 							안녕하세요.</a>
 						<ul class="dropdown">
@@ -104,4 +94,3 @@
   location.href = "/book/search?" + "&searchType=" + searchType + "&keyword=" + keyword;
  };
 </script>
-
