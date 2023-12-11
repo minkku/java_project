@@ -116,10 +116,11 @@ public class BoardController {
 	                         @RequestParam("keyword") String keyword) {
 		
 		String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8);
+		
 		int pageSize = 10; // 페이지당 아이템 수
         
 		int totalPages= (int) Math.ceil((double) service.countTitle() / pageSize);
-        int totalPagess= (int) Math.ceil((double) service.countContent() / pageSize);
+        int totalPage= (int) Math.ceil((double) service.countContent() / pageSize);
        
         
         List<BoardVO> boardss = service.searchTypeTitle(encodedKeyword, page, pageSize);
