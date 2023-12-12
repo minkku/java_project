@@ -29,7 +29,7 @@
 
 ## ERD
 
-<img src=""/>
+![sara_erd](https://github.com/minkku/java_project/assets/97155555/e00989fc-764e-4324-af47-a5a7a151a2ad)
 
 <br />
 <br />
