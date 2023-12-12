@@ -27,7 +27,24 @@ public class MainController {
 	private BookService service;
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-
+	
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String searchList(Model model,@RequestParam(value = "searchType",required = false, defaultValue = "name") String searchType,
+			   @RequestParam(value = "keyword",required = false, defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int page) {
+		int pageSize = 10; // 페이지당 아이템 수
+		int totalPages = (int) Math.ceil((double) service.countKey(searchType,keyword) / pageSize);
+		log.info("www");
+		
+	 List<BookVO> list = service.searchList(searchType, keyword,page,pageSize);
+	 //list = service.listPage(page.getDisplayPost(), page.getPostNum());
+	 model.addAttribute("list", list);
+	 model.addAttribute("currentPage", page);
+	model.addAttribute("totalPages", totalPages);
+	 return "book/searchbook";
+	}
+	
+	
+	
 	@GetMapping("/about")
 	public void about() {
 
@@ -45,11 +62,10 @@ public class MainController {
 	 * }
 	 */
 	@GetMapping({ "/bookdetail", "/modify" })
-	public void get(@RequestParam(value = "users_id", required = false) Integer users_id,
-			@RequestParam("books_id") int books_id, Model model) {
+	public void get(@RequestParam(value = "users_id", required = false) Integer users_id,@RequestParam("books_id") int books_id, Model model) {
 		log.info("/get or modify");
 		model.addAttribute("book", service.get(books_id));
-
+		
 	}
 
 	@GetMapping("/board")
@@ -71,25 +87,9 @@ public class MainController {
 		model.addAttribute("list", books);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", totalPages);
+		log.info(service.countBooks());
 
 		return "book/AllList";
-	}
-
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String searchList(Model model,@RequestParam(value = "searchType", required = false, defaultValue = "name") String searchType
-			,@RequestParam(value = "keyword", required = false) String keyword,@RequestParam(defaultValue = "1") int page) {
-		int pageSize = 10;
-		List<BookVO> list = service.getSearchList(searchType,keyword,page,pageSize);
-		int totalPages = (int) Math.ceil((double) service.countkey(searchType,keyword) / pageSize);
-		// list = service.listPage(page.getDisplayPost(), page.getPostNum());
-		log.info("가"+service.countkey(searchType,keyword));
-		log.info(totalPages+"rne");
-		model.addAttribute("list", list);
-		model.addAttribute("currentPage", page);
-		model.addAttribute("totalPages", totalPages);
-		
-
-		return "book/searchbook";
 	}
 
 	@GetMapping("/edulist")
@@ -135,5 +135,7 @@ public class MainController {
 	public String my() {
 		return "book/mypage";
 	}
+
+	
 
 }

@@ -23,9 +23,9 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public ReplyVO get(int reviews_id) {
-		log.info("get......" + reviews_id);
-		return mapper.read(reviews_id);
+	public ReplyVO get(int reply_id) {
+		log.info("get......" + reply_id);
+		return mapper.read(reply_id);
 	}
 
 	@Override
@@ -35,9 +35,9 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public int remove(int reviews_id) {
-		log.info("remove.." + reviews_id);
-		return mapper.delete(reviews_id);
+	public int remove(int reply_id) {
+		log.info("remove.." + reply_id);
+		return mapper.delete(reply_id);
 	}
 
 	@Override // 페이징 처리  ☆받아서 들어갈 테이블의 컬럼명쓰기

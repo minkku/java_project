@@ -9,9 +9,9 @@ public interface ReplyMapper {
 
 	public int insert(ReplyVO vo);
 
-	public ReplyVO read(int reviews_id);
+	public ReplyVO read(int reply_id);
 
-	public int delete(int reviews_id);
+	public int delete(int reply_id);
 
 	public int update(ReplyVO content);
 

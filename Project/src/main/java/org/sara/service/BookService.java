@@ -19,7 +19,7 @@ public interface BookService {
 
 	List<BookVO> getEduBooks(int page, int pageSize);
 
-	List<BookVO> getSearchList(String searchType, String keyword,int page ,int pageSize);
+	List<BookVO> searchList(String searchType, String keyword,int page , int pageSize);
 
 	public BookVO get(int books_id);
 
@@ -31,6 +31,5 @@ public interface BookService {
 
 	int countFicBooks();
 	
-	int countkey(String searchType, String keyword);
-
+	int countKey(String searchType,String keyword);
 }

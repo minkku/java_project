@@ -15,12 +15,7 @@ public interface BookMapper {
 
 	public List<BookVO> getCommendList();
 	
-	/*
-	 * public List<BookVO> searchList(@Param("searchType") String
-	 * searchType,@Param("keyword") String keyword);
-	 */
-	
-	List<BookVO> searchList(Map<String, Object> params);
+	List<BookVO> getsearchList(Map<String, Object> params);
 
 	List<BookVO> getAllBooks(Map<String, Object> params);
 
@@ -38,5 +33,5 @@ public interface BookMapper {
 
 	int countFicBooks();
 	
-	int countkey(@Param("searchType") String searchType,@Param("keyword") String keyword);
+	int countKey(@Param("searchType") String searchType,@Param("keyword") String keyword);
 }

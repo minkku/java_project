@@ -20,17 +20,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="update">
 		update reply
 		set content = #{content},
-		update_at=sysdate()
+		updated_at=sysdate()
 		where reply_id = #{reply_id}
 	</update>
 
 	<select id="getListWithPaging"
 		resultType="org.sara.domain.ReplyVO" parameterType="map">
 		<![CDATA[
-		SELECT reply_id, books_id_id, content, create_at, update_at, users_id_id
+		SELECT reply_id, books_id_id, content, created_at, updated_at, users_id_id
 		FROM reply
 		WHERE books_id_id = #{books_id}
-		ORDER BY update_at DESC
+		ORDER BY updated_at DESC
 		
 		   ]]>
 	</select>

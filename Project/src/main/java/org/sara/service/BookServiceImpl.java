@@ -61,14 +61,13 @@ public class BookServiceImpl implements BookService {
 		return mapper.getCoBooks(params);
 	}
 	@Override
-	public List<BookVO> getSearchList(String searchType, String keyword,int page ,int pageSize){
+	public List<BookVO> searchList(String searchType,String keyword,int page, int pageSize) {
 		Map<String, Object> params = new HashMap<>();
+		params.put("searchType", searchType);
+		params.put("keyword", keyword);
 		params.put("start", (page - 1) * pageSize);
-		params.put("searchType",searchType);
-		params.put("keyword",keyword);
-		params.put("pageSize",pageSize);
-		
-		return mapper.searchList(params);
+		params.put("pageSize", pageSize);
+		return mapper.getsearchList(params);
 	}
 
 	@Override
@@ -90,20 +89,17 @@ public class BookServiceImpl implements BookService {
 	public int countFicBooks() {
 		return mapper.countFicBooks();
 	}
-	
-	
+	@Override
+	public int countKey(String searchType,String keyword) {
+		return mapper.countKey(searchType,keyword);
+	}
+
 	public List<BookVO> getBestList() {
 		return mapper.getBestList();
 	}
 
 	public List<BookVO> getCommendList() {
 		return mapper.getCommendList();
-	}
-
-	@Override
-	public int countkey(String searchType, String keyword) {
-		// TODO Auto-generated method stub
-		return mapper.countkey(searchType, keyword);
 	}
 
 }

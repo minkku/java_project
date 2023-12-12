@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from books limit 5
 	</select>
 	
-	<select id="searchList" resultType="org.sara.domain.BookVO">
+	<select id="getsearchList" resultType="org.sara.domain.BookVO">
 		select * from books
 		<if test='searchType.equals("name")'>
 		where name like concat('%',#{keyword},'%' )
@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
 	</select>
 	
-	<select id="countkey" resultType="int">
+	<select id="countKey" resultType="int">
 		SELECT COUNT(*) FROM books 
 		<if test='searchType.equals("name")'>
 		where name like concat('%',#{keyword},'%' )
@@ -78,6 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test='searchType.equals("author")'>
 		where author like concat('%', #{keyword}, '%')
 		 </if>
+		
 	</select>
 	
 </mapper>

@@ -3,13 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="includes/header.jsp"%>
-
 <body>
-	<c:if test="${not empty sessionScope.loginUser}">
+<c:if test="${not empty sessionScope.signin}">
     <%-- The session attribute "users_id" is not null --%>
-    <c:set var="users_id" value="${sessionScope.loginUser}" />
+    <c:set var="users_id" value="${sessionScope.signin}" />
     </c:if>
-	<%@ include file= "includes/nav.jsp" %>
+	<%@ include file="includes/nav.jsp"%>
 	<div class="hero">
 		<div class="container">
 			<div class="row align-items-center">
@@ -20,50 +19,6 @@
 								class="typed-words"></span>
 						</h1>
 					</div>	
-						<h1 class="mb-5"><span class="d-block">Let's Enjoy Your</span> Trip In <span class="typed-words"></span></h1>
-				
-						<div class="row">
-							<div class="col-12">
-								<form class="form">
-									<div class="row mb-2">
-										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-											<select name="" id="" class="form-control custom-select">
-												<option value="">Destination</option>
-												<option value="">Peru</option>
-												<option value="">Japan</option>
-												<option value="">Thailand</option>
-												<option value="">Brazil</option>
-												<option value="">United States</option>
-												<option value="">Israel</option>
-												<option value="">China</option>
-												<option value="">Russia</option>
-											</select>
-										</div>
-										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-5">
-											<input type="text" class="form-control" name="daterange">
-										</div>
-										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-3">
-											<input type="text" class="form-control" placeholder="# of People">
-										</div>
-
-									</div>    
-									<div class="row align-items-center">
-										<div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-											<input type="submit" class="btn btn-primary btn-block" value="Search">
-										</div>
-										<div class="col-lg-8">
-											<label class="control control--checkbox mt-3">
-												<span class="caption">Save this search</span>
-												<input type="checkbox" checked="checked" />
-												<div class="control__indicator"></div>
-											</label>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
->>>>>>> 85aed2c650d8d8969fa15ddfd552ce4363149613
 				</div>
 				<div class="col-lg-5">
 					<div class="slides">

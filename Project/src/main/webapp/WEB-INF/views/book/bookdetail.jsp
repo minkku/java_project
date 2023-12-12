@@ -8,9 +8,9 @@
 <link href="/resources/css/vendor/sb-admin-2.min.css" rel="stylesheet">
 <link href="/resources/css/pagination.css" rel="stylesheet">
 <body>
-	<c:if test="${not empty sessionScope.loginUser}">
+	<c:if test="${not empty sessionScope.signin}">
 		<%-- The session attribute "users_id" is not null --%>
-		<c:set var="users_id" value="${sessionScope.loginUser}" />
+		<c:set var="users_id" value="${sessionScope.signin}" />
 	</c:if>
 	<%@ include file="../includes/nav.jsp"%>
 
@@ -92,12 +92,12 @@
 
 									<div class="panel-heading">
 										<i class="fa fa-comments fa-fw"></i>Reply
-										<c:if test="${empty sessionScope.loginUser}">
+										<c:if test="${empty sessionScope.signin}">
 											<button class='btn btn-primary btn-xs pull-right'
-												onclick="window.location.href='/login'">글을쓰려면 로그인이
+												onclick="window.location.href='/signin'">글을쓰려면 로그인이
 												필요합니다.</button>
 										</c:if>
-										<c:if test="${not empty sessionScope.loginUser}">
+										<c:if test="${not empty sessionScope.signin}">
 											<button id='addReplyBtn'
 												class='btn btn-primary btn-xs pull-right'>New reply</button>
 										</c:if>
@@ -163,7 +163,7 @@
 										</div>
 										<div class="form-group">
 											<label>Replyer</label> <input class="form-control"
-												name='users_id' value="${loginUser.users_id}" readonly>
+												name='users_id' value="${signin.users_id}" readonly>
 
 										</div>
 										<div class="form-group">
@@ -217,7 +217,7 @@
 																	+ "</strong>";
 															str += "<small class='pull-right text-muted'>"
 																	+ replyService
-																			.displayTime(responseMap.list[i].update_at)
+																			.displayTime(responseMap.list[i].updated_at)
 																	+ "</small></div>";
 															str += "<p>"
 																	+ responseMap.list[i].content
@@ -266,7 +266,7 @@
 										.find("input[name='content']");
 								var modalInputUsers_id_id = $('input[name="users_id"]');
 								var modalInputUsers_id_id_value = modalInputUsers_id_id.val();
-								var modalInputCreate_at = modal
+								var modalInputCreated_at = modal
 										.find("input[name='create_at']");
 
 								var modalModBtn = $("#modalModBtn");
@@ -280,7 +280,7 @@
 												function(e) {
 													console.log('addReplyBtn');
 													modal.find("input").val("");
-													modalInputCreate_at
+													modalInputCreated_at
 															.closest("div")
 															.hide();
 													modal
@@ -300,12 +300,9 @@
 										users_id_id : modalInputUsers_id_id_value,
 										books_id_id : books_idValue
 									};
-									console.log("update");
 									console.log("내용:"+content.content);
-									console.log("아이디:"+content.users_id_id);
 									replyService.add(content, function(result) {
 										alert(result);
-
 										modal.find("input").val("");
 										modal.modal("hide");
 
@@ -330,24 +327,24 @@
 												function(e) {
 									
 													var reply_id = $(this).data(
-															"reply_id");
-													
+															"replies_id");
+													console.log(reply_id);
 													
 													replyService
 															.get(
 																	reply_id,
 																	function(
 																			content) {
-																		if (content.users_id_id == '${sessionScope.loginUser.users_id}'){
+																		if (content.users_id_id == '${sessionScope.signin.users_id}'){
 																		
 																		modalInputContent
 																				.val(content.content);
 																		modalInputUsers_id_id
 																				.val(content.users_id_id);
-																		modalInputCreate_at
+																		modalInputCreated_at
 																				.val(
 																						replyService
-																								.displayTime(content.create_at))
+																								.displayTime(content.created_at))
 																				.attr(
 																						"readonly",
 																						"readonly");
@@ -376,7 +373,7 @@
 							
 
 								modalRemoveBtn.on("click", function(e) {
-									var reviews_id = modal.data("reply_id");
+									var reply_id = modal.data("reply_id");
 
 									replyService.remove(reply_id, function(result) {
 										alert(result);
