@@ -12,7 +12,8 @@
 
 ## 사용된 기술
 - Java Spring
-- javascript
+- Javascript
+- Jquery
 - MySQL
 - Git
 <br />
@@ -35,3 +36,7 @@
 <br />
 
 ## 담당 구현 사항 및 구현 기능
+구본석 - 
+임화영 -
+이한규 -
+이민규 - 🙀
