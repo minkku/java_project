@@ -8,10 +8,20 @@
 2023.11.13 ~ 2023.12.08
 
 ## 팀원
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://github.com/rnqhstjr12"><img src="https://avatars.githubusercontent.com/u/136827421?v=4 width="50px;" alt=""/><sub><b>조장 : 구본석</b></sub></td>
+      <td align="center"><a href="https://github.com/minkku"><img src="https://avatars.githubusercontent.com/u/97155555?v=4 width="50px;" alt=""/><sub><b>부조장 : 이민규</b></sub></td>
+      <td align="center"><a href="https://github.com/hwa0000"><img src="https://avatars.githubusercontent.com/u/149472181?v=4 width="50px;" alt=""/><sub><b>조원 : 임화영</b></sub></td>
+      <td align="center"><a href="https://github.com/CastorP0llux"><img src="https://avatars.githubusercontent.com/u/149470847?v=4 width="50px;" alt=""/><sub><b>조원 : 이한규</b></sub></td>
+    </tr>
+  </tbody>
+</table>
 구본석, 임화영, 이한규, 이민규
 
 ## 사용된 기술
-- Java Spring
+- Spring
 - Javascript
 - Jquery
 - MySQL
@@ -25,6 +35,7 @@
 - Github
 - Trello
 - Dbdiagram
+- SourceTree
 <br />
 <br />
 
