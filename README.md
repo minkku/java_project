@@ -43,7 +43,7 @@
 
 ## ERD
 
-![sara_erd](https://github.com/minkku/java_project/assets/97155555/e00989fc-764e-4324-af47-a5a7a151a2ad)
+![sara_erd](https://github.com/minkku/java_project/assets/97155555/17783892-f213-4e22-af09-536899856468.PNG)
 
 <br />
 <br />
