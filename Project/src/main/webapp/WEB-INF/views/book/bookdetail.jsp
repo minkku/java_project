@@ -213,7 +213,7 @@
 														for (var i = 0, len = responseMap.list.length; i < len; i++) {
 															str += "<li class='left clearfix' data-replies_id='"+responseMap.list[i].reply_id + "'>";
 															str += "<div><div class='header'><strong class='primary-font'>"
-																	+ responseMap.list[i].users_id_id
+																	+ responseMap.list[i].user_name
 																	+ "</strong>";
 															str += "<small class='pull-right text-muted'>"
 																	+ replyService
@@ -289,7 +289,7 @@
 															.hide();
 
 													modalRegisterBtn.show();
-
+													
 													$(".modal").modal("show");
 												});
 
@@ -340,7 +340,7 @@
 																		modalInputContent
 																				.val(content.content);
 																		modalInputUsers_id_id
-																				.val(content.users_id_id);
+																				.val(content.user_name);
 																		modalInputCreated_at
 																				.val(
 																						replyService

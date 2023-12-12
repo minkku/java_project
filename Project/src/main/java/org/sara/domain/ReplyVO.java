@@ -8,6 +8,7 @@ import lombok.Data;
 public class ReplyVO {
 	
 	private int reply_id;
+	private String user_name;
 	private int books_id_id;
 	private String content;
 	private Date created_at;

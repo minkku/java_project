@@ -8,11 +8,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into reply(reply_id, books_id_id,content,users_id_id)
 		values(null,#{books_id_id},#{content},#{users_id_id})
 	</insert>
-
+	
 	<select id="read" resultType="org.sara.domain.ReplyVO"> <!-- 조회 -->
-		select * from reply where reply_id = #{reply_id}
+		select r.reply_id as reply_id,r.books_id_id as books_id_id,u.user_name as user_name,r.content as content,r.created_at as created_at,r.updated_at as updated_at
+		,r.users_id_id as users_id_id 
+		from users u , reply r 
+		where u.users_id=r.users_id_id and reply_id = #{reply_id}
 	</select>
-
+	
+	
 	<delete id="delete">
 		delete from reply where reply_id = #{reply_id}
 	</delete>
@@ -27,14 +31,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getListWithPaging"
 		resultType="org.sara.domain.ReplyVO" parameterType="map">
 		<![CDATA[
-		SELECT reply_id, books_id_id, content, created_at, updated_at, users_id_id
-		FROM reply
-		WHERE books_id_id = #{books_id}
-		ORDER BY updated_at DESC
+		select r.reply_id as reply_id,r.books_id_id as books_id_id,u.user_name as user_name,r.content as content,r.created_at as created_at,r.updated_at as updated_at
+		,r.users_id_id as users_id_id
+		from users u , reply r 
+		where u.users_id=r.users_id_id and r.books_id_id=#{books_id}
+		ORDER BY r.created_at DESC;
 		
 		   ]]>
 	</select>
-
 
 	<select id="countReplies" resultType="int">
 		SELECT COUNT(*) FROM
