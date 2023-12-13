@@ -41,16 +41,21 @@ public class OrdersController {
 							  @RequestParam("new_mobile") String new_mobile, @RequestParam("user_mobile") String user_mobile,
 							  @RequestParam("comment") String comment, @RequestParam("books_id") List<Integer> books_id,
 							  @RequestParam("quantity") List<Integer> quantity, @RequestParam("user_info") String user_info,
-							  @RequestParam("carts_id") List<Integer> carts_id, HttpSession session, Model model) {
+							  @RequestParam("carts_id") List<Integer> carts_id, @RequestParam("totalPrice") int totalPrice,
+							  HttpSession session, Model model) {
 		int users_id = (int) session.getAttribute("users_id");
 		String OrdersNum = service.ranOrdersNum();
+		log.info(OrdersNum);
+		log.info("totalPrice ===>" + totalPrice);
 		session.setAttribute("orders_num", OrdersNum);
 		if (user_info.equals("new_data")) {
+			service.insertOrdersDetail(OrdersNum, books_id, quantity);
 			service.insertOrders(users_id, new_name, new_address, new_mobile, comment, OrdersNum, 1);
 		} else {
+			service.insertOrdersDetail(OrdersNum, books_id, quantity);
 			service.insertOrders(users_id, user_name, user_address, user_mobile, comment, OrdersNum, 1);
 		}
-		service.insertOrdersDetail(OrdersNum, books_id, quantity);
+		service.updatePoint(users_id, totalPrice);
 		service.deleteCarts(users_id, carts_id);
 		
 		return "redirect:/orders/complete";
@@ -74,9 +79,9 @@ public class OrdersController {
 	}
 	
 	@GetMapping("/listInfo")
-	public String getListInfo(Model model, HttpSession session) {
+	public String getListInfo(@RequestParam(name = "orders_num", required = false) String orders_num, Model model, HttpSession session) {
 		log.info("get - orders/listInfo-------------------------------");
-		String orders_num = (String) session.getAttribute("orders_num");
+		session.setAttribute("orders_num", orders_num);
 		int users_id = (int) session.getAttribute("users_id");
 		model.addAttribute("users_id", users_id);
 		model.addAttribute("orders_num", orders_num);
