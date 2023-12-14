@@ -48,8 +48,11 @@
 	
 	<!-- 회원정보 수정 쿼리 -->
 	<select id="getUserByEmail" resultType="org.sara.domain.UserVO">
-		SELECT * FROM users
-		WHERE email = #{email}
+		SELECT * 
+		FROM 
+			users
+		WHERE 
+			email = #{email}
 	</select>
 	
 	<update id="updateUser">
@@ -71,4 +74,13 @@
 		WHERE
 			email = #{email}
 	</delete>
+	
+	<!-- 회원 정보 가져오기 쿼리 -->
+	<select id="selectUserInfo" resultType="org.sara.domain.UserVO">
+		SELECT *
+    	FROM 
+    		users
+    	WHERE
+    		email = #{email}
+	</select>
 </mapper>

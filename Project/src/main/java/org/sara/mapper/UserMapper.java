@@ -9,4 +9,5 @@ public interface UserMapper {
 	public int loginck(@Param("email") String email, @Param("pw") String pw) throws Exception;
 	UserVO getUserByEmail(String email) throws Exception;
 	public void updateUser(UserVO uVo) throws Exception;
+	UserVO selectUserInfo(String email) throws Exception;
 }

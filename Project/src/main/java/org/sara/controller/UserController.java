@@ -143,4 +143,12 @@ public class UserController {
 		}
 		return "redirect:/sara";
 	}
+	
+	// select user info page
+	@GetMapping("/userInfo")
+    public String getInfoPg(Model model, HttpSession session) throws Exception {
+        String loginedUserEmail = ((UserVO) session.getAttribute("signin")).getEmail();
+        model.addAttribute("loginedUser", us.selectUserInfo(loginedUserEmail));
+        return "sign/userInfo";
+    }
 }

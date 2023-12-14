@@ -6,7 +6,7 @@
 }
 
 .card-header {
-	background-color: #3498db;
+	background-color: #82AE46;
 	color: #fff;
 	text-align: center;
 	padding: 15px;
@@ -33,7 +33,7 @@ input.form-control {
 }
 
 .btn-primary {
-	background-color: #3498db;
+	background-color: #82AE46;
 	color: #fff;
 	border: none;
 	padding: 10px 20px;
@@ -41,12 +41,12 @@ input.form-control {
 }
 
 .btn-primary:hover {
-	background-color: #2980b9;
+	background-color: #5E6E47;
 }
 
 .alert {
 	color: #a94442;
-	background-color: #f2dede;
+	background-color: #82AE46;
 	border-color: #ebccd1;
 	padding: 15px;
 	margin-bottom: 20px;

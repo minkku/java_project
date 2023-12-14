@@ -42,7 +42,7 @@ input, select {
 }
 
 input[type="submit"] {
-	background-color: #3498db;
+	background-color: #82AE46;
 	color: #fff;
 	padding: 15px;
 	border: none;
@@ -52,7 +52,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-	background-color: #2980b9;
+	background-color: #5E6E47;
 }
 /* Optional: Add some additional styling for a cleaner look */
 div {
