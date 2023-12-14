@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>ㅅㅏㄹㅏ</title>
-<link rel="stylesheet" href="../../../resources/sign/sign.css">
+<link rel="stylesheet" href="../../../resources/sign/signup.css">
 </head>
 
 <body onload="initialize()">
