@@ -7,7 +7,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ㅅㅏㄹㅏ</title>
 <script src="/resources/js/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" href="../../../resources/sign/sign.css">
+<style>
+	/* Add these styles to your existing sign.css or create a new CSS file */
+.card {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+}
+
+input.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.alert {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+	
+</style>
 </head>
 <body>
 	<div class="container mt-5">
