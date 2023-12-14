@@ -3,7 +3,6 @@ package org.sara.mapper;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.sara.domain.BoardVO;
 import org.sara.domain.NoticeVO;
   	
@@ -26,7 +25,7 @@ public interface BoardMapper {
 	
 	public int update(BoardVO board);
 	
-	public String getUsersEmail(int users_id_id);
+	public String getUsersEmail(int users_id);
 	
 	public List<NoticeVO> getNoticeBoards(Map<String, Object> params);
 	

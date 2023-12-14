@@ -5,27 +5,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.sara.mapper.BoardMapper">
 
 <select id="getList" resultType="org.sara.domain.BoardVO">
-<![CDATA[
-	select * from board where board_id > 0
- order by board_id desc ]]>
+	SELECT
+		b.board_id,
+	    b.title,
+	    u.user_name,
+	    b.created_at,
+	    b.updated_at
+	FROM 
+		board b
+	JOIN users u ON u.users_id = b.users_id_id
+	ORDER BY b.board_id DESC;
  </select>
 
 	<insert id="insert">
 	insert into board(board_id,users_id_id,title,content)
-	values (null,#{users_id_id},#{title},#{content})
+	values (null,#{users_id},#{title},#{content})
 	</insert>
 	
 	<select id="read" resultType="org.sara.domain.BoardVO">
-		select * from board where board_id = #{board_id}
+		   SELECT b.board_id,
+		   u.users_id,
+           u.user_name,
+           b.title,
+           b.content,
+           b.created_at,
+           b.updated_at
+    	   FROM board b
+    	   JOIN users u ON u.users_id = b.users_id_id 
+    		where b.board_id = #{board_id}
 	</select>
 	
 	<update id="update">
 		update board
 		set title=#{title},
 		content=#{content},
-		users_id_id=#{users_id_id}, 
-		update_at=sysdate()
-		
+		updated_at = now()
 		where board_id=#{board_id}
 	</update>
 	
@@ -34,9 +48,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
  	<select id="getAllBoards" resultType="org.sara.domain.BoardVO">
-      SELECT * FROM board where board_id > 0 order by board_id desc
-      LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
-      
+    SELECT b.board_id,
+		   b.users_id_id,
+           u.user_name,
+           b.title,
+           b.content,
+           b.created_at,
+           b.updated_at
+    FROM board b
+    JOIN users u ON u.users_id = b.users_id_id
+    where b.board_id > 0 
+    order by b.board_id desc
+    LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
    </select>
 
    <select id="countBoards" resultType="int">
@@ -44,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
 
   <select id="getNoticeBoards" resultType="org.sara.domain.NoticeVO" >
-	<![CDATA[select * from notice order by board_id asc]]>
+	<![CDATA[select * from notice order by notice_id asc]]>
 	</select> 
 
  <select id="countNoticeBoards" resultType="int">
@@ -53,17 +76,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="getUsersEmail" resultType="String">
 	select email from users
-	where users_id = #{users_id_id} 
+	where users_id= #{users_id} 
 
 </select>
 
 <select id="myListBoards" resultType="org.sara.domain.BoardVO">
-	select * from board where users_id_id=#{users_id_id, jdbcType=INTEGER} 
+	select * from board where users_id_id=#{users_id, jdbcType=INTEGER} 
 	 LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}	
 </select>
 
 <select id="countmyListBoards" resultType="int">
-      SELECT COUNT(*) FROM board where users_id_id=#{users_id_id}	
+      SELECT COUNT(*) FROM board where users_id_id=#{users_id}	
 </select>
 
 

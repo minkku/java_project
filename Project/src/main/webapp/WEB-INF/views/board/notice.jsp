@@ -21,11 +21,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">
-
-								<%-- <button id='regBtn' type="button" class="btn btn-xs pull-right">게시글쓰기</button>
-								<input type="hidden" name="users_id_id" value="${users_id_id}"> --%>
-							</div>
+							<div class="panel-heading"></div>
 							<!-- /.panel-heading -->
 							<div class="panel-body">
 								<div class="table-responsive">
@@ -40,7 +36,7 @@
 										</thead>
 										<c:forEach items="${list}" var="notice">
 											<tr>
-												<td><c:out value="${notice.board_id}" /></td>
+												<td><c:out value="${notice.notice_id}" /></td>
 												<td><c:out value="${notice.title}" /></td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd"
 														value="${notice.create_at}" /></td>
@@ -79,7 +75,7 @@
 
 	<%@ include file="../includes/footer.jsp"%>
 
-	
+
 
 </body>
 

@@ -64,8 +64,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public String getUsersEmail(int users_id_id) {
-		return mapper.getUsersEmail(users_id_id);
+	public String getUsersEmail(int users_id) {
+		return mapper.getUsersEmail(users_id);
 	}
 	
 	@Override	
@@ -83,13 +83,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public List<BoardVO> myListBoards(int users_id_id, int page, int pageSize) {
+	public List<BoardVO> myListBoards(int users_id, int page, int pageSize) {
 		Map<String, Object> params = new HashMap<>();
 		
 		params.put("start", (page -1) * pageSize);
 		params.put("pageSize", pageSize);
-		params.put("users_id_id", users_id_id)	;	
-		log.info("mylist.." + users_id_id);
+		params.put("users_id", users_id)	;	
+		log.info("mylist.." + users_id);
 		log.info(params);
 		return mapper.myListBoards(params);
 	}

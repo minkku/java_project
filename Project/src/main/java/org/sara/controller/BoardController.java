@@ -44,11 +44,11 @@ public class BoardController {
 	 * 
 	 * public String getAllBoards(@RequestParam(name = "keyWord", required = false)
 	 * String keyword, HttpSession session, Model model, @RequestParam(defaultValue
-	 * = "1") int page) { session.setAttribute("users_id_id", 1); //나중에 없어질거 int
+	 * = "1") int page) { session.setAttribute("users_id", 1); //나중에 없어질거 int
 	 * pageSize = 10; // 페이지당 아이템 수 List<BoardVO>boards = service.getAllBoards(page,
 	 * pageSize); int totalPages = (int) Math.ceil((double) service.countBoards() /
-	 * pageSize); log.info("list...-"); model.addAttribute("users_id_id",
-	 * session.getAttribute("users_id_id")); model.addAttribute("list", boards);
+	 * pageSize); log.info("list...-"); model.addAttribute("users_id",
+	 * session.getAttribute("users_id")); model.addAttribute("list", boards);
 	 * 
 	 * model.addAttribute("currentPage", page); model.addAttribute("totalPages",
 	 * totalPages);
@@ -84,8 +84,8 @@ public class BoardController {
 	public String getAllBoards(@RequestParam(name = "encodedKeyword", required = false) String encodedKeyword,
 	                           HttpSession session, Model model, 
 	                           @RequestParam(defaultValue = "1") int page) {
-	    session.setAttribute("users_id_id", 1);
-	    int pageSize = 10;
+		
+		int pageSize = 10;
 	    List<BoardVO> boards;
 	    
 	    List<BoardVO> boardss; 
@@ -100,8 +100,8 @@ public class BoardController {
 	    }
 
 	    int totalPages = (int) Math.ceil((double) service.countBoards() / pageSize);
-
-	    model.addAttribute("users_id_id", session.getAttribute("users_id_id"));
+	    log.info("boards ----->" + boards);
+	    model.addAttribute("users_id", session.getAttribute("users_id"));
 	    model.addAttribute("list", boards);
 	    model.addAttribute("currentPage", page);
 	    model.addAttribute("totalPages", totalPages);
@@ -114,7 +114,7 @@ public class BoardController {
 	public String searchType(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page,
 	                         @RequestParam("searchType") String searchType,
 	                         @RequestParam("keyword") String keyword) {
-		
+		/* int users_id = (int) session.getAttribute("users_id"); */
 		String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8);
 		
 		int pageSize = 10; // 페이지당 아이템 수
@@ -144,45 +144,76 @@ public class BoardController {
 	
 		
 	@GetMapping("/register")
-	public void register(Model model, @RequestParam(name = "users_id_id", required = false) int users_id_id) {
-		log.info("registerffffffff");
-		model.addAttribute("email", service.getUsersEmail(users_id_id));
+	public String registerB(Model model, HttpSession session) {
+	    int users_id = (int) session.getAttribute("users_id");
+	    log.info("users_id ------ register controller ---->" + users_id);
+	    if (users_id != 0) {
+	        log.info("register controller 로그인 되어있음");
+	        model.addAttribute("email", service.getUsersEmail(users_id));
+	        return "board/register";
+	    } else {
+	    	log.info("register controller 로그아웃 되어있음");
+	        // 사용자 ID가 null인 경우에 대한 처리
+	        // 예를 들어 로그인 페이지로 리다이렉트하거나 다른 방식으로 처리
+	        return "redirect:/signin";
+	    }
 	}
 
 		
 	@PostMapping("/register")
-	public String register(BoardVO board, RedirectAttributes rttr) {
+	public String register(BoardVO board, @RequestParam("title") String title, HttpSession session,
+						   @RequestParam("action") String action,
+						   @RequestParam("content") String content, RedirectAttributes rttr){
+		int users_id = (int) session.getAttribute("users_id");
+		board.setUsers_id(users_id);
 		log.info("register.. : " + board);
-		service.register(board);
+		if (action.equals("목록")) {
+			return "redirect:/board/list";
+		} else if (action.equals("등록")) {
+			service.register(board);
+		}
 		rttr.addFlashAttribute("result", board.getBoard_id());
 		return "redirect:/board/list";		
 	}
 		
 		
-	@GetMapping({"/get","/modify"})
+	@GetMapping("/get")
     public void get(HttpSession session,@RequestParam("board_id") int board_id, Model model ) {
-       log.info("/get or modify");
-       model.addAttribute("users_id_id", session.getAttribute("users_id_id"));
+       log.info("/get");
+       model.addAttribute("users_id", session.getAttribute("users_id"));
+       log.info("users_id ---------->" + session.getAttribute("users_id"));
+       log.info(board_id + "-----------board_id값");
+       log.info("get(board_id)값 -=-----" + service.get(board_id));
        model.addAttribute("board", service.get(board_id));
        
     }
 	@GetMapping("/notice")
-	   public String getAllNotice(Model model, @RequestParam(defaultValue = "1") int page) {
-	        int pageSize = 10; // 페이지당 아이템 수
-	        List<NoticeVO>boards = service.getNoticeBoards(page, pageSize);
-	        int totalPages = (int) Math.ceil((double) service.countNoticeBoards() / pageSize);
-	        log.info("notice-");
-	        model.addAttribute("list", boards);
-	        model.addAttribute("currentPage", page);
-	        model.addAttribute("totalPages", totalPages);
+	   public String getAllNotice(Model model,
+			   @RequestParam(defaultValue = "1") int page) {
+				int pageSize = 10; // 페이지당 아이템 수
+				List<NoticeVO>boards = service.getNoticeBoards(page, pageSize);
+				int totalPages = (int) Math.ceil((double) service.countNoticeBoards() / pageSize);
+				log.info("notice-");
+				model.addAttribute("list", boards);
+				model.addAttribute("currentPage", page);
+				model.addAttribute("totalPages", totalPages);
 
-	        return "board/notice";
+				return "board/notice";
 	    }
 	
+	@GetMapping("/modify")
+    public void getModify(HttpSession session,@RequestParam("board_id") int board_id, Model model ) {
+       log.info("modify");
+       model.addAttribute("users_id", session.getAttribute("users_id"));
+       log.info("users_id ---------->" + session.getAttribute("users_id"));
+       log.info(board_id + "-----------board_id값");
+       log.info("get(board_id)값 -=-----" + service.get(board_id));
+       model.addAttribute("board", service.get(board_id));
+       
+    }
     @PostMapping("/modify")
     public String modify(BoardVO board,RedirectAttributes rttr) {
        log.info("modify:"+board);
-       
        if(service.modify(board)) {
           rttr.addFlashAttribute("result","success");
        }
@@ -200,15 +231,15 @@ public class BoardController {
 	}
     
     @GetMapping("/mylist")
-    public String myListBoards(HttpSession session, Model model, @RequestParam(name="users_id_id", required = false) int users_id_id,
+    public String myListBoards(HttpSession session, Model model, @RequestParam(name="users_id", required = false) int users_id,
     						   @RequestParam(defaultValue = "1") int page) {
-//    	session.setAttribute("users_id_id", 1);//임의로 넣어둠
+//    	session.setAttribute("users_id", 1);//임의로 넣어둠
     	int pageSize = 10; // 페이지당 아이템 수
         int totalPages = (int) Math.ceil((double) service.countmyListBoards() / pageSize);
        
-        List<BoardVO> boards = service.myListBoards(users_id_id, page, pageSize);
+        List<BoardVO> boards = service.myListBoards(users_id, page, pageSize);
         log.info("mylist-");
-        model.addAttribute("users_id_id", session.getAttribute("users_id_id"));
+        model.addAttribute("users_id", session.getAttribute("users_id"));
         model.addAttribute("mylist", boards);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);

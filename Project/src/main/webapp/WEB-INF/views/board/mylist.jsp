@@ -5,20 +5,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="../includes/header.jsp"%>
 <body>
-<%@include file="../includes/nav.jsp" %>
+	<%@include file="../includes/nav.jsp"%>
 
-<div class="hero hero-inner">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6 mx-auto text-center">
-          <div class="intro-wrap">
-         <!--    <h1 class="mb-0">게시판</h1> -->
-            <p class="text-white">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="hero hero-inner">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-6 mx-auto text-center">
+					<div class="intro-wrap">
+						<!--    <h1 class="mb-0">게시판</h1> -->
+						<p class="text-white">Far far away, behind the word mountains,
+							far from the countries Vokalia and Consonantia, there live the
+							blind texts.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -55,22 +57,23 @@
 											<tr>
 												<td><c:out value="${board.board_id}" /></td>
 												<td><a
-													href='/board/get?users_id_id=${users_id_id}&board_id=<c:out value="${board.board_id}"/>'>
+													href='/board/get?users_id=${users_id}&board_id=<c:out value="${board.board_id}"/>'>
 														<c:out value="${board.title}" />
 												</a></td>
-												<td><c:out value="${board.users_id_id}" /></td>
+												<td><c:out value="${board.users_id}" /></td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd"
-														value="${board.create_at}" /></td>
+														value="${board.created_at}" /></td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd"
-														value="${board.update_at}" /></td>
+														value="${board.updated_at}" /></td>
 											</tr>
 										</c:forEach>
 									</table>
-							<div class="panel-heading">
+									<div class="panel-heading">
 
-								<button id='regBtn' type="button" class="btn btn-xs" align="right">돌아가기</button>
-								<input type="hidden" name="users_id_id" value="${users_id_id}">
-							</div>
+										<button id='regBtn' type="button" class="btn btn-xs"
+											align="right">돌아가기</button>
+										<input type="hidden" name="users_id" value="${users_id}">
+									</div>
 
 
 									<ul class="pagination">
@@ -102,40 +105,35 @@
 	<%@ include file="../includes/footer.jsp"%>
 
 	<script>
-		$(document)
-				.ready(
+		$(document).ready(
 
-						function() {
+		function() {
 
-							var result = '<c:out value="${result}"/>';
+			var result = '<c:out value="${result}"/>';
 
-							var users_id_id = $("input[name='users_id_id']").val();
+			var users_id = $("input[name='users_id']").val();
 
-							checkModal(result);
+			checkModal(result);
 
-							history.replaceState({}, null, null);
+			history.replaceState({}, null, null);
 
-							function checkModal(result) {
+			function checkModal(result) {
 
-								$("#regBtn")
-										.on(
-												"click",
-												function() {
-													if (users_id_id == null) {
+				$("#regBtn").on("click", function() {
+					if (users_id == null) {
 
-													} else {
-														self.location = "/board/mypage"
-																+ users_id_id;
-													}
+					} else {
+						self.location = "/board/mypage" + users_id;
+					}
 
-												});
+				});
 
-								if (result === '' || history.state) {
-									return;
-								}
-							}
+				if (result === '' || history.state) {
+					return;
+				}
+			}
 
-						});
+		});
 	</script>
 
 </body>

@@ -44,7 +44,6 @@
 		<servlet-name>appServlet</servlet-name>
 	</filter-mapping>
 	
-<!-- <filter>
 	<!-- <filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -68,6 +67,6 @@
 	  </context-param>
 	  
 	  <session-config>
-	  		<session-timeout>1</session-timeout>
+	  		<session-timeout>60</session-timeout>
 	  </session-config>
 </web-app>

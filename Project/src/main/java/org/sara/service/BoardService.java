@@ -19,13 +19,13 @@ public interface BoardService {
 	
 	public boolean remove(int board_id);
 	
-	public String getUsersEmail(int users_id_id);
+	public String getUsersEmail(int users_id);
 	
 	public List<NoticeVO> getNoticeBoards(int page, int pageSize);
 	
 	public int countNoticeBoards();
 	
-	public List<BoardVO> myListBoards(int users_id_id, int page, int pageSize);
+	public List<BoardVO> myListBoards(int users_id, int page, int pageSize);
 	
 	public int countmyListBoards();
 	

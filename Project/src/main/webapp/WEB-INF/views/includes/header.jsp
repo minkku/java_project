@@ -27,6 +27,8 @@
    <link rel="stylesheet" href="/resources/css/style.css">
    <link rel="stylesheet" href="/resources/css/ordersPayment.css">
    <link rel="stylesheet" href="/resources/css/carts.css">
+   <link rel="stylesheet" href="/resources/css/board.css">
+   
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <title>ㅅㅏ ㄹㅏ</title>
 </head>

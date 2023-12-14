@@ -4,19 +4,11 @@ import lombok.Data;
 
 @Data
 public class BoardVO {
-	
 	private int board_id;     //게시판번호
-	private int users_id_id;  //users id
+	private int users_id;  //users id
+	private String user_name;
 	private String title;     //게시글제목
 	private String content;   //게시물
-	private Date create_at;   //작성일	
-	private Date update_at;   //수정날짜
-	
-	
-
+	private Date created_at;   //작성일	
+	private Date updated_at;   //수정날짜
 }
-
-
-
-	
- 
