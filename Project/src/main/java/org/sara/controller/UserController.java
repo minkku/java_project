@@ -62,24 +62,25 @@ public class UserController {
 	    uVo.setPw(pw);
 	    int result = us.loginck(email, pw);
 	    UserVO signinUser = us.login(uVo);
-	    
+	       
 	    log.info(uVo.getEmail());
 	    log.info(uVo.getPw());
-	    session.setAttribute("users_id", signinUser.getUsers_id());
+	       
 	    session.setAttribute("result", result);
-	    
+	       
 	    if (us.loginck(email, pw) == 0) return "redirect:/signin";
-	    
+	    session.setAttribute("users_id", signinUser.getUsers_id());
 	    session.setAttribute("signin", signinUser);
-	    
-	    return "redirect:/";
-	}
+	       
+	    return "redirect:/sara";
+	   }
+
 	
 	//session expire
 	@RequestMapping(value = "/logout", method = {RequestMethod.GET, RequestMethod.POST})
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:/sara";
 	}
 	
 	//update user page
@@ -140,6 +141,6 @@ public class UserController {
 				return "redirect:/updateUser";
 			}
 		}
-		return "redirect:/";
+		return "redirect:/sara";
 	}
 }
