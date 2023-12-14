@@ -38,4 +38,8 @@ public interface OrdersService {
 	public void setStatus(@Param("status") int status, @Param("orders_num") String orders_num, int users_id);
 	
 	public boolean statusCheck(@Param("status") int status, @Param("orders_num") String orders_num, @Param("users_id") int users_id);
+	
+	public void updatePoint(@Param("users_id") int users_id, @Param("totalPrice") int totalPrice);
+	
+	public void updatePointPlus(@Param("users_id") int users_id, @Param("totalPrice") int totalPrice);
 }

@@ -37,9 +37,12 @@
             </table>
             <div class="total">
                 <input style="text-align: left" type="hidden" name="totalPrice">
-                <span style="font-size: 24px"><strong id="finalTotal">&nbsp;&nbsp;&nbsp;</strong></span>
-                <span style="font-size: 16px">결제 금액</span>
+                <span style="font-size: 24px"><strong id="finalTotal"></strong></span>
+                <span style="font-size: 16px">&nbsp;&nbsp;&nbsp;결제 금액</span>
             </div>
+            <br>
+            <br>
+            <br>
             <div class="ordersPayment_container">
                 <h5 class="section-title">회원 정보</h5>
                 <table class="ordersPayment_info-table">
@@ -56,6 +59,8 @@
                         <td colspan="3">${users.email}</td>
                     </tr>
                 </table>
+                <br>
+                <br>
                 <h5 class="section-title">배송 정보</h5>
                 <table class="ordersPayment_info-table">
                     <tr>
@@ -77,11 +82,23 @@
                 </table>
             </div>
             <div class="carts_Buy">
+                <input class="buyButton" type="submit" name="action" value="재주문">
                 <input class="buyButton" type="submit" name="action" value="주문취소">
             </div>
         </div>
     </form>
 </div>
+<script>
+$(document).ready(function() {
+    let totalPrice = 0;
+    $('.sumPrice').each(function() {
+        totalPrice += parseInt($(this).text());
+    });
+
+    $('input[name="totalPrice"]').val(totalPrice);
+    $('#finalTotal').text(totalPrice);
+});
+</script>
 <%@include file="../includes/footer.jsp"%>
 </body>
 </html>
