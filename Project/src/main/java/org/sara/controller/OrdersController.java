@@ -102,18 +102,20 @@ public class OrdersController {
 	}
 	
 	@PostMapping("/listInfo")
-	public String postListInfo(@RequestParam(name = "action") String action,
+	public String postListInfo(@RequestParam(name = "action") String action, @RequestParam("totalPrice") int totalPrice,
 							   Model model, HttpSession session) {
 		String orders_num = (String) session.getAttribute("orders_num");
 		int users_id = (int) session.getAttribute("users_id");
 		if (action.equals("주문취소")) {
 			if (service.statusCheck(99, orders_num, users_id)) {
 				service.setStatus(99, orders_num, users_id);
+				service.updatePointPlus(users_id, totalPrice);
 				return "redirect:/orders/list";
 			}
 		} else if (action.equals("재주문")) {
 			if (service.statusCheck(1, orders_num, users_id)) {
 				service.setStatus(1, orders_num, users_id);
+				service.updatePoint(users_id, totalPrice);
 				return "redirect:/orders/list";
 			}
 		}

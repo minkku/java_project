@@ -117,7 +117,13 @@ public class OrdersServiceImpl implements OrdersService{
 	}
 
 	@Override
-	public void updatePoint(int users_id, int totalPrice) {
+	public void updatePoint(@Param("users_id") int users_id, @Param("totalPrice") int totalPrice) {
 		ordersMapper.updatePoint(users_id, totalPrice);
+	}
+
+	@Override
+	public void updatePointPlus(int users_id, int totalPrice) {
+		ordersMapper.updatePointPlus(users_id, totalPrice);
+		
 	}
 }

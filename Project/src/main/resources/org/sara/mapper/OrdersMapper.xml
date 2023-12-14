@@ -127,4 +127,9 @@
     	   SET point = point - #{totalPrice}
     	 WHERE users_id = #{users_id}
     </update>
+    <update id = "updatePointPlus">
+    	UPDATE users
+    	   SET point = point + #{totalPrice}
+    	 WHERE users_id = #{users_id}
+    </update>
 </mapper>
