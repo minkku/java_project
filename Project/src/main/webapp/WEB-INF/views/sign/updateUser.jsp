@@ -8,6 +8,7 @@
     <meta charset="UTF-8" />
     <title>회원정보 수정</title>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<link rel="stylesheet" href="../../../resources/sign/sign.css">
 </head>
 
 <body onload="initialize()">
@@ -91,7 +92,7 @@
 			        </c:if>
 			    </span>
         </div>
-    </form>
+    </form>	
 </body>
 <script type="text/javascript">
 $(document).ready(function () {

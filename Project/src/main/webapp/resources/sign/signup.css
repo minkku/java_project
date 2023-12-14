@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+body {
+	font-family: 'Arial', sans-serif;
+	background-color: #f8f8f8;
+	margin: 0;
+}
+
+form {
+	max-width: 400px;
+	margin: 50px auto;
+	background: #fff;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+	text-align: center;
+	color: #333;
+}
+
+label {
+	display: block;
+	margin-bottom: 8px;
+	color: #555;
+}
+
+input, select {
+	width: 100%;
+	padding: 12px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+.error-message {
+	color: #e74c3c;
+	font-size: 14px;
+}
+
+input[type="submit"] {
+	background-color: #3498db;
+	color: #fff;
+	padding: 15px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+input[type="submit"]:hover {
+	background-color: #2980b9;
+}
+/* Optional: Add some additional styling for a cleaner look */
+div {
+	overflow: hidden;
+}
+
+div::after {
+	content: "";
+	display: table;
+	clear: both;
+}
