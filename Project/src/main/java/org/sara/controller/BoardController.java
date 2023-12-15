@@ -228,7 +228,7 @@ public class BoardController {
 	    if (service.modify(board)) {
 	        rttr.addFlashAttribute("result", "success");
 	    }
-	    return "redirect:/board/list";
+	    return "board/list";
 	}
 	
     @PostMapping("/remove")
