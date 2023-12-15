@@ -35,7 +35,7 @@
 		
 		
 		<div class="link-to-update divider" onclick="location.href='/updateUser'">
-			<span ">회원정보 수정</span>
+			<span>회원정보 수정</span>
 			<a href="/updateUser" class="update-link" >
         		<i class="fa-regular fa-greater-than"  style="font-size:12px;"></i>
     		</a>
