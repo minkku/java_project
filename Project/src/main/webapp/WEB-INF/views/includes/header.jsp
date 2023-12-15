@@ -30,13 +30,14 @@
     <link rel="stylesheet" href="../resources/css/flaticon.css">
     <link rel="stylesheet" href="../resources/css/icomoon.css">
     <link rel="stylesheet" href="../resources/css/style.css">
+
     <link rel="stylesheet" href="../resources/css/board.css">
     <link rel="stylesheet" href="../resources/css/carts.css">
     <link rel="stylesheet" href="../resources/css/ordersPayment.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
-	  <body class="goto-here">
+	  <body class="goto-here" onload="initialize()">
 		<div class="py-1 bg-primary">
     	<div class="container">
     		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">

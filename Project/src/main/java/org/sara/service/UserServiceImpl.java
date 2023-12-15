@@ -39,5 +39,8 @@ public class UserServiceImpl implements UserService {
 		mapper.updateUser(updateUser);
 	}
 
-	
+	@Override
+	public UserVO selectUserInfo(String email) throws Exception {
+		 return mapper.selectUserInfo(email);
+	}
 }

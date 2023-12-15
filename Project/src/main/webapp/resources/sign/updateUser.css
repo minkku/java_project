@@ -1,0 +1,77 @@
+#updateForm {
+	margin-top:70px;
+}
+
+.uTitle {
+	text-align: center;
+	font-size: 21px;
+	font-weight: 700px;
+}
+
+.divider {
+	position: relative;
+	width: 300px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+.aniInput {
+	font-size: 12px;
+	color: #222222;
+	width: 300px;
+	border: none;
+	border-bottom: solid #aaaaaa 1px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	position: relative;
+	background: none;
+	z-index: 1;
+	outline: none;
+}
+
+input::placeholder {
+	color: #aaaaaa;
+}
+
+.span {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0%;
+	background-color: #666;
+	width: 0;
+	height: 2px;
+	border-radius: 2px;
+	transition: 0.5s;
+}
+
+label {
+	font-size: 0.7em;
+	color: #666;
+}
+
+.aniInput:focus ~ .span {
+	width: 100%;
+	transition: width 0.5s ease-out; /* 트랜지션 효과 추가 */
+}
+
+.readonly {
+	font-size: 12px;
+	color: #222222;
+	width: 300px;
+	border: none;
+	border-bottom: solid #aaaaaa 1px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	position: relative;
+	background: none;
+	z-index: 1;
+	outline: none;
+}
+
+.error-message {
+	position: absolute;
+	bottom: -35px;
+	color: red;
+	font-size: 12px
+}
