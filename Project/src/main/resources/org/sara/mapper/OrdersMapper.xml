@@ -122,4 +122,14 @@
  		   AND orders_num = #{orders_num}
  		   AND users_id_id = #{users_id}
     </select>
+    <update id = "updatePoint">
+    	UPDATE users
+    	   SET point = point - #{totalPrice}
+    	 WHERE users_id = #{users_id}
+    </update>
+    <update id = "updatePointPlus">
+    	UPDATE users
+    	   SET point = point + #{totalPrice}
+    	 WHERE users_id = #{users_id}
+    </update>
 </mapper>
