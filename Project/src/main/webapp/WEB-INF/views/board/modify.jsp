@@ -54,8 +54,7 @@
 
 							<div class="form-group">
 								<label>내용</label>
-								<textarea class="form-control" rows="3" name='content'>
-								<c:out value="${board.content}" /></textarea>
+								<textarea class="form-control" rows="3" name='content'>${board.content}</textarea>
 							</div>
 
 							<div class="form-group">
@@ -77,9 +76,9 @@
 									readonly="readonly">
 							</div>
 
-							<button type="submit" data-oper='modify' class="btn btn-default">수정</button>
-							<button type="submit" data-oper='remove' class="btn btn-default">삭제</button>
-							<button type="submit" data-oper='list' class="btn btn-default">List</button>
+							<button type="submit" class="btn btn-default">수정</button>
+							<button type="button" data-oper='remove' class="btn btn-default">삭제</button>
+							<button type="button" data-oper='list' class="btn btn-default">List</button>
 						</form>
 
 					</div>

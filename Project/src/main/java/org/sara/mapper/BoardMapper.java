@@ -42,4 +42,6 @@ public interface BoardMapper {
 	public List<BoardVO> searchTypeContent(Map<String, Object> params);
 	
 	public int countContent();
+	
+	public NoticeVO getNoticeInfo(int notice_id);
 	}

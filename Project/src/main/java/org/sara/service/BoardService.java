@@ -36,4 +36,6 @@ public interface BoardService {
 	public List<BoardVO> searchTypeContent(String encodedKeyword,int page, int pageSize);
 	
 	public int countContent();
+	
+	public NoticeVO getNoticeInfo(int notice_id);
 }

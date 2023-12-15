@@ -71,7 +71,7 @@
 									<div class="panel-heading">
 
 										<button id='regBtn' type="button" class="btn btn-xs"
-											align="right">돌아가기</button>
+											align="right"><a href="/sara">돌아가기</a></button>
 										<input type="hidden" name="users_id" value="${users_id}">
 									</div>
 

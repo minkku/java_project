@@ -135,6 +135,11 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.countContent();
 	}
 
+	@Override
+	public NoticeVO getNoticeInfo(int notice_id) {
+		return mapper.getNoticeInfo(notice_id);
+	}
+
 	
 	
 }

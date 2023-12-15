@@ -108,7 +108,15 @@ LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
 <select id="countContent" resultType="int">
       SELECT COUNT(*) FROM board where content like CONCAT('', '%', #{encodedKeyword}, '%')
 </select>
-
+<select id="getNoticeInfo" resultType="org.sara.domain.NoticeVO">
+	SELECT notice_id,
+		   title,
+		   content,
+		   create_at,
+		   update_at
+	  FROM notice
+	 WHERE notice_id = #{notice_id}
+</select>
 
 
 
