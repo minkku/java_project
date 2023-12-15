@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sara.mapper.BoardMapper">
+
+<select id="getList" resultType="org.sara.domain.BoardVO">
+	SELECT
+		b.board_id,
+	    b.title,
+	    u.user_name,
+	    b.created_at,
+	    b.updated_at
+	FROM 
+		board b
+	JOIN users u ON u.users_id = b.users_id_id
+	ORDER BY b.board_id DESC;
+ </select>
+
+	<insert id="insert">
+	insert into board(board_id,users_id_id,title,content)
+	values (null,#{users_id},#{title},#{content})
+	</insert>
+	
+	<select id="read" resultType="org.sara.domain.BoardVO">
+		   SELECT b.board_id,
+		   u.users_id,
+           u.user_name,
+           b.title,
+           b.content,
+           b.created_at,
+           b.updated_at
+    	   FROM board b
+    	   JOIN users u ON u.users_id = b.users_id_id 
+    		where b.board_id = #{board_id}
+	</select>
+	
+	<update id="update">
+		update board
+		set title=#{title},
+		content=#{content},
+		updated_at = now()
+		where board_id=#{board_id}
+	</update>
+	
+	<delete id="delete">
+		delete from board where board_id = #{board_id}
+	</delete>
+	
+ 	<select id="getAllBoards" resultType="org.sara.domain.BoardVO">
+    SELECT b.board_id,
+		   b.users_id_id,
+           u.user_name,
+           b.title,
+           b.content,
+           b.created_at,
+           b.updated_at
+    FROM board b
+    JOIN users u ON u.users_id = b.users_id_id
+    where b.board_id > 0 
+    order by b.board_id desc
+    LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+   </select>
+
+   <select id="countBoards" resultType="int">
+      SELECT COUNT(*) FROM board
+   </select>
+
+  <select id="getNoticeBoards" resultType="org.sara.domain.NoticeVO" >
+	<![CDATA[select * from notice order by notice_id asc]]>
+	</select> 
+
+ <select id="countNoticeBoards" resultType="int">
+      SELECT COUNT(*) FROM notice
+   </select>
+
+<select id="getUsersEmail" resultType="String">
+	select email from users
+	where users_id= #{users_id} 
+
+</select>
+
+<select id="myListBoards" resultType="org.sara.domain.BoardVO">
+	select * from board where users_id_id=#{users_id, jdbcType=INTEGER} 
+	 LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}	
+</select>
+
+<select id="countmyListBoards" resultType="int">
+      SELECT COUNT(*) FROM board where users_id_id=#{users_id}	
+</select>
+
+
+<select id="searchTypeTitle" resultType="org.sara.domain.BoardVO">
+select * from board where title like CONCAT('', '%', #{keyword}, '%')
+LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}	
+</select>
+
+<select id="countTitle" resultType="int">
+      SELECT COUNT(*) FROM board where title like CONCAT('', '%', #{keyword}, '%')
+</select>
+
+
+<select id="searchTypeContent" resultType="org.sara.domain.BoardVO">
+select * from board where content like CONCAT('', '%', #{encodedKeyword}, '%')
+LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}	
+</select>
+
+<select id="countContent" resultType="int">
+      SELECT COUNT(*) FROM board where content like CONCAT('', '%', #{encodedKeyword}, '%')
+</select>
+<select id="getNoticeInfo" resultType="org.sara.domain.NoticeVO">
+	SELECT notice_id,
+		   title,
+		   content,
+		   create_at,
+		   update_at
+	  FROM notice
+	 WHERE notice_id = #{notice_id}
+</select>
+
+
+
+</mapper>
+

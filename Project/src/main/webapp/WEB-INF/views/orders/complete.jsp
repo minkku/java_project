@@ -18,10 +18,13 @@
                     <tr>
                         <td class="carts_tile2"><img src="/resource/images/${buyBook.img}"/></td>
                         <td class="carts_tile4">${buyBook.name}<br></td>
-                        <td>외 ${buyBookCount}권<br></td>
-                        <td>${orders.status_id}<br></td>
+                        <td class="carts_tile4">외 ${buyBookCount}권<br></td>
+                        <td class="carts_tile4">주문 완료<br></td>
                     </tr>
             </table>
+            <br>
+            <br>
+            <br>
             <div class="ordersPayment_container">
                 <h5 class="section-title">회원 정보</h5>
                 <table class="ordersPayment_info-table">
@@ -37,7 +40,10 @@
                         <td>이메일</td>
                         <td colspan="3">${users.email}</td>
                     </tr>
-                </table>
+                </table> 
+                <br>
+                <br>
+                <br>
                 <h5 class="section-title">배송 정보</h5>
                 <table class="ordersPayment_info-table">
                     <tr>
