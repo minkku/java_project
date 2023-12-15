@@ -23,12 +23,12 @@
 
 							<div class="form-group">
 								<label for="email">이메일</label>
-								<input type="text" class="form-control" id="email" name="email" value="${signin.email}">${signin.email}
+								<input type="text" placeholder="email" class="form-control" id="email" name="email" value="${signin.email}">${signin.email}
 							</div>
 
 							<div class="form-group">
 								<label for="pw">비밀번호</label> 
-								<input type="password" class="form-control" id="pw" name="pw" value="${signin.pw}">${signin.pw} 
+								<input type="password" placeholder="password" class="form-control" id="pw" name="pw" value="${signin.pw}">${signin.pw} 
 							</div>
 							
 							<div class="form-group">

@@ -1,4 +1,9 @@
-@charset "UTF-8";
+body {
+    width: 65%;
+    border-radius: 7px;
+    margin: auto;
+    padding-top: 150px;
+}
 
 .card {
 	border: none;
