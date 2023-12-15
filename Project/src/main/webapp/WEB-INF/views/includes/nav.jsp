@@ -21,7 +21,7 @@
               			<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${signin.user_name}님
 							안녕하세요.</a>
              			 <div class="dropdown-menu" aria-labelledby="dropdown04">
-             			 	<a class="dropdown-item" href="/book/my"> <i	class="fi fi-rr-user">내 정보</i></a>
+             			 	<a class="dropdown-item" href="/userInfo"> <i	class="fi fi-rr-user">내 정보</i></a>
               				<a class="dropdown-item" href="/board/mylist"><i class="fi fi-br-list">내 게시물</i></a>
               				<a class="dropdown-item" href="/orders/list"><i	class="fi fi-br-rectangle-list">주문 조회</i></a>
             			    <a class="dropdown-item"href="/carts"><i class="fi fi-rr-shopping-cart">장바구니</i></a>

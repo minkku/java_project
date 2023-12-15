@@ -237,7 +237,7 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>5.0.6.RELEASE</version>
-		</dependency>
+		</dependency> 
 		
 		<!-- JWT -->
 		<dependency>
