@@ -3,12 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../includes/header.jsp"%>
 <%@ include file="../includes/nav.jsp"%>
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link rel="stylesheet" href="../../../resources/sign/updateUser.css">
 <link rel="stylesheet" href="../../../resources/sign/button.css">
 
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
 	var regPw = /^(?=.*[A-Z])(?=.*[0-9!@ $%^&*()-_=+\\|{}\[\]:;<>,.?/]).{5,12}$/;
 

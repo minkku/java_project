@@ -71,7 +71,7 @@ label {
 
 .error-message {
 	position: absolute;
-	bottom: -20px;
+	bottom: -35px;
 	color: red;
 	font-size: 12px
 }
