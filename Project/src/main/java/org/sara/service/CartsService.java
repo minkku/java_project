@@ -15,4 +15,7 @@ public interface CartsService {
 	public boolean updateCarts(@Param("users_id") int users_id, @Param("carts_id") int carts_id,
 							   @Param("books_id") int books_id, @Param("quantity") int quantity);
 	public List<CartsListVO> getSelectCartsList(@Param("users_id") int users_id, @Param("carts_id") List<Integer> carts_id);
+	
+	public void insertItem(@Param("users_id") int users_id, @Param("books_id") int books_id, @Param("hiddenQuantity") int hiddenQuantity);
+
 }

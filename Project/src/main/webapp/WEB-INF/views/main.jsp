@@ -1,247 +1,153 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="includes/header.jsp"%>
-<body>
-<c:if test="${not empty sessionScope.signin}">
-    <%-- The session attribute "users_id" is not null --%>
-    <c:set var="users_id" value="${sessionScope.signin}" />
-    </c:if>
-	<%@ include file="includes/nav.jsp"%>
-	<div class="hero">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-7">
-					<div class="intro-wrap">
-						<h1 class="mb-5">
-							<span class="d-block">Let's Enjoy Your</span> Reading <span
-								class="typed-words"></span>
-						</h1>
-					</div>	
-				</div>
-				<div class="col-lg-5">
-					<div class="slides">
-						<c:forEach var="book" items="${bestlist}">
-							<img src="../resources/images/${book.img}"
-								class="img-fluid active style="max-width: 100%; height:auto">
-						</c:forEach>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="untree_co-section">
-		<div class="container">
-			<div class="row text-center justify-content-center mb-5">
-				<div class="col-lg-7">
-					<h2 class="section-title text-center">추천 도서</h2>
-				</div>
-			</div>
-			<div class="owl-carousel owl-3-slider">
-  <c:forEach var="book" items="${commendlist}">
-    <div class="item">
-      <a class="media-thumb" href="../resources/images/${book.img}" data-fancybox="gallery">
-        <div class="media-text">
-          <h3>
-            <c:out value="${book.name}" />
-          </h3>
-          <span class="location">
-            <c:choose>
-              <c:when test="${book.categories_id_id==1}">
-                <p>만화</p>
-              </c:when>
-              <c:when test="${book.categories_id_id==2}">
-                <p>소설</p>
-              </c:when>
-              <c:otherwise>
-                <p>교육</p>
-              </c:otherwise>
-            </c:choose>
-          </span>
-        </div>
-        <img src="../resources/images/${book.img}" class="img-fluid">
-      </a>
-    </div>
-  </c:forEach>
-</div>
-
-		</div>
-	</div>
-
-
-	<div class="untree_co-section">
-		<div class="container">
-			<div class="row justify-content-center text-center mb-5">
-				<div class="col-lg-6">
-					<h2 class="section-title text-center mb-3">Best Seller</h2>
-					<p>나쁜 책을 읽지 않는 것은 좋은 책을 읽기 위한 조건이다. 인생은 짧고 시간과 능력에는 한계가 있다.</p>
-				</div>
-			</div>
-			<div class="row">
-			<c:forEach var="best" items="${bestlist}">
-				<div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-					<div class="media-1">
-							<a
-								href='/book/bookdetail?books_id=<c:out value="${best.books_id}"/>'
-								class="d-block mb-3"><img src="../resources/images/${best.img}" alt="Image"
-								class="img-fluid"></a>
-							<div class="d-flex align-items-center">
-								<div>
-									<h3>
-										<c:out value="${best.name}" />
-									</h3>
-									<div class="price ml-auto">
-										<span> ${best.price}원</span>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ include file="includes/header.jsp" %>
+<body class="goto-here">
+	<!-- 	<div class="py-1 bg-primary">
+    	<div class="container">
+    		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+	    		<div class="col-lg-12 d-block">
+		    		<div class="row d-flex">
+		    			<div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+						    <span class="text">+ 1235 2355 98</span>
+					    </div>
+					    <div class="col-md pr-4 d-flex topper align-items-center">
+					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+						    <span class="text">youremail@email.com</span>
+					    </div>
+					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+		  </div>
+    </div> -->
+    <%@include file="includes/nav.jsp"%>
+    <section id="home-section">
+		  <div class="home-slider owl-carousel">
+	      <div class="slider-item" style="background-image: url(../resources/images/christmas.jpg);">
+	      	<div class="overlay"></div>
+	        <div class="container">
+	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+	            <div class="col-md-12 ftco-animate text-center">
+	              <h1 class="mb-2">Elegance in Gifts,Magic in Strories,This Christmas,discover the special moments wrapped in presents</h1>
+	              <h2 class="subheading mb-4">2023/12/19 Comming Soon</h2>
+	              <p><a href="#" class="btn btn-primary">View Details</a></p>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+    </section>
+    <section class="ftco-section">
+				
+			
+		</section>
+  
+		<section class="ftco-section ftco-category ftco-no-pt">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="row">
+							<div class="col-md-6 order-md-last align-items-stretch d-flex">
+								<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url(../resources/images/ai.png);  background-size: 100% 100%;">
+									<div class="text text-center">
+										<h2>Vegetables</h2>
+										<p>Protect the health of every home</p>
+										<p><a href="book/allList" class="btn btn-primary">Shop now</a></p>
 									</div>
 								</div>
 							</div>
-					</div>
-				</div>
-				</c:forEach>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="untree_co-section testimonial-section mt-5">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-7 text-center">
-					<h2 class="section-title text-center mb-5">조 원</h2>
-
-					<div class="owl-single owl-carousel no-nav">
-						<div class="testimonial mx-auto">
-							<figure class="img-wrap">
-								<img src="../resources/images/person_2.jpg" alt="Image"
-									class="img-fluid">
-							</figure>
-							<h3 class="name">구 본 석</h3>
-							<blockquote>
-								<p>&ldquo;There live the blind texts. Separated they live in
-									Bookmarksgrove right at the coast of the Semantics, a large
-									language ocean.&rdquo;</p>
-							</blockquote>
+							<div class="col-md-6">
+								<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(../resources/images/kimetsunoyaiba.jpg); background-size: 120% 120%;">
+									<div class="text px-3 py-1">
+										<h2 class="mb-0"><a href="/book/colist">만화</a></h2>
+									</div>
+								</div>
+								<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(../resources/images/java.jpg); background-size: 100% 100%;">
+									<div class="text px-3 py-1">
+										<h2 class="mb-0"><a href="/book/edulist">교육</a></h2>
+									</div>
+								</div>
+							</div>
 						</div>
-
-						<div class="testimonial mx-auto">
-							<figure class="img-wrap">
-								<img src="../resources/images/person_3.jpg" alt="Image"
-									class="img-fluid">
-							</figure>
-							<h3 class="name">이 민 규</h3>
-							<blockquote>
-								<p>&ldquo;There live the blind texts. Separated they live in
-									Bookmarksgrove right at the coast of the Semantics, a large
-									language ocean.&rdquo;</p>
-							</blockquote>
-						</div>
-
-						<div class="testimonial mx-auto">
-							<figure class="img-wrap">
-								<img src="../resources/images/person_4.jpg" alt="Image"
-									class="img-fluid">
-							</figure>
-							<h3 class="name">임 화 영</h3>
-							<blockquote>
-								<p>&ldquo;There live the blind texts. Separated they live in
-									Bookmarksgrove right at the coast of the Semantics, a large
-									language ocean.&rdquo;</p>
-							</blockquote>
-						</div>
-						<div class="testimonial mx-auto">
-							<figure class="img-wrap">
-								<img src="../resources/images/person_4.jpg" alt="Image"
-									class="img-fluid">
-							</figure>
-							<h3 class="name">이 한 규</h3>
-							<blockquote>
-								<p>&ldquo;There live the blind texts. Separated they live in
-									Bookmarksgrove right at the coast of the Semantics, a large
-									language ocean.&rdquo;</p>
-							</blockquote>
-						</div>
-
 					</div>
 
+					<div class="col-md-4">
+						<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(../resources/images/OmniscientReader.jpg); background-size: 100% 100%;">
+							<div class="text px-3 py-1">
+								<h2 class="mb-0"><a href="/book/ficlist">소설</a></h2>
+							</div>		
+						</div>
+						<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(../resources/images/littlepig.jpg); background-size: 100% 100%;">
+							<div class="text px-3 py-1">
+								<h2 class="mb-0"><a href="/book/younglist">유아</a></h2>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		</section>
 
-	<div class="py-5 cta-section">
-		<div class="container">
-			<div class="row text-center">
-				<div class="col-md-12">
-					<h2 class="mb-2 text-white">Lets you Explore the Best. Contact
-						Us Now</h2>
-					<p class="mb-4 lead text-white text-white-opacity">Lorem ipsum
-						dolor sit amet, consectetur adipisicing elit. Excepturi, fugit?</p>
-					<p class="mb-0">
-						<a href="booking.html"
-							class="btn btn-outline-white text-white btn-md font-weight-bold">Get
-							in touch</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
+    <section class="ftco-section">
+    	<div class="container">
+				<div class="row justify-content-center mb-3 pb-3">
+          <div class="col-md-12 heading-section text-center ftco-animate">
+          	<span class="subheading">Featured Products</span>
+            <h2 class="mb-4">Our Products</h2>
+            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+          </div>
+        </div>   		
+    	</div>
+    	<div class="container">
+    		<div class="row">
+    			<c:forEach var="best" items="${bestlist}">
+    			<div class="col-md-6 col-lg-3 ftco-animate">
+    			
+    				<div class="product">
+    					<a href='/book/bookdetail?books_id=<c:out value="${best.books_id}"/>' class="img-prod"><img class="img-fluid" src="../resources/images/${best.img}" alt="Colorlib Template" style="width: 100%; max-height: 300px;" >
+    						<!-- <span class="status">30%</span> -->
+    						<div class="overlay"></div>
+    					</a>
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h3><c:out value="${best.name}" /></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price"><span>${best.price}원</span></p>
+		    					</div>
+	    					</div>
+	    					<div class="bottom-area d-flex px-3">
+	    						<div class="m-auto d-flex">
+	    							<a href="/book/allList" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+	    								<span><i class="ion-ios-menu"></i></span>
+	    							</a>
+	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    								<span><i class="ion-ios-cart"></i></span>
+	    							</a>
+	    							<!-- <a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    								<span><i class="ion-ios-heart"></i></span>
+	    							</a> -->
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    			</c:forEach>
+    		</div>
+    	</div>
+    </section>
+    
+    <hr>
 
-	<%@ include file="includes/footer.jsp"%>>
+	
+   <%@ include file="includes/footer.jsp" %>
+  
 
-	<div id="overlayer"></div>
-	<div class="loader">
-		<div class="spinner-border" role="status">
-			<span class="sr-only">Loading...</span>
-		</div>
-	</div>
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-	<script src="../resources/js/jquery-3.4.1.min.js"></script>
-	<script src="../resources/js/popper.min.js"></script>
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/owl.carousel.min.js"></script>
-	<script src="../resources/js/jquery.animateNumber.min.js"></script>
-	<script src="../resources/js/jquery.waypoints.min.js"></script>
-	<script src="../resources/js/jquery.fancybox.min.js"></script>
-	<script src="../resources/js/aos.js"></script>
-	<script src="../resources/js/moment.min.js"></script>
-	<script src="../resources/js/daterangepicker.js"></script>
-
-	<script src="../resources/js/typed.js"></script>
-	<script>
-	var list=
-		$(function() {
-			var slides = $('.slides'),
-			images = slides.find('img');
-
-			images.each(function(i) {
-				$(this).attr('data-id', i + 1);
-			})
-
-			var typed = new Typed('.typed-words', {
-				strings: [ <c:forEach var="book" items="${bestlist}">
-			    '<c:out value="${book.name}" />',
-			    </c:forEach> ],
-				typeSpeed: 80,
-				backSpeed: 80,
-				backDelay: 4000,
-				startDelay: 1000,
-				loop: true,
-				showCursor: true,
-				preStringTyped: (arrayPos, self) => {
-					arrayPos++;
-					console.log(arrayPos);
-					$('.slides img').removeClass('active');
-					$('.slides img[data-id="'+arrayPos+'"]').addClass('active');
-				}
-
-			});
-		})
-	</script>
-
-	<script src="../resources/js/custom.js"></script>
-
-</body>
-
+    
+  </body>
 </html>

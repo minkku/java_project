@@ -1,8 +1,7 @@
 package org.sara.mapper;
 
-import org.sara.domain.UserVO;
-
 import org.apache.ibatis.annotations.Param;
+import org.sara.domain.UserVO;
 
 public interface UserMapper {
 	public void reg(UserVO users) throws Exception;

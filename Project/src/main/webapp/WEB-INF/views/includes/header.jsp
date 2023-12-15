@@ -1,34 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html14/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="author" content="Untree.co">
-	<link rel="shortcut icon" href="/resources/images/favicon.png">
+  <head>
+    <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
 
-	<meta name="description" content="" />
-	<meta name="keywords" content="bootstrap, bootstrap4" />
+    <link rel="stylesheet" href="../resources/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/css/animate.css">
+    
+    <link rel="stylesheet" href="../resources/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../resources/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../resources/css/magnific-popup.css">
 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../resources/css/aos.css">
 
-	<link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="/resources/css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="/resources/css/jquery.fancybox.min.css">
-	<link rel="stylesheet" href="/resources/fonts/icomoon/style.css">
-	<link rel="stylesheet" href="/resources/fonts/flaticon/font/flaticon.css">
-	<link rel="stylesheet" href="/resources/css/daterangepicker.css">
-	<link rel="stylesheet" href="/resources/css/aos.css">
-	<link rel="stylesheet" href="/resources/css/style.css">
-	<link rel="stylesheet" href="/resources/css/ordersPayment.css">
-	<link rel="stylesheet" href="/resources/css/carts.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../resources/css/ionicons.min.css">
 
-	<title>ㅅㅏ ㄹㅏ</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
+    <link rel="stylesheet" href="../resources/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../resources/css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="../resources/css/flaticon.css">
+    <link rel="stylesheet" href="../resources/css/icomoon.css">
+    <link rel="stylesheet" href="../resources/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+	

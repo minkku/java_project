@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.sara.domain.BookVO;
 import org.sara.mapper.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import lombok.extern.log4j.Log4j;
 public class BookServiceImpl implements BookService {
 	@Autowired
 	private BookMapper mapper;
-
+	private CartsService cartsService;
 	@Override
 	public List<BookVO> getList() {
 		return mapper.getList();
@@ -61,6 +62,13 @@ public class BookServiceImpl implements BookService {
 		return mapper.getCoBooks(params);
 	}
 	@Override
+	public List<BookVO> getYoungBooks(int page, int pageSize) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("start", (page - 1) * pageSize);
+		params.put("pageSize", pageSize);
+		return mapper.getYoungBooks(params);
+	}
+	@Override
 	public List<BookVO> searchList(String searchType,String keyword,int page, int pageSize) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("searchType", searchType);
@@ -69,7 +77,10 @@ public class BookServiceImpl implements BookService {
 		params.put("pageSize", pageSize);
 		return mapper.getsearchList(params);
 	}
-
+	@Override
+    public List<BookVO> getBooksByCategory(int category) {
+        return mapper.getBooksByCategory(category);
+    }
 	@Override
 	public int countBooks() {
 		return mapper.countBooks();
@@ -90,6 +101,10 @@ public class BookServiceImpl implements BookService {
 		return mapper.countFicBooks();
 	}
 	@Override
+	public int countYoungBooks() {
+		return mapper.countYoungBooks();
+	}
+	@Override
 	public int countKey(String searchType,String keyword) {
 		return mapper.countKey(searchType,keyword);
 	}
@@ -101,5 +116,10 @@ public class BookServiceImpl implements BookService {
 	public List<BookVO> getCommendList() {
 		return mapper.getCommendList();
 	}
-
+	
+	@Override
+	public void insertItem(@Param("users_id") int users_id, @Param("books_id") int books_id, @Param("hiddenQuantity") int hiddenQuantity) {
+		cartsService.insertItem(users_id, books_id, hiddenQuantity);
+	}
+	
 }

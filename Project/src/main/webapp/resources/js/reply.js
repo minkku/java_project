@@ -6,7 +6,7 @@ function add(content,callback,error){
 console.log("reply.....");
 console.log("update");
 console.log("내용:"+content.content);
-console.log("리뷰아이디:"+content.reply_id);
+
 $.ajax({
 type:'post',
 url:'/replies/new',
@@ -85,7 +85,6 @@ error(er);
 
 
 function get(reply_id,callback,error){
-console.log(reply_id);
 $.get("/replies/"+reply_id+".json",function(result){
 if(callback){
 callback(result);

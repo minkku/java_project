@@ -35,6 +35,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
 	</select>
 	
+	<select id="getYoungBooks" resultType="org.sara.domain.BookVO">
+		SELECT * FROM books
+		where categories_id_id = 4
+		LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</select>
+	
+	<select id="getBooksByCategory" parameterType="int">
+        SELECT * FROM books
+        <if test='category!=1'> 
+        WHERE categories_id_id = #{category}
+        </if>
+    </select>
+    
 	<select id="countBooks" resultType="int">
 		SELECT COUNT(*) FROM books
 	</select>
@@ -49,6 +62,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="countCoBooks" resultType="int">
 		SELECT COUNT(*) FROM books where categories_id_id = 1
+	</select>
+	
+	<select id="countYoungBooks" resultType="int">
+		SELECT COUNT(*) FROM books where categories_id_id = 4
 	</select>
 	
 	<select id="getBestList" resultType="org.sara.domain.BookVO">

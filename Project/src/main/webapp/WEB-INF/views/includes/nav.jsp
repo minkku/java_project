@@ -2,105 +2,107 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<style>
+.form-group{
+	zoom: 0.6;
+	padding:30px;
+}
 
-<link rel='stylesheet'
-	href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-<link rel='stylesheet'
-	href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
-<link rel='stylesheet'
-	href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
-<link rel='stylesheet'
-	href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
-<link rel='stylesheet'
-	href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<div class="site-mobile-menu site-navbar-target">
-	<div class="site-mobile-menu-header">
-		<div class="site-mobile-menu-close">
-			<span class="icofont-close js-menu-toggle"></span>
-		</div>
-	</div>
-	<div class="site-mobile-menu-body"></div>
-</div>
-
-<nav class="site-nav">
+</style>
+<nav
+	class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+	id="ftco-navbar">
 	<div class="container">
-		<div class="site-navigation">
-			<a href="/sara" class="logo m-0">ㅅㅏㄹㅏ <span class="text-primary">.</span></a>
-			
-			<div class="nav search">
-				<select name="searchType">
-					<option value="name">도서명</option>
-					<option value="author">저자</option>
-				</select>
-				<input type="text" name="keyword" id="keywordInput" />
-				<button type="button" id="searchBtn">검색</button>
-			</div>
+		<a class="navbar-brand" href="/sara">ㅅㅏ ㄹㅏ</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#ftco-nav" aria-controls="ftco-nav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="oi oi-menu"></span> Menu
+		</button>
 
-			<ul
-				class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
+		<div class="collapse navbar-collapse" id="ftco-nav">
+			<ul class="navbar-nav ml-auto">
 				<c:if test="${empty signin}">
-					<li class="active login"><a name="login" href="/signin"
-						style="text-decoration: none;"> Login</a></li>
+					<li class="nav-item active"><a href="/signin" class="nav-link">
+							Login</a></li>
 				</c:if>
 				<c:if test="${!empty signin}">
-					<li class="has-children"><a href="#">${signin.user_name}님
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="dropdown04"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${signin.user_name}님
 							안녕하세요.</a>
-						<ul class="dropdown">
-							<li class="categories"><a href="/book/my"> <i
-									class="fi fi-rr-user">내 정보</i></a></li>
-							<li><a href="/board/mylist"><i class="fi fi-br-list">내
-										게시물</i></a></li>
-							<li><a href="/orders/list"><i
-									class="fi fi-br-rectangle-list">주문 조회</i></a></li>
-							<li><a href="/carts"><i class="fi fi-rr-shopping-cart">장바구니</i></a>
-							</li>
-							<li><a href="/logout"><i class="fi fi-br-exit">로그아웃</i></a>
-							</li>
-
-						</ul></li>
-					<%-- <li><a href="/book/mypage?users_id=<c:out value='${signin.users_id}'/>"  style="text-decoration: none;">Mypage</a></li> --%>
+						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							<a class="dropdown-item" href="/book/userInfo"> <i
+								class="fi fi-rr-user">내 정보</i></a> <a class="dropdown-item"
+								href="/board/mylist"><i class="fi fi-br-list">내 게시물</i></a> <a
+								class="dropdown-item" href="/orders/list"><i
+								class="fi fi-br-rectangle-list">주문 조회</i></a> <a
+								class="dropdown-item" href="/carts"><i
+								class="fi fi-rr-shopping-cart">장바구니</i></a> <a class="dropdown-item"
+								href="/logout" class="nav-link"><i class="fi fi-br-exit">로그아웃</i></a>
+						</div></li>
 				</c:if>
-				<li class="has-children"><a href="#">Categories</a>
-					<ul class="dropdown">
-						<li class="categories"><a href="/book/allList">전체 보기</a></li>
-						<li><a href="/book/edulist">education</a></li>
-						<li><a href="/book/ficlist">fiction</a></li>
-						<li><a href="/book/colist">comics</a></li>
-					</ul></li>
-				<li><a href="/book/bestseller">bestseller</a></li>
-				<li class="has-children"><a href="#">board</a>
-					<ul class="dropdown">
-						<li class="categories"><a href="/board/notice">공지사항</a></li>
-						<li><a href="/board/list">게시판</a></li>
-					</ul></li>
-				<li><a href="/book/about"> about</a></li>
+
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="dropdown04"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+					<div class="dropdown-menu" aria-labelledby="dropdown04">
+						<a class="dropdown-item" href="/book/allList">전체 보기</a> <a
+							class="dropdown-item" href="/book/edulist">education</a> <a
+							class="dropdown-item" href="/book/ficlist">fiction</a> <a
+							class="dropdown-item" href="/book/colist">comics</a> <a
+							class="dropdown-item" href="/book/younglist">youngs</a>
+					</div></li>
+
+
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="dropdown04"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">board</a>
+					<div class="dropdown-menu" aria-labelledby="dropdown04">
+						<a class="dropdown-item" href="/board/notice">공지사항</a> <a
+							class="dropdown-item" href="/board/list">게시판</a>
+					</div></li>
+    <div class="form-group">
+    <div class="input-group">
+        <select name="searchType" class="form-control select-box">
+            <option value="name">도서명</option>
+            <option value="author">저자</option>
+        </select>
+        <input type="text" name="keyword" id="keywordInput" class="form-control" placeholder="Search...">
+        <button type="button" class="form-control icon ion-ios-search" id="searchBtn"></button>
+    </div>
+</div>
+
+
+
+				<!-- li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="/about" class="nav-link">About</a></li> -->
+				<!--   <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li> -->
 			</ul>
-
-			<a href="#"
-				class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light"
-				data-toggle="collapse" data-target="#main-navbar"> <span></span>
-			</a>
-
 		</div>
 	</div>
 </nav>
+<!-- END nav -->
 <script>
-document.getElementById("searchBtn").onclick = function () {
+document.getElementById("searchBtn").onclick = performSearch;
+document.getElementById("keywordInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        performSearch();
+    }
+});
+
+function performSearch() {
     let searchType = document.getElementsByName("searchType")[0].value;
     let keywordInput = document.getElementById("keywordInput");
     let keyword = keywordInput.value.trim();
 
-    
     if (keyword === "") {
         alert("검색어를 입력하세요.");
-        keywordInput.focus(); 
+        keywordInput.focus();
     } else {
         console.log(searchType);
         console.log(keyword);
         location.href = "/book/search?" + "&searchType=" + searchType + "&keyword=" + encodeURIComponent(keyword);
     }
-};
+}
 </script>
-

@@ -29,7 +29,7 @@
 						<input type="hidden" name="carts_id" value="${info.carts_id}">
 						<input type="hidden" name="books_id" value="${info.books_id}">
 					</td>
-					<td class="carts_tile2"><img src="/resource/images/${info.img}"/></td>
+					<td class="carts_tile2"><img src="../resources/images/${info.img}" width="60" height="80"/></td>
 					<td class="carts_tile4">
 						<c:out value="${info.name}" /><br>
 						<c:out value="${info.content}" /><br>

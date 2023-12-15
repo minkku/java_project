@@ -24,6 +24,10 @@ public interface BookMapper {
 	List<BookVO> getFicBooks(Map<String, Object> params);
 
 	List<BookVO> getEduBooks(Map<String, Object> params);
+	
+	List<BookVO> getYoungBooks(Map<String, Object> params);
+	
+	List<BookVO> getBooksByCategory(int category);
 
 	int countBooks();
 
@@ -32,6 +36,9 @@ public interface BookMapper {
 	int countCoBooks();
 
 	int countFicBooks();
+	
+	int countYoungBooks();
+	
 	
 	int countKey(@Param("searchType") String searchType,@Param("keyword") String keyword);
 }

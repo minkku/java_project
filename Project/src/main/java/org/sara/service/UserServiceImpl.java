@@ -1,5 +1,4 @@
 package org.sara.service;
-
 import org.sara.domain.UserVO;
 import org.sara.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -39,4 +38,6 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(UserVO updateUser) throws Exception {
 		mapper.updateUser(updateUser);
 	}
+
+	
 }
