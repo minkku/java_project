@@ -22,17 +22,17 @@
 						<form id="signinForm" action="/signin" method="post">
 
 							<div class="form-group">
-								<label for="email">이메일</label>
+								<label for="email" class="label-control">이메일</label>
 								<input type="text" placeholder="email" class="form-control" id="email" name="email" value="${signin.email}">${signin.email}
 							</div>
 
 							<div class="form-group">
-								<label for="pw">비밀번호</label> 
+								<label for="pw" class="label-control">비밀번호</label> 
 								<input type="password" placeholder="password" class="form-control" id="pw" name="pw" value="${signin.pw}">${signin.pw} 
 							</div>
 							
 							<div class="form-group">
-								<label for="signup">아이디가 없으시면 회원가입 해주세요</label>
+								<label for="signup" class="text-for-info">아이디가 없으시면 회원가입 해주세요</label>
 							</div>
 
 							<button id="signin" type="submit" class="btn btn-primary">로그인</button>
