@@ -3,7 +3,9 @@ package org.sara.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.sara.domain.BoardVO;
+
 import org.sara.domain.NoticeVO;
   	
  
@@ -44,4 +46,8 @@ public interface BoardMapper {
 	public int countContent();
 	
 	public NoticeVO getNoticeInfo(int notice_id);
+	
+	List<BoardVO> getsearchList(Map<String, Object> params);
+	
+	int countKey(@Param("SearchType") String SearchType,@Param("KeyWord") String KeyWord);
 	}

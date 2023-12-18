@@ -38,4 +38,8 @@ public interface BoardService {
 	public int countContent();
 	
 	public NoticeVO getNoticeInfo(int notice_id);
+	
+	List<BoardVO> searchList(String SearchType, String Keyword,int page , int pageSize);
+	
+	int countKey(String SearchType,String KeyWord);
 }

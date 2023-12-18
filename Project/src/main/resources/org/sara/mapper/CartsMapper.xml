@@ -44,4 +44,9 @@
 		   AND books_id_id = #{books_id}
 		   AND carts_id = #{carts_id}
 	</update>
+	<insert id="insertItem">
+	INSERT INTO  carts VALUES(
+		NULL, #{users_id}, #{books_id}, #{hiddenQuantity}
+	) 
+	</insert>
 </mapper>

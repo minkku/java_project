@@ -5,27 +5,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ include file="../includes/header.jsp"%>
+<body class="goto-here">
 
-
-
-<body>
-	<%@include file="../includes/nav.jsp"%>
-	<div class="hero hero-inner">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-6 mx-auto text-center">
-					<div class="intro-wrap">
-						<h1 class="mb-0">게시판</h1>
-						<p class="text-white">Far far away, behind the word mountains,
-							far from the countries Vokalia and Consonantia, there live the
-							blind texts.</p>
-					</div>
-				</div>
+	<%@ include file="../includes/nav.jsp"%>
+	<div class="hero-wrap hero-bread" style="background-image: url('../resources/images/bg-1.png');">
+	<div class="container">
+		<div
+			class="row no-gutters slider-text align-items-center justify-content-center">
+			<div class="col-md-9 ftco-animate text-center">
+				<p class="breadcrumbs">
+					<span class="mr-2"><a href="/sara">Home</a></span>
+				</p>
+				<h1 class="mb-0 bread">Board</h1>
 			</div>
 		</div>
 	</div>
-
-
+</div>
 
 
 	<div class="board_div">
@@ -87,42 +82,6 @@
 	<!-- 보드 class div끝 -->
 	<%@ include file="../includes/footer.jsp"%>
 
-	<!-- Modal -->
-	<!-- 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
-					</div>
-					<div class="modal-body">
-						<div class="form-group">
-							<label>Reply</label> <input class="form-control" name='reply'
-								value='New Reply!!!!'>
-						</div>
-						<div class="form-group">
-							<label>Replyer</label> <input class="form-control" name='replyer'
-								value='replyer'>
-						</div>
-						<div class="form-group">
-							<label>Date</label> <input class="form-control" name='replyDate'
-								value=''>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button id="modalModBtn" type="button" class="btn btn-warning">Modify</button>
-						<button id="modalRemoveBtn" type="button" class="btn btn-danger">Remove</button>
-						<button id="modalRegisterBtn" type="button"	class="btn btn-primary">Register</button>
-						<button id="modalCloseBtn" type="button" class="btn btn-default">Close</button>
-					</div>
-				</div>
-				<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
 
 	<script>
 		$(document).ready(

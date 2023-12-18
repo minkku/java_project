@@ -84,4 +84,10 @@ public class CartsServiceImpl implements CartsService{
 		}
 		return cvo;
 	}
+	
+	@Override
+	public void insertItem(@Param("users_id") int users_id, @Param("books_id") int books_id, @Param("hiddenQuantity") int hiddenQuantity) {
+		cartsMapper.insertItem(users_id, books_id, hiddenQuantity);
+	}
+
 }

@@ -139,6 +139,19 @@ public class BoardServiceImpl implements BoardService {
 	public NoticeVO getNoticeInfo(int notice_id) {
 		return mapper.getNoticeInfo(notice_id);
 	}
+	@Override
+	public List<BoardVO> searchList(String SearchType,String KeyWord,int page, int pageSize) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("SearchType", SearchType);
+		params.put("KeyWord", KeyWord);
+		params.put("start", (page - 1) * pageSize);
+		params.put("pageSize", pageSize);
+		return mapper.getsearchList(params);
+	}
+	@Override
+	public int countKey(String SearchType,String KeyWord) {
+		return mapper.countKey(SearchType,KeyWord);
+	}
 
 	
 	

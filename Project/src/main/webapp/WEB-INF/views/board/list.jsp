@@ -3,25 +3,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../includes/header.jsp"%>
-<body>
-	<%@include file="../includes/nav.jsp"%>
+<body class="goto-here">
 
-
-	<div class="hero hero-inner">
+	<%@ include file="../includes/nav.jsp"%>
+	<div class="hero-wrap hero-bread"
+		style="background-image: url('../resources/images/bg-1.png');">
 		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-6 mx-auto text-center">
-					<div class="intro-wrap">
-						<h1 class="mb-0">게시판</h1>
-						<p class="text-white"></p>
-					</div>
+			<div
+				class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<p class="breadcrumbs">
+						<span class="mr-2"><a href="/sara">Home</a></span>
+					</p>
+					<h1 class="mb-0 bread">Board</h1>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
+	<h1>게시판</h1>
 	<div class="board_div">
 
 		<div id="wrapper">
@@ -34,8 +33,7 @@
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
-				<form method="post" action="/board/list">
-					<input type="hidden" name="users_id" value="${users_id}">
+				<input type="hidden" name="users_id" value="${users_id}">
 				<!-- /.row -->
 				<div class="row">
 					<div class="col-lg-12">
@@ -46,46 +44,49 @@
 									<c:if test="${empty sessionScope.signin}">
 										<button class='btn btn-primary btn-xs pull-right'
 											onclick="window.location.href='/signin'">로그인필요</button>
-											<br>
-											<br>
+										<br>
+										<br>
 									</c:if>
 									<c:if test="${not empty sessionScope.signin}">
 										<button id='regBtn' type="button"
-											class='btn btn-xs font-weight-bold'>게시글쓰기</button>
+											class='btn btn-primary btn-xs pull-right'>게시글쓰기</button>
+
 									</c:if>
 								</div>
 							</div>
 							<!-- /.panel-heading -->
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>번호</th>
-												<th>제목</th>
-												<th>작성자</th>
-												<th>작성일</th>
-												<th>수정일</th>
-											</tr>
-										</thead>
-										<c:forEach items="${list}" var="board">
-											<tr>
-												<td><c:out value="${board.board_id}" /></td>
-												<td><a
-													href='/board/get?users_id=${board.users_id}&board_id=<c:out value="${board.board_id}"/>'>
-														<c:out value="${board.title}" />
-												</a></td>
-												<td><c:out value="${board.user_name}" /></td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd"
-														value="${board.created_at}" /></td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd"
-														value="${board.updated_at}" /></td>
-											</tr>
-										</c:forEach>
 
-									</table>
+									<form method="post" action="/board/list">
 
+										<table class="table table-striped table-bordered table-hover">
+											<thead>
+												<tr>
+													<th>번호</th>
+													<th>제목</th>
+													<th>작성자</th>
+													<th>작성일</th>
+													<th>수정일</th>
+												</tr>
+											</thead>
+											<c:forEach items="${list}" var="board">
+												<tr>
+													<td><c:out value="${board.board_id}" /></td>
+													<td><a
+														href='/board/get?users_id=${board.users_id}&board_id=<c:out value="${board.board_id}"/>'>
+															<c:out value="${board.title}" />
+													</a></td>
+													<td><c:out value="${board.user_name}" /></td>
+													<td><fmt:formatDate pattern="yyyy-MM-dd"
+															value="${board.created_at}" /></td>
+													<td><fmt:formatDate pattern="yyyy-MM-dd"
+															value="${board.updated_at}" /></td>
+												</tr>
+											</c:forEach>
 
+										</table>
+									</form>
 									<ul class="pagination">
 										<c:forEach begin="1" end="${totalPages}" varStatus="loop">
 											<li class="${loop.index == currentPage ? 'active' : ''}">
@@ -99,26 +100,26 @@
 								<!-- search{s} -->
 								<div class="form-group row justify-content-center">
 									<div class="w100" style="padding-right: 10px">
-										<select class="form-control form-control-sm" name="searchType"
-											id="searchType">
+										<select class="form-control form-control-sm" name="SearchType">
 											<option value="title">제목</option>
 											<option value="content">본문</option>
 										</select>
 									</div>
 									<div class="w300" style="padding-right: 10px">
-										<input type="text" class="form-control form-control-sm"
-											name="keyword" id="keyword">
+										<input type="text" name="KeyWord" id="keywordIn"
+											class="form-control" placeholder="Search...">
 									</div>
 									<div>
-										<button type="submit" name="btnSearch" id="btnSearch">검색</button>
+										<button type="button" class="form-control icon ion-ios-search"
+											id="searchButton"></button>
 									</div>
 								</div>
 
 								<!-- search{e} -->
 								<c:url value="/board/search" var="paginationUrl">
 									<c:param name="page" value="${loop.index}" />
-									<c:param name="searchType" value="${param.searchType}" />
-									<c:param name="keyword" value="${param.keyword}" />
+									<c:param name="SearchType" value="${param.SearchType}" />
+									<c:param name="KeyWord" value="${param.KeyWord}" />
 								</c:url>
 								<a href="${paginationUrl}" data-page="${loop.index}">${loop.index}</a>
 
@@ -133,7 +134,6 @@
 
 				</div>
 				<!-- /.row -->
-				</form>
 			</div>
 			<!-- /#page-wrapper -->
 		</div>
@@ -144,9 +144,7 @@
 	<%@ include file="../includes/footer.jsp"%>
 
 	<script>
-		$(document).ready(
-
-		function() {
+		$(document).ready(function() {
 
 			var result = '<c:out value="${result}"/>';
 
@@ -171,6 +169,29 @@
 				if (result === '' || history.state) {
 					return;
 				}
+			}
+			document.getElementById("searchButton").onclick = boardSearch;
+			console.log("Event handler bound successfully.");
+
+			document.getElementById("keywordIn").addEventListener("keydown", function(event) {
+			    if (event.key === "Enter") {
+			        boardSearch();
+			    }
+			});
+
+			function boardSearch() {
+			    let SearchType = document.getElementsByName("SearchType")[0].value;
+			    let keywordInput = document.getElementById("keywordIn");
+			    let KeyWord = keywordInput.value.trim();
+
+			    if (KeyWord === "") {
+			        alert("검색어를 입력하세요.!!");
+			        keywordInput.focus();
+			    } else {
+			        console.log(SearchType);
+			        console.log(KeyWord);
+			        location.href = "/board/search?" + "&SearchType=" + SearchType + "&KeyWord=" + encodeURIComponent(KeyWord);
+			    }
 			}
 
 		});

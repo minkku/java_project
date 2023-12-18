@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.sara.mapper.ReplyMapper">
+
+	<insert id="insert">  <!-- 등록 -->
+		insert into reply(reply_id, books_id_id,content,users_id_id)
+		values(null,#{books_id_id},#{content},#{users_id_id})
+	</insert>
+	
+	<select id="read" resultType="org.sara.domain.ReplyVO"> <!-- 조회 -->
+		select r.reply_id as reply_id,r.books_id_id as books_id_id,u.user_name as user_name,r.content as content,r.created_at as created_at,r.updated_at as updated_at
+		,r.users_id_id as users_id_id 
+		from users u , reply r 
+		where u.users_id=r.users_id_id and reply_id = #{reply_id}
+	</select>
+	
+	
+	<delete id="delete">
+		delete from reply where reply_id = #{reply_id}
+	</delete>
+
+	<update id="update">
+		update reply
+		set content = #{content},
+		updated_at=sysdate()
+		where reply_id = #{reply_id}
+	</update>
+
+	<select id="getListWithPaging"
+		resultType="org.sara.domain.ReplyVO" parameterType="map">
+		<![CDATA[
+		select r.reply_id as reply_id,r.books_id_id as books_id_id,u.user_name as user_name,r.content as content,r.created_at as created_at,r.updated_at as updated_at
+		,r.users_id_id as users_id_id
+		from users u , reply r 
+		where u.users_id=r.users_id_id and r.books_id_id=#{books_id}
+		ORDER BY r.created_at DESC;
+		
+		   ]]>
+	</select>
+
+	<select id="countReplies" resultType="int">
+		SELECT COUNT(*) FROM
+		reply where books_id_id=#{books_id}
+	</select>
+
+
+</mapper>

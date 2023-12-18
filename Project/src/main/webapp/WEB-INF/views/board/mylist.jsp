@@ -4,8 +4,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="../includes/header.jsp"%>
-<body>
-	<%@include file="../includes/nav.jsp"%>
+ <body class="goto-here">
+	<%@ include file="../includes/nav.jsp"%>
+	<div class="hero-wrap hero-bread" style="background-image: url('../resources/images/bg-1.png');">
+	<div class="container">
+		<div
+			class="row no-gutters slider-text align-items-center justify-content-center">
+			<div class="col-md-9 ftco-animate text-center">
+				<p class="breadcrumbs">
+					<span class="mr-2"><a href="/sara">Home</a></span>
+				</p>
+				<h1 class="mb-0 bread">Board</h1>
+			</div>
+		</div>
+	</div>
+</div>
 
 	<div class="hero hero-inner">
 		<div class="container">
@@ -21,8 +34,6 @@
 			</div>
 		</div>
 	</div>
-
-
 
 	<div class="board_div">
 

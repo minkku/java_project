@@ -20,7 +20,7 @@
                 </thead>
                 <c:forEach items="${ordersListInfo}" var="info">
 				<tr>
-					<td class="carts_tile2" colspan="2"><img src="/resource/images/${info.img}"/></td>
+					<td class="carts_tile2" colspan="2"><img src="../resources/images/${info.img}" width="60" height="80"/></td>
 					<td class="carts_tile4">
 						<c:out value="${info.name}" /><br>
 						<c:out value="${info.content}" /><br>

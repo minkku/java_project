@@ -18,10 +18,8 @@
 			<c:forEach items="${ordersList}" var="info">
 				<tr>
 					<td class="carts_tile2">
+						<a href="/orders/listInfo?users_id=1&orders_num=${info.orders_num}"><img src="../resources/images/${info.img}" width="60" height="80"/></a>
 						<c:out value="${info.orders_num}"/>
-					</td>
-					<td class="carts_tile2">
-						<a href="/orders/listInfo?orders_num=${info.orders_num}"><img src="/resource/images/${info.img}"/></a>
 					</td>
 					<td class="carts_tile4">
 						<a href="/orders/listInfo?orders_num=${info.orders_num}"><c:out value="${info.name}" /><br> 외 ${info.count - 1}권<br></a>

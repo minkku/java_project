@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,76 +30,15 @@ public class BoardController {
 
 	private BoardService service;
 	
-	/*
-	 * @GetMapping("/board") public String board(Authentication authentication,
-	 * Model model) { if (authentication != null &&
-	 * authentication.isAuthenticated()) { // 로그인한 사용자에 대한 처리 return "board"; } else
-	 * { // 로그인하지 않은 사용자에 대한 처리 return "redirect:/login"; } }
-	 * 
-	 * @GetMapping("/login") public String login() { return "login"; }
-	 */
-
-	
-	
-	/*
-	 * @GetMapping("/list")
-	 * 
-	 * public String getAllBoards(@RequestParam(name = "keyWord", required = false)
-	 * String keyword, HttpSession session, Model model, @RequestParam(defaultValue
-	 * = "1") int page) { session.setAttribute("users_id", 1); //나중에 없어질거 int
-	 * pageSize = 10; // 페이지당 아이템 수 List<BoardVO>boards = service.getAllBoards(page,
-	 * pageSize); int totalPages = (int) Math.ceil((double) service.countBoards() /
-	 * pageSize); log.info("list...-"); model.addAttribute("users_id",
-	 * session.getAttribute("users_id")); model.addAttribute("list", boards);
-	 * 
-	 * model.addAttribute("currentPage", page); model.addAttribute("totalPages",
-	 * totalPages);
-	 * 
-	 * if (keyword.length() < 0 || keyword == null) { model.addAttribute("list",
-	 * boards); } else { model.addAttribute("list",
-	 * session.getAttribute("searchList")); //.추가한것 }
-	 * 
-	 * 
-	 * return "board/list"; }
-	 * 
-	 * 
-	 * 
-	 * @PostMapping("/list")
-	 * 
-	 * public String searchType (HttpSession session, Model model,
-	 * 
-	 * @RequestParam("searchType")String searchType,
-	 * 
-	 * @RequestParam("keyWord") String keyword) {
-	 * 
-	 * if(searchType.equals("title")) { session.setAttribute("searchList",
-	 * service.searchTypeTitle(keyword)); } else if (searchType.equals("content")) {
-	 * session.setAttribute("searchList", service.searchTypeContent(keyword)); }
-	 * 
-	 * return "redirect:/board/list?keyword=" + keyword; }
-	 */
-	
 	
 	
 	
 	@GetMapping("/list")
-	public String getAllBoards(@RequestParam(name = "encodedKeyword", required = false) String encodedKeyword,
-	                           HttpSession session, Model model, 
-	                           @RequestParam(defaultValue = "1") int page) {
+	public String getAllBoards(HttpSession session, Model model,@RequestParam(defaultValue = "1") int page) {
 		
 		int pageSize = 10;
-	    List<BoardVO> boards;
-	    
-	    List<BoardVO> boardss; 
-        List<BoardVO> boardsss;		
-
-	    
-	    if (encodedKeyword == null || encodedKeyword.length() == 0) {
-	        boards = service.getAllBoards(page, pageSize);
-	    } else {
-	        boards = (List<BoardVO>) session.getAttribute("searchList");
-	        log.info("가나다"+boards);
-	    }
+        List<BoardVO> boards = service.getAllBoards(page, pageSize);
+	   
 
 	    int totalPages = (int) Math.ceil((double) service.countBoards() / pageSize);
 	    log.info("boards ----->" + boards);
@@ -110,35 +50,55 @@ public class BoardController {
 	    return "board/list";
 	}
 
-	
-	@PostMapping("/list")
-	public String searchType(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page,
-	                         @RequestParam("searchType") String searchType,
-	                         @RequestParam("keyword") String keyword) {
-		model.addAttribute("users_id", session.getAttribute("users_id"));
-		String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8);
-		
-		int pageSize = 10; // 페이지당 아이템 수
-        
-		int totalPages= (int) Math.ceil((double) service.countTitle() / pageSize);
-        int totalPage= (int) Math.ceil((double) service.countContent() / pageSize);
-       
-        
-        List<BoardVO> boardss = service.searchTypeTitle(encodedKeyword, page, pageSize);
-        List<BoardVO> boardsss = service.searchTypeContent(encodedKeyword, page, pageSize);
-		        
-        log.info("enc...." +boardss);
-        
-        if (searchType.equals("title")) {
-	        session.setAttribute("searchList", service.searchTypeTitle(encodedKeyword, page, pageSize));
-	        log.info(service.searchTypeTitle(encodedKeyword, page, pageSize));
-	    } else if (searchType.equals("content")) {
-	        session.setAttribute("searchList", service.searchTypeContent(encodedKeyword, page, pageSize));
-	        log.info(service.searchTypeContent(encodedKeyword, page, pageSize));
-	    }
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String searchList(Model model,
+			@RequestParam(value = "SearchType", required = false, defaultValue = "title") String SearchType,
+			@RequestParam(value = "KeyWord", required = false, defaultValue = "") String KeyWord,
+			@RequestParam(defaultValue = "1") int page) {
+		int pageSize = 10; 
+		int totalPages = (int) Math.ceil((double) service.countKey(SearchType, KeyWord) / pageSize);
+		log.info("www");
 
-	    return "redirect:/board/list?encodedKeyword=" + encodedKeyword;
+		List<BoardVO> list = service.searchList(SearchType, KeyWord, page, pageSize);
+		// list = service.listPage(page.getDisplayPost(), page.getPostNum());
+		model.addAttribute("list", list);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+		return "board/list";
 	}
+	
+	
+	/*
+	 * @PostMapping("/list") public String searchType(HttpSession session, Model
+	 * model, @RequestParam(defaultValue = "1") int page,
+	 * 
+	 * @RequestParam("searchType") String searchType,
+	 * 
+	 * @RequestParam("keyword") String keyword) { model.addAttribute("users_id",
+	 * session.getAttribute("users_id")); String encodedKeyword =
+	 * URLEncoder.encode(keyword, StandardCharsets.UTF_8);
+	 * 
+	 * int pageSize = 10; // 페이지당 아이템 수
+	 * 
+	 * int totalPages= (int) Math.ceil((double) service.countTitle() / pageSize);
+	 * int totalPage= (int) Math.ceil((double) service.countContent() / pageSize);
+	 * 
+	 * 
+	 * List<BoardVO> boardss = service.searchTypeTitle(encodedKeyword, page,
+	 * pageSize); List<BoardVO> boardsss = service.searchTypeContent(encodedKeyword,
+	 * page, pageSize);
+	 * 
+	 * log.info("enc...." +boardss);
+	 * 
+	 * if (searchType.equals("title")) { session.setAttribute("searchList",
+	 * service.searchTypeTitle(encodedKeyword, page, pageSize));
+	 * log.info(service.searchTypeTitle(encodedKeyword, page, pageSize)); } else if
+	 * (searchType.equals("content")) { session.setAttribute("searchList",
+	 * service.searchTypeContent(encodedKeyword, page, pageSize));
+	 * log.info(service.searchTypeContent(encodedKeyword, page, pageSize)); }
+	 * 
+	 * return "redirect:/board/list?encodedKeyword=" + encodedKeyword; }
+	 */
 	
 	
 	
@@ -228,7 +188,7 @@ public class BoardController {
 	    if (service.modify(board)) {
 	        rttr.addFlashAttribute("result", "success");
 	    }
-	    return "board/list";
+	    return "redirect:/board/list";
 	}
 	
     @PostMapping("/remove")

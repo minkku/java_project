@@ -20,7 +20,7 @@
                     </thead>
                     <c:forEach items="${selectCarts}" var="info">
                         <tr>
-                            <td class="carts_tile2"><img src="/resource/images/${info.img}"/>
+                            <td class="carts_tile2"><img src="../resources/images/${info.img}"/>
                                 <input type="hidden" name="carts_id" value="${info.carts_id}">
                                 <input type="hidden" name="books_id" value="${info.books_id}">
                             </td>
@@ -226,22 +226,22 @@ function validateForm() {
 
     // 합계 계산 함수
     function calculateTotal() {
-	    var sumPrices = document.getElementsByClassName('sumPrice');
-	    var totalPrice = 0;
-	
-	    // 각 항목의 가격을 합산
-	    for (var i = 0; i < sumPrices.length; i++) {
-	        totalPrice += parseFloat(sumPrices[i].innerText);
-	    }
-	
-	    // totalPrice hidden input에 값을 설정
-	    var totalPriceInput = document.getElementById('totalPriceInput');
-	    totalPriceInput.value = totalPrice.toFixed(0);
-	
-	    // finalTotal에도 값을 설정
-	    var finalTotalElement = document.getElementById('finalTotal');
-	    finalTotalElement.innerText = totalPrice.toFixed(0);
-	}
+       var sumPrices = document.getElementsByClassName('sumPrice');
+       var totalPrice = 0;
+   
+       // 각 항목의 가격을 합산
+       for (var i = 0; i < sumPrices.length; i++) {
+           totalPrice += parseFloat(sumPrices[i].innerText);
+       }
+   
+       // totalPrice hidden input에 값을 설정
+       var totalPriceInput = document.getElementById('totalPriceInput');
+       totalPriceInput.value = totalPrice.toFixed(0);
+   
+       // finalTotal에도 값을 설정
+       var finalTotalElement = document.getElementById('finalTotal');
+       finalTotalElement.innerText = totalPrice.toFixed(0);
+   }
 
     // 페이지 로드 시 초기 호출
     calculateTotal();

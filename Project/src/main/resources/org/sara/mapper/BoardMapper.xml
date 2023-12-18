@@ -117,8 +117,26 @@ LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
 	  FROM notice
 	 WHERE notice_id = #{notice_id}
 </select>
+<select id="getsearchList" resultType="org.sara.domain.BoardVO">
+		select * from board
+		<if test='SearchType.equals("title")'>
+		where title like concat('%',#{KeyWord},'%' )
+		</if>
+		<if test='SearchType.equals("content")'>
+		where content like concat('%', #{KeyWord}, '%')
+		 </if>
+		 LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
+	</select>
 
-
-
+<select id="countKey" resultType="int">
+		SELECT COUNT(*) FROM board 
+		<if test='SearchType.equals("title")'>
+		where title like concat('%',#{KeyWord},'%' )
+		</if>
+		<if test='SearchType.equals("content")'>
+		where content like concat('%', #{KeyWord}, '%')
+		 </if>
+		
+	</select>
 </mapper>
 

@@ -1,7 +1,5 @@
 package org.sara.service;
 
-import javax.servlet.http.HttpSession;
-
 import org.sara.domain.UserVO;
 
 public interface UserService {

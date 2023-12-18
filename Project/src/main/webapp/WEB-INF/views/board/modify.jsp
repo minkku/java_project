@@ -23,13 +23,11 @@
 			</div>
 		</div>
 	</div>
-
-
-
 	<div class="board_div">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Board Register</h1>
+				<h1 class="page-header">Board Update</h1>
+
 			</div>
 		</div>
 
@@ -40,7 +38,7 @@
 
 					<div class="panel-body">
 
-						<form role="form" action="/board/modify" method="post">
+						<form action="/board/modify" method="post">
 
 							<div class="form-group">
 								<label>게시글번호</label> <input class="form-control" name='board_id'
