@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                     <tr>
-                        <td class="carts_tile2"><img src="/resource/images/${buyBook.img}"/></td>
+                        <td class="carts_tile2"><img src="../resources/images/${buyBook.img}" width="60" height="80"/></td>
                         <td class="carts_tile4">${buyBook.name}<br></td>
                         <td class="carts_tile4">외 ${buyBookCount}권<br></td>
                         <td class="carts_tile4">주문 완료<br></td>
