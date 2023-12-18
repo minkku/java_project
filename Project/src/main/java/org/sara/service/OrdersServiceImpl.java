@@ -115,4 +115,15 @@ public class OrdersServiceImpl implements OrdersService{
 	public boolean statusCheck(int status, String orders_num, int users_id) {
 		return ordersMapper.statusCheck(status, orders_num, users_id) == 0;
 	}
+
+	@Override
+	public void updatePoint(@Param("users_id") int users_id, @Param("totalPrice") int totalPrice) {
+		ordersMapper.updatePoint(users_id, totalPrice);
+	}
+
+	@Override
+	public void updatePointPlus(int users_id, int totalPrice) {
+		ordersMapper.updatePointPlus(users_id, totalPrice);
+		
+	}
 }

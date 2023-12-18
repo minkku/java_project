@@ -35,8 +35,7 @@
 					<div class="panel-heading"></div>
 
 					<div class="panel-body">
-						<form  action="/board/register" method="post"
-							name="myForm">
+						<form  action="/board/register" method="post"name="myForm">
 							<div class="form-group">
 								<label for="title">제목</label> <input id="title"
 									class="form-control" name="title"> <small

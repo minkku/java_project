@@ -12,4 +12,6 @@ public interface UserService {
 	UserVO getUserByEmail(String email) throws Exception;
 	
 	public void updateUser(UserVO updateUser) throws Exception;
+	
+	UserVO selectUserInfo(String email) throws Exception;
 }

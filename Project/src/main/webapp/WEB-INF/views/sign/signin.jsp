@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ㅅㅏㄹㅏ</title>
-<script src="/resources/js/jquery-3.4.1.min.js"></script>
+<script src="resources/js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="../../../resources/sign/sign.css">
 </head>
 <body>
@@ -22,17 +22,17 @@
 						<form id="signinForm" action="/signin" method="post">
 
 							<div class="form-group">
-								<label for="email">이메일</label>
-								<input type="text" class="form-control" id="email" name="email" value="${signin.email}">${signin.email}
+								<label for="email" class="label-control">이메일</label>
+								<input type="text" placeholder="email" class="form-control" id="email" name="email" value="${signin.email}">${signin.email}
 							</div>
 
 							<div class="form-group">
-								<label for="pw">비밀번호</label> 
-								<input type="password" class="form-control" id="pw" name="pw" value="${signin.pw}">${signin.pw} 
+								<label for="pw" class="label-control">비밀번호</label> 
+								<input type="password" placeholder="password" class="form-control" id="pw" name="pw" value="${signin.pw}">${signin.pw} 
 							</div>
 							
 							<div class="form-group">
-								<label for="signup">아이디가 없으시면 회원가입 해주세요</label>
+								<label for="signup" class="text-for-info">아이디가 없으시면 회원가입 해주세요</label>
 							</div>
 
 							<button id="signin" type="submit" class="btn btn-primary">로그인</button>

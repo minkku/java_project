@@ -50,8 +50,7 @@
 										<c:forEach items="${list}" var="notice">
 											<tr>
 												<td><c:out value="${notice.notice_id}" /></td>
-												<td><a
-													href="/board/getNotice?notice_id=${notice.notice_id}">
+												<td><a	href="/board/getNotice?notice_id=${notice.notice_id}">
 														<c:out value="${notice.title}" />
 												</a></td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd"

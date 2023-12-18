@@ -62,18 +62,19 @@ public class UserController {
        uVo.setPw(pw);
        int result = us.loginck(email, pw);
        UserVO signinUser = us.login(uVo);
-       
+          
        log.info(uVo.getEmail());
        log.info(uVo.getPw());
-       
+          
        session.setAttribute("result", result);
-       
+          
        if (us.loginck(email, pw) == 0) return "redirect:/signin";
        session.setAttribute("users_id", signinUser.getUsers_id());
        session.setAttribute("signin", signinUser);
-       
+          
        return "redirect:/sara";
-   }
+      }
+
    
    //session expire
    @RequestMapping(value = "/logout", method = {RequestMethod.GET, RequestMethod.POST})
@@ -102,14 +103,14 @@ public class UserController {
                      HttpSession session,
                      Model model) {
       UserVO loginedUser = (UserVO) session.getAttribute("signin");
-      log.info("�뿬湲곌퉴吏� �뱾�뼱�삤�굹? ------" + loginedUser);
+      log.info("              ? ------" + loginedUser);
       
       if(loginedUser != null) {
          try {
             // include update info
             if(pw.isEmpty() && user_name.isEmpty() && address.isEmpty() && mobile.isEmpty()) {
                model.addAttribute("updatedSuccess", false);
-               model.addAttribute("updateError", "紐⑤뱺 �븘�닔 �븘�뱶瑜� 梨꾩썙二쇱꽭�슂");
+               model.addAttribute("updateError", "     ʼ   ʵ带 ä   ּ   ");
                
                //if fail to update show info from db
                model.addAttribute("pw", pw);
@@ -140,6 +141,14 @@ public class UserController {
             return "redirect:/updateUser";
          }
       }
-      return "redirect:/";
+      return "redirect:/sara";
    }
+   
+   // select user info page
+   @GetMapping("/userInfo")
+    public String getInfoPg(Model model, HttpSession session) throws Exception {
+        String loginedUserEmail = ((UserVO) session.getAttribute("signin")).getEmail();
+        model.addAttribute("loginedUser", us.selectUserInfo(loginedUserEmail));
+        return "sign/userInfo";
+    }
 }

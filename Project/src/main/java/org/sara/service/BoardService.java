@@ -3,7 +3,6 @@ package org.sara.service;
 import java.util.List;
 
 import org.sara.domain.BoardVO;
-import org.sara.domain.BookVO;
 import org.sara.domain.NoticeVO;
 
 public interface BoardService {

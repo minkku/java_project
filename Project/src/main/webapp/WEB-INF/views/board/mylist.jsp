@@ -19,6 +19,22 @@
 		</div>
 	</div>
 </div>
+
+	<div class="hero hero-inner">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-6 mx-auto text-center">
+					<div class="intro-wrap">
+						<!--    <h1 class="mb-0">게시판</h1> -->
+						<p class="text-white">Far far away, behind the word mountains,
+							far from the countries Vokalia and Consonantia, there live the
+							blind texts.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div class="board_div">
 
 		<div id="wrapper">
@@ -43,6 +59,7 @@
 											<tr>
 												<th>번호</th>
 												<th>제목</th>
+												<th>작성자</th>
 												<th>작성일</th>
 												<th>수정일</th>
 											</tr>
@@ -54,6 +71,7 @@
 													href='/board/get?users_id=${users_id}&board_id=<c:out value="${board.board_id}"/>'>
 														<c:out value="${board.title}" />
 												</a></td>
+												<td><c:out value="${board.users_id}" /></td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd"
 														value="${board.created_at}" /></td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd"

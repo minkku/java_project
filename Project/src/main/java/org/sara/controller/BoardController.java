@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.sara.domain.BoardVO;
-import org.sara.domain.BookVO;
 import org.sara.domain.NoticeVO;
 import org.sara.service.BoardService;
 import org.springframework.stereotype.Controller;
@@ -31,54 +30,6 @@ public class BoardController {
 
 	private BoardService service;
 	
-	/*
-	 * @GetMapping("/board") public String board(Authentication authentication,
-	 * Model model) { if (authentication != null &&
-	 * authentication.isAuthenticated()) { // 로그인한 사용자에 대한 처리 return "board"; } else
-	 * { // 로그인하지 않은 사용자에 대한 처리 return "redirect:/login"; } }
-	 * 
-	 * @GetMapping("/login") public String login() { return "login"; }
-	 */
-
-	
-	
-	/*
-	 * @GetMapping("/list")
-	 * 
-	 * public String getAllBoards(@RequestParam(name = "keyWord", required = false)
-	 * String keyword, HttpSession session, Model model, @RequestParam(defaultValue
-	 * = "1") int page) { session.setAttribute("users_id", 1); //나중에 없어질거 int
-	 * pageSize = 10; // 페이지당 아이템 수 List<BoardVO>boards = service.getAllBoards(page,
-	 * pageSize); int totalPages = (int) Math.ceil((double) service.countBoards() /
-	 * pageSize); log.info("list...-"); model.addAttribute("users_id",
-	 * session.getAttribute("users_id")); model.addAttribute("list", boards);
-	 * 
-	 * model.addAttribute("currentPage", page); model.addAttribute("totalPages",
-	 * totalPages);
-	 * 
-	 * if (keyword.length() < 0 || keyword == null) { model.addAttribute("list",
-	 * boards); } else { model.addAttribute("list",
-	 * session.getAttribute("searchList")); //.추가한것 }
-	 * 
-	 * 
-	 * return "board/list"; }
-	 * 
-	 * 
-	 * */
-	/*
-	 * @PostMapping("/search")
-	 * 
-	 * public String searchType (HttpSession session, Model
-	 * model, @RequestParam("searchType")String searchType, @RequestParam("keyWord")
-	 * String keyword) {
-	 * 
-	 * if(searchType.equals("title")) { session.setAttribute("searchList",
-	 * service.searchTypeTitle(keyword)); } else if (searchType.equals("content")) {
-	 * session.setAttribute("searchList", service.searchTypeContent(keyword)); }
-	 * 
-	 * return "redirect:/board/list?keyword=" + keyword; }
-	 */
-	
 	
 	
 	
@@ -99,6 +50,23 @@ public class BoardController {
 	    return "board/list";
 	}
 
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String searchList(Model model,
+			@RequestParam(value = "SearchType", required = false, defaultValue = "title") String SearchType,
+			@RequestParam(value = "KeyWord", required = false, defaultValue = "") String KeyWord,
+			@RequestParam(defaultValue = "1") int page) {
+		int pageSize = 10; 
+		int totalPages = (int) Math.ceil((double) service.countKey(SearchType, KeyWord) / pageSize);
+		log.info("www");
+
+		List<BoardVO> list = service.searchList(SearchType, KeyWord, page, pageSize);
+		// list = service.listPage(page.getDisplayPost(), page.getPostNum());
+		model.addAttribute("list", list);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+		return "board/list";
+	}
+	
 	
 	/*
 	 * @PostMapping("/list") public String searchType(HttpSession session, Model
@@ -132,22 +100,7 @@ public class BoardController {
 	 * return "redirect:/board/list?encodedKeyword=" + encodedKeyword; }
 	 */
 	
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public String searchList(Model model,
-			@RequestParam(value = "SearchType", required = false, defaultValue = "title") String SearchType,
-			@RequestParam(value = "KeyWord", required = false, defaultValue = "") String KeyWord,
-			@RequestParam(defaultValue = "1") int page) {
-		int pageSize = 10; 
-		int totalPages = (int) Math.ceil((double) service.countKey(SearchType, KeyWord) / pageSize);
-		log.info("www");
-
-		List<BoardVO> list = service.searchList(SearchType, KeyWord, page, pageSize);
-		// list = service.listPage(page.getDisplayPost(), page.getPostNum());
-		model.addAttribute("list", list);
-		model.addAttribute("currentPage", page);
-		model.addAttribute("totalPages", totalPages);
-		return "board/list";
-	}
+	
 	
 	
 		

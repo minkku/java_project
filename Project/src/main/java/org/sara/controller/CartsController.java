@@ -36,6 +36,7 @@ public class CartsController {
 	public String getCarts(Model model, HttpSession session) {
 		log.info("get - carts-------------------------------");
 		int users_id = (int) session.getAttribute("users_id");
+		log.info("users_id /carts controller---------------" + users_id);
 		model.addAttribute("carts", service.getCartsList(users_id));
 		return "orders/carts";
 	}

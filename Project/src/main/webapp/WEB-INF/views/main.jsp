@@ -34,7 +34,7 @@
 	            <div class="col-md-12 ftco-animate text-center">
 	              <h1 class="mb-2">쌓여가는 겨울의 시간 요즘 펼치기 좋은 책들</h1>
 	              <h2 class="subheading mb-4">2023/12/19 Comming Soon</h2>
-	              <p><a href="#" class="btn btn-primary">Shop now</a></p>
+	              <p><a href="/book/allList" class="btn btn-primary">Shop now</a></p>
 	            </div>
 	          </div>
 	        </div>
@@ -92,7 +92,7 @@
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<span class="subheading">Featured Products</span>
             <h2 class="mb-4">Our Products</h2>
-            <p> 나쁜 책을 읽지 않는 것은 좋은 책을 읽기 위한 조건이다. 인생은 짧고 시간과 능력에는 한계가 있다.</p>
+            <p>나쁜 책을 읽지 않는 것은 좋은 책을 읽기 위한 조건이다. 인생은 짧고 시간과 능력에는 한계가 있다.</p>
           </div>
         </div>   		
     	</div>
@@ -118,7 +118,7 @@
 	    							<a href="/book/allList" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    						<!-- 	<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<!-- <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a> -->
 	    							<!-- <a href="#" class="heart d-flex justify-content-center align-items-center ">
@@ -141,8 +141,8 @@
   
 
   <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
+<%--   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+ --%>
     
   </body>
 </html>

@@ -27,6 +27,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Board Update</h1>
+
 			</div>
 		</div>
 
@@ -51,7 +52,7 @@
 
 							<div class="form-group">
 								<label>내용</label>
-								<textarea class="form-control" rows="3" name='content'><c:out value="${board.content}"/></textarea>
+								<textarea class="form-control" rows="3" name='content'>${board.content}</textarea>
 							</div>
 
 							<div class="form-group">

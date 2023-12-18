@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.sara.domain.BoardVO;
-import org.sara.domain.BookVO;
 import org.sara.domain.NoticeVO;
 import org.sara.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;

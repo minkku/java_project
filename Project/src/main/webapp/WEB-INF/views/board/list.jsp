@@ -3,22 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../includes/header.jsp"%>
- <body class="goto-here">
+<body class="goto-here">
 
 	<%@ include file="../includes/nav.jsp"%>
-	<div class="hero-wrap hero-bread" style="background-image: url('../resources/images/bg-1.png');">
-	<div class="container">
-		<div
-			class="row no-gutters slider-text align-items-center justify-content-center">
-			<div class="col-md-9 ftco-animate text-center">
-				<p class="breadcrumbs">
-					<span class="mr-2"><a href="/sara">Home</a></span>
-				</p>
-				<h1 class="mb-0 bread">Board</h1>
+	<div class="hero-wrap hero-bread"
+		style="background-image: url('../resources/images/bg-1.png');">
+		<div class="container">
+			<div
+				class="row no-gutters slider-text align-items-center justify-content-center">
+				<div class="col-md-9 ftco-animate text-center">
+					<p class="breadcrumbs">
+						<span class="mr-2"><a href="/sara">Home</a></span>
+					</p>
+					<h1 class="mb-0 bread">Board</h1>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 	<h1>게시판</h1>
 	<div class="board_div">
 
@@ -32,8 +33,7 @@
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
-				
-					<input type="hidden" name="users_id" value="${users_id}">
+				<input type="hidden" name="users_id" value="${users_id}">
 				<!-- /.row -->
 				<div class="row">
 					<div class="col-lg-12">
@@ -43,48 +43,50 @@
 									<!-- <button id='regBtn' type="button" class="btn btn-xs font-weight-bold">게시글쓰기</button> -->
 									<c:if test="${empty sessionScope.signin}">
 										<button class='btn btn-primary btn-xs pull-right'
-											onclick="location.href='/signin'">로그인필요</button>
-											<br>
-											<br>
+											onclick="window.location.href='/signin'">로그인필요</button>
+										<br>
+										<br>
 									</c:if>
 									<c:if test="${not empty sessionScope.signin}">
 										<button id='regBtn' type="button"
 											class='btn btn-primary btn-xs pull-right'>게시글쓰기</button>
+
 									</c:if>
 								</div>
 							</div>
 							<!-- /.panel-heading -->
 							<div class="panel-body">
 								<div class="table-responsive">
-								<form method="post" action="/board/list">
-									<table class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>번호</th>
-												<th>제목</th>
-												<th>작성자</th>
-												<th>작성일</th>
-												<th>수정일</th>
-											</tr>
-										</thead>
-										<c:forEach items="${list}" var="board">
-											<tr>
-												<td><c:out value="${board.board_id}" /></td>
-												<td><a
-													href='/board/get?users_id=${board.users_id}&board_id=<c:out value="${board.board_id}"/>'>
-														<c:out value="${board.title}" />
-												</a></td>
-												<td><c:out value="${board.user_name}" /></td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd"
-														value="${board.created_at}" /></td>
-												<td><fmt:formatDate pattern="yyyy-MM-dd"
-														value="${board.updated_at}" /></td>
-											</tr>
-										</c:forEach>
 
-									</table>
-</form>
+									<form method="post" action="/board/list">
 
+										<table class="table table-striped table-bordered table-hover">
+											<thead>
+												<tr>
+													<th>번호</th>
+													<th>제목</th>
+													<th>작성자</th>
+													<th>작성일</th>
+													<th>수정일</th>
+												</tr>
+											</thead>
+											<c:forEach items="${list}" var="board">
+												<tr>
+													<td><c:out value="${board.board_id}" /></td>
+													<td><a
+														href='/board/get?users_id=${board.users_id}&board_id=<c:out value="${board.board_id}"/>'>
+															<c:out value="${board.title}" />
+													</a></td>
+													<td><c:out value="${board.user_name}" /></td>
+													<td><fmt:formatDate pattern="yyyy-MM-dd"
+															value="${board.created_at}" /></td>
+													<td><fmt:formatDate pattern="yyyy-MM-dd"
+															value="${board.updated_at}" /></td>
+												</tr>
+											</c:forEach>
+
+										</table>
+									</form>
 									<ul class="pagination">
 										<c:forEach begin="1" end="${totalPages}" varStatus="loop">
 											<li class="${loop.index == currentPage ? 'active' : ''}">
@@ -98,16 +100,18 @@
 								<!-- search{s} -->
 								<div class="form-group row justify-content-center">
 									<div class="w100" style="padding-right: 10px">
-										<select class="form-control form-control-sm" name="SearchType"	>
+										<select class="form-control form-control-sm" name="SearchType">
 											<option value="title">제목</option>
 											<option value="content">본문</option>
 										</select>
 									</div>
 									<div class="w300" style="padding-right: 10px">
-										<input type="text" name="KeyWord" id="keywordIn" class="form-control" placeholder="Search...">
+										<input type="text" name="KeyWord" id="keywordIn"
+											class="form-control" placeholder="Search...">
 									</div>
 									<div>
-										<button type="button" class="form-control icon ion-ios-search" id="searchButton"></button>
+										<button type="button" class="form-control icon ion-ios-search"
+											id="searchButton"></button>
 									</div>
 								</div>
 
@@ -130,7 +134,6 @@
 
 				</div>
 				<!-- /.row -->
-				
 			</div>
 			<!-- /#page-wrapper -->
 		</div>
@@ -139,12 +142,9 @@
 	</div>
 	<!-- 보드 div class끝 -->
 	<%@ include file="../includes/footer.jsp"%>
+
 	<script>
-	
-		$(document).ready(
-				
-		
-		function() {
+		$(document).ready(function() {
 
 			var result = '<c:out value="${result}"/>';
 
