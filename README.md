@@ -1,4 +1,4 @@
-# 자바 스프링으로 시작하는 첫 팀프로젝트
+![header](https://capsule-render.vercel.app/api?type=waving&color=82AE46&fontColor=fff&height=300&section=header&text=First-Java-Project%20&fontSize=80)
 
 - 기능 구현을 많이 시도 해볼 수 있는 이커머스 사이트를 모티브하여 책 판매 사이트인 "**ㅅㅏㄹㅏ**" 라는 제목을 가진 사이트를 개발하였습니다.
 - 짧은 기간동안 프로젝트를 완성하기 위해 Boot Strap을 사용하였고 기능구현 부분에 더욱더 집중하였습니다.
