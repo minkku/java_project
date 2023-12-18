@@ -20,7 +20,7 @@
 			</div>
 		</div>
 	</div>
-	<h1>게시판</h1>
+	<h1 style="text-align:center; font-size:28px; margin-top:50px;">게시판</h1>
 	<div class="board_div">
 
 		<div id="wrapper">
