@@ -33,8 +33,8 @@
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 	            <div class="col-md-12 ftco-animate text-center">
 	              <h1 class="mb-2">쌓여가는 겨울의 시간 요즘 펼치기 좋은 책들</h1>
-	              <h2 class="subheading mb-4">2023/12/19 Comming Soon</h2>
-	              <p><a href="/book/allList" class="btn btn-primary">Shop now</a></p>
+	              <h2 class="subheading mb-4">2023/12/19 GRANDE OPENING</h2>
+	              <p><a href="/book/allList" class="btn btn-primary">둘러보기</a></p>
 	            </div>
 	          </div>
 	        </div>
@@ -52,16 +52,16 @@
 					<div class="col-md-8">
 						<div class="row">
 							<div class="col-md-6 order-md-last align-items-stretch d-flex">
-								<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url(../resources/images/ai.png);  background-size: 100% 100%;">
+								<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url(../resources/images/ai.png);  background-size: 150% 120%;">
 								</div>
 							</div>
 							<div class="col-md-6">
-								<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(../resources/images/kimetsunoyaiba.jpg); background-size: 120% 120%;">
+								<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(../resources/images/tangiro.jpg); background-size: 75% 100%;">
 									<div class="text px-3 py-1">
 										<h2 class="mb-0"><a href="/book/colist">만화</a></h2>
 									</div>
 								</div>
-								<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(../resources/images/java.jpg); background-size: 100% 100%;">
+								<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(../resources/images/java_jungseok.jpg); background-size: 75% 100%;">
 									<div class="text px-3 py-1">
 										<h2 class="mb-0"><a href="/book/edulist">교육</a></h2>
 									</div>
@@ -71,12 +71,12 @@
 					</div>
 
 					<div class="col-md-4">
-						<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(../resources/images/OmniscientReader.jpg); background-size: 100% 100%;">
+						<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end" style="background-image: url(../resources/images/suzumezzang.jpg); background-size: 75% 100%;">
 							<div class="text px-3 py-1">
 								<h2 class="mb-0"><a href="/book/ficlist">소설</a></h2>
 							</div>		
 						</div>
-						<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(../resources/images/littlepig.jpg); background-size: 100% 100%;">
+						<div class="category-wrap ftco-animate img d-flex align-items-end" style="background-image: url(../resources/images/im_cow.jpg); background-size: 75% 100%;">
 							<div class="text px-3 py-1">
 								<h2 class="mb-0"><a href="/book/younglist">유아</a></h2>
 							</div>
@@ -90,8 +90,8 @@
     	<div class="container">
 				<div class="row justify-content-center mb-3 pb-3">
           <div class="col-md-12 heading-section text-center ftco-animate">
-          	<span class="subheading">Featured Products</span>
-            <h2 class="mb-4">Our Products</h2>
+          	<span class="subheading">베스트 셀러</span>
+            <h2 class="mb-4">이달의 추천 도서</h2>
             <p>나쁜 책을 읽지 않는 것은 좋은 책을 읽기 위한 조건이다. 인생은 짧고 시간과 능력에는 한계가 있다.</p>
           </div>
         </div>   		

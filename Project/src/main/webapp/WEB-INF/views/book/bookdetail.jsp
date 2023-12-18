@@ -31,8 +31,8 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="/sara">Home</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
-            <h1 class="mb-0 bread">Product Single</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="/sara">사라</a></span> <span class="mr-2"><a href="/book/allList">목록으로</a></span> </p>
+            <h1 class="mb-0 bread">당근을 흔들어주세요</h1>
           </div>
         </div>
       </div>
@@ -302,7 +302,7 @@
 											replyUL.html("");
 											return;
 										}
-										for (var i = 0, len = responseMap.list.length; i < len; i++) {
+										for (var i = 0, len = responseMap.list.length || 0; i < len; i++) {
 											str += "<li class='left clearfix' data-replies_id='"+responseMap.list[i].reply_id + "'>";
 											str += "<div><div class='header'><strong class='primary-font'>"
 													+ responseMap.list[i].user_name

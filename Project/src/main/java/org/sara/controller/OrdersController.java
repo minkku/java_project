@@ -106,13 +106,13 @@ public class OrdersController {
 							   Model model, HttpSession session) {
 		String orders_num = (String) session.getAttribute("orders_num");
 		int users_id = (int) session.getAttribute("users_id");
-		if (action.equals("¡÷πÆ√Îº“")) {
+		if (action.equals("Ï£ºÎ¨∏Ï∑®ÏÜå")) {
 			if (service.statusCheck(99, orders_num, users_id)) {
 				service.setStatus(99, orders_num, users_id);
 				service.updatePointPlus(users_id, totalPrice);
 				return "redirect:/orders/list";
 			}
-		} else if (action.equals("¿Á¡÷πÆ")) {
+		} else if (action.equals("Ïû¨Ï£ºÎ¨∏")) {
 			if (service.statusCheck(1, orders_num, users_id)) {
 				service.setStatus(1, orders_num, users_id);
 				service.updatePoint(users_id, totalPrice);

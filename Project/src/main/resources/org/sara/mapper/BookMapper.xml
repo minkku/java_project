@@ -25,13 +25,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	  <select id="getCoBooks" resultType="org.sara.domain.BookVO">
 		SELECT * FROM books
-		where categories_id_id = 1
+		where categories_id_id = 2
 		LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
 	</select>
 	
 	  <select id="getFicBooks" resultType="org.sara.domain.BookVO">
 		SELECT * FROM books
-		where categories_id_id = 2
+		where categories_id_id = 1
 		LIMIT #{start, jdbcType=INTEGER}, #{pageSize, jdbcType=INTEGER}
 	</select>
 	
@@ -57,11 +57,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="countFicBooks" resultType="int">
-		SELECT COUNT(*) FROM books where categories_id_id = 2
+		SELECT COUNT(*) FROM books where categories_id_id = 1
 	</select>
 	
 	<select id="countCoBooks" resultType="int">
-		SELECT COUNT(*) FROM books where categories_id_id = 1
+		SELECT COUNT(*) FROM books where categories_id_id = 2
 	</select>
 	
 	<select id="countYoungBooks" resultType="int">

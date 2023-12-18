@@ -24,7 +24,7 @@
 			<ul class="navbar-nav ml-auto">
 				<c:if test="${empty signin}">
 					<li class="nav-item active"><a href="/signin" class="nav-link">
-							Login</a></li>
+							로그인</a></li>
 				</c:if>
 				<c:if test="${!empty signin}">
 					<li class="nav-item dropdown"><a
@@ -32,7 +32,7 @@
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${signin.user_name}님
 							안녕하세요.</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown04">
-							<a class="dropdown-item" href="/book/userInfo"> <i
+							<a class="dropdown-item" href="/userInfo"> <i
 								class="fi fi-rr-user">내 정보</i></a> <a class="dropdown-item"
 								href="/board/mylist"><i class="fi fi-br-list">내 게시물</i></a> <a
 								class="dropdown-item" href="/orders/list"><i
@@ -45,19 +45,19 @@
 
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="dropdown04"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">카테고리</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown04">
 						<a class="dropdown-item" href="/book/allList">전체 보기</a> <a
-							class="dropdown-item" href="/book/edulist">education</a> <a
-							class="dropdown-item" href="/book/ficlist">fiction</a> <a
-							class="dropdown-item" href="/book/colist">comics</a> <a
-							class="dropdown-item" href="/book/younglist">youngs</a>
+							class="dropdown-item" href="/book/edulist">교육</a> <a
+							class="dropdown-item" href="/book/ficlist">소설</a> <a
+							class="dropdown-item" href="/book/colist">만화</a> <a
+							class="dropdown-item" href="/book/younglist">유아</a>
 					</div></li>
 
 
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="dropdown04"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">board</a>
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게시판</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown04">
 						<a class="dropdown-item" href="/board/notice">공지사항</a> <a
 							class="dropdown-item" href="/board/list">게시판</a>

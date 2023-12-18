@@ -58,14 +58,14 @@ public class CartsController {
 			log.info("controller error------------------->" + e.getMessage());
 		}
 		
-	    if ("Àå¹Ù±¸´Ï¿¡¼­ Á¦°Å".equals(action)) {
+	    if ("ì¥ë°”êµ¬ë‹ˆì—ì„œ ì œê±°".equals(action)) {
 	    	service.deleteCarts(users_id, carts_id);
-	    } else if ("±¸¸ÅÇÏ±â".equals(action)) {
+	    } else if ("êµ¬ë§¤í•˜ê¸°".equals(action)) {
 	    	session.setAttribute("selectCarts", service.getSelectCartsList(users_id, carts_id));
 	    	try {
-	    		log.info(session.getAttribute("selectCarts-----±¸¸ÅÇÏ±â"));
+	    		log.info(session.getAttribute("selectCarts-----ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½"));
 	    	} catch (Exception e) {
-	    		log.info("selectCarts°¡ session¿¡ µé¾î¿ÀÁö ¾ÊÀ½" + e.getMessage());
+	    		log.info("selectCartsï¿½ï¿½ sessionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" + e.getMessage());
 	    	}
 	    	return "redirect:/orders/payment";
 	    }
