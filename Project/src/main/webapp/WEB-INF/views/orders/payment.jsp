@@ -20,7 +20,7 @@
                     </thead>
                     <c:forEach items="${selectCarts}" var="info">
                         <tr>
-                            <td class="carts_tile2"><img src="../resources/images/${info.img}"/>
+                            <td class="carts_tile2"><img src="../resources/images/${info.img}" width="60" height="80"/>
                                 <input type="hidden" name="carts_id" value="${info.carts_id}">
                                 <input type="hidden" name="books_id" value="${info.books_id}">
                             </td>
