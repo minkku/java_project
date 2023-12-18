@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=82AE46&fontColor=fff&height=300&section=header&text=First_Java_TeamProject%20&fontSize=80)
+![header](https://capsule-render.vercel.app/api?type=waving&color=82AE46&fontColor=fff&height=300&section=header&text=책&nbsp;사라%20&fontSize=80)
 
 - 기능 구현을 많이 시도 해볼 수 있는 이커머스 사이트를 모티브하여 책 판매 사이트인 "**ㅅㅏㄹㅏ**" 라는 제목을 가진 사이트를 개발하였습니다.
 - 짧은 기간동안 프로젝트를 완성하기 위해 Boot Strap을 사용하였고 기능구현 부분에 더욱더 집중하였습니다.
@@ -8,7 +8,7 @@
 
 ## 기간
 
-2023.11.13 ~ 2023.12.15
+2023.11.13 ~ 2023.12.18 (4 week)
 
 ## 팀원
 <table>
@@ -35,6 +35,7 @@
 ## 협업
 
 - Github
+- Wbs
 - Trello
 - Dbdiagram
 - SourceTree
