@@ -8394,7 +8394,7 @@ h1, h2, h3, h4, h5,
           display: inline-block;
           color: #fff; }
         .owl-carousel.home-slider .slider-item .slider-text h1 {
-          font-size: 8vw;
+          font-size: 3.0em;
           color: #fff;
           line-height: 1.3;
           font-weight: 400;

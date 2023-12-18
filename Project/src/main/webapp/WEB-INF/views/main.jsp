@@ -32,9 +32,9 @@
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 	            <div class="col-md-12 ftco-animate text-center">
-	              <h1 class="mb-2">Elegance in Gifts,Magic in Strories,This Christmas,discover the special moments wrapped in presents</h1>
+	              <h1 class="mb-2">쌓여가는 겨울의 시간 요즘 펼치기 좋은 책들</h1>
 	              <h2 class="subheading mb-4">2023/12/19 Comming Soon</h2>
-	              <p><a href="#" class="btn btn-primary">View Details</a></p>
+	              <p><a href="#" class="btn btn-primary">Shop now</a></p>
 	            </div>
 	          </div>
 	        </div>
@@ -53,11 +53,6 @@
 						<div class="row">
 							<div class="col-md-6 order-md-last align-items-stretch d-flex">
 								<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex" style="background-image: url(../resources/images/ai.png);  background-size: 100% 100%;">
-									<div class="text text-center">
-										<h2>Vegetables</h2>
-										<p>Protect the health of every home</p>
-										<p><a href="book/allList" class="btn btn-primary">Shop now</a></p>
-									</div>
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -97,7 +92,7 @@
           <div class="col-md-12 heading-section text-center ftco-animate">
           	<span class="subheading">Featured Products</span>
             <h2 class="mb-4">Our Products</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            <p> 나쁜 책을 읽지 않는 것은 좋은 책을 읽기 위한 조건이다. 인생은 짧고 시간과 능력에는 한계가 있다.</p>
           </div>
         </div>   		
     	</div>
@@ -123,9 +118,9 @@
 	    							<a href="/book/allList" class="add-to-cart d-flex justify-content-center align-items-center text-center">
 	    								<span><i class="ion-ios-menu"></i></span>
 	    							</a>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    						<!-- 	<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
-	    							</a>
+	    							</a> -->
 	    							<!-- <a href="#" class="heart d-flex justify-content-center align-items-center ">
 	    								<span><i class="ion-ios-heart"></i></span>
 	    							</a> -->

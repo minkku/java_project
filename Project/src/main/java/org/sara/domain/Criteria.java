@@ -4,18 +4,16 @@ import lombok.Data;
 
 @Data
 public class Criteria {
-	private int page;
+	private int pageNum;
 	private int amount;
 	
 	public Criteria() {
 		this(1,10);
 		
 	}
-	public Criteria(int page,int amount) {
-		this.page=page;
+	public Criteria(int pageNum,int amount) {
+		this.pageNum=pageNum;
 		this.amount=amount;
 	}
-	public int getPageStart() {
-		return (page-1)*amount;
-	}
+
 }

@@ -27,11 +27,11 @@
 		  </div>
     </div> -->
     <%@include file="../includes/nav.jsp"%>
-    <div class="hero-wrap hero-bread" style="background-image: url('../resources/images/bg_1.jpg');">
+    <div class="hero-wrap hero-bread" style="background-image: url('../resources/images/bg-1.png');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="/sara">Home</a></span> <span class="mr-2"><a href="index.html">Product</a></span> <span>Product Single</span></p>
             <h1 class="mb-0 bread">Product Single</h1>
           </div>
         </div>

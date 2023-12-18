@@ -49,11 +49,6 @@ public class MainController {
 		return "book/searchbook";
 	}
 
-	@GetMapping("/about")
-	public void about() {
-
-	}
-
 	/*
 	 * @GetMapping({ "/list", "/modify" }) public void get(@RequestParam(value =
 	 * "users_id", required = false) Integer users_id,@RequestParam("books_id") int
@@ -177,18 +172,11 @@ public class MainController {
 	public String AddToCarts(HttpSession session, @RequestParam int hiddenQuantity, @RequestParam int books_id) {
 		int users_id = (int) session.getAttribute("users_id");
 		service.insertItem(users_id, books_id, hiddenQuantity);
-		
-		
-		
 	
 		return "redirect:/book/bookdetail?books_id=" + books_id;
 				
 		
 	}
 
-	@GetMapping("/mypage")
-	public String my() {
-		return "book/mypage";
-	}
 
 }
