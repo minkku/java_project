@@ -51,6 +51,11 @@
 <br />
 <br />
 
+## PPT
+<a href="https://www.canva.com/design/DAF3SWy5WEY/Mln_qg5kZDHM7oiqlvYnpg/view?utm_content=DAF3SWy5WEY&utm_campaign=designshare&utm_medium=link&utm_source=editor">PPT 링크</a>
+<br />
+<br />
+
 ## 담당 구현 사항 및 구현 기능
 구본석 - 🤓
 <br>
