@@ -114,35 +114,59 @@
 <%@ include file="../includes/footer.jsp"%>
   <script>
   $(document).ready(function() {
-    // Attach click event handler to elements with class 'category-link'
-    $(".category-link").click(function(e) {
-    	 e.preventDefault();
-         var category = $(this).data('category');
-         console.log('Category clicked:', category);
-         $('.product-category a').removeClass('active');
-         $(this).addClass('active');
-      // Make an AJAX request to the server
-      $.ajax({
-        url: "/book/select",
-        method: "GET",
-        data: { category: category },
-        success: function(response) {
-          console.log("AJAX Success:", response);
-          // Update the book list container with the new content
-          updateBookList(response);
-        },
-        error: function(xhr, status, error) {
-          console.error("AJAX Error:", error);
-        }
-      });
-    });
+      // 페이지 로딩 시 초기 설정
+      var currentPage = ${currentPage}; // 현재 페이지 변수 추가
 
+      $(".category-link").click(function(e) {
+          e.preventDefault();
+          var category = $(this).data('category');
+          console.log('Category clicked:', category);
+          $('.product-category a').removeClass('active');
+          $(this).addClass('active');
+
+          // 카테고리 버튼 클릭 시 페이지 번호 초기화 없이 Ajax 호출
+          $.ajax({
+              url: "/book/select",
+              method: "GET",
+              data: { category: category, page: currentPage },
+              success: function(response) {
+                  console.log("AJAX Success:", response);
+                  updateBookList(response.books, response.totalPages, response.currentPage);
+              },
+              error: function(xhr, status, error) {
+                  console.error("AJAX Error:", error);
+              }
+          });
+      });
+
+      // 페이지네이션 버튼 클릭 이벤트 핸들러
+      $(".block-27 ul").on("click", "a", function(e) {
+          e.preventDefault();
+          var clickedPage = $(this).data('page');
+          console.log('Pagination button clicked - Page:', clickedPage);
+
+          // 현재 선택된 카테고리 정보 가져오기
+          var currentCategory = $(".product-category a.active").data('category');
+
+          $.ajax({
+              url: "/book/select",
+              method: "GET",
+              data: { category: currentCategory, page: clickedPage },
+              success: function(response) {
+                  console.log("AJAX Success:", response);
+                  updateBookList(response.books, response.totalPages, response.currentPage);
+              },
+              error: function(xhr, status, error) {
+                  console.error("AJAX Error:", error);
+              }
+          });
+      });
     // Function to update the book list with the received data
-   function updateBookList(books) {
-    console.log("Updating Book List with:", books);
-    try {
-        $(".book-list").empty(); // Clear existing content
-        console.log("Cleared existing content");
+     function updateBookList(books, totalPages, currentPage) {
+            console.log("Updating Book List with:", books);
+            try {
+                $(".book-list").empty(); // Clear existing content
+                console.log("Cleared existing content");
 
 
     $.each(books, function (index, book) {
@@ -178,13 +202,28 @@ bookHtml += '</div>';
         $(".book-list").append(bookHtml);
         console.log("Appended HTML to book list");
     });
-    $(".book-list").html($(".book-list").html());
-}catch (error) {
-    console.error("Error in updateBookList:", error);
-}
-    }
-  });
-</script>
+    updatePagination(totalPages, currentPage);
+            } catch (error) {
+                console.error("Error in updateBookList:", error);
+            }
+        }
+     function updatePagination(totalPages, currentPage) {
+         console.log("Updating Pagination:", totalPages, currentPage);
+         try {
+             $(".block-27 ul").empty(); // Clear existing pagination
+             console.log("Cleared existing pagination");
 
+             for (var i = 1; i <= totalPages; i++) {
+                 var liClass = i === currentPage ? 'active' : '';
+                 var liHtml = '<li class="' + liClass + '"><a href="/book/allList?page=' + i + '" data-page="' + i + '">' + i + '</a></li>';
+                 $(".block-27 ul").append(liHtml);
+                 console.log("Appended HTML to pagination");
+             }
+         } catch (error) {
+             console.error("Error in updatePagination:", error);
+         }
+     }
+ });
+</script>
 </body>
 </html>

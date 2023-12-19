@@ -1,7 +1,9 @@
 package org.sara.controller;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -91,32 +93,60 @@ public class MainController {
 		return "book/AllList";
 	}
 
-	@RequestMapping(value = "/select", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody
-	public List<BookVO> getBooksByCategory(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "all") String category) {
-	    List<BookVO> books;
-	    int pageSize = 8;
+	   @RequestMapping(value = "/select", method = RequestMethod.GET, produces = "application/json")
+	   @ResponseBody
+	   public Map<String, Object> getBooksByCategory(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "all") String category) {
+	       Map<String, Object> result = new HashMap<>();
+	          List<BookVO> books;
+	          int pageSize = 8;
 
-	    if (category.equals("all")) {
-	        books = service.getAllBooks(page, pageSize);
-	    } else if (category.equals("fic")) {
-	        books = service.getFicBooks(page, pageSize);
-	    } else if (category.equals("comic")) {
-	        books = service.getCoBooks(page, pageSize);
-	    } else if (category.equals("edu")) {
-	        books = service.getEduBooks(page, pageSize);
-	    } else if (category.equals("young")) {
-	        books = service.getYoungBooks(page, pageSize);
-	    } else {
-	        // Handle unknown category or return an empty list
-	        books = Collections.emptyList();
-	    }
-	    
-	    // Logging
-	    log.info("Returning books: " + books);
+	          if (category.equals("all")) {
+	              books = service.getAllBooks(page, pageSize);
+	          } else if (category.equals("fic")) {
+	              books = service.getFicBooks(page, pageSize);
+	          } else if (category.equals("comic")) {
+	              books = service.getCoBooks(page, pageSize);
+	          } else if (category.equals("edu")) {
+	              books = service.getEduBooks(page, pageSize);
+	          } else if (category.equals("young")) {
+	              books = service.getYoungBooks(page, pageSize);
+	          } else {
+	              // Handle unknown category or return an empty list
+	              books = Collections.emptyList();
+	          }
 
-	    return books;
-	}
+	          // 로깅
+	          log.info("Returning books: " + books);
+
+	          // 현재 페이지와 총 페이지 수를 결과에 추가
+	          result.put("books", books);
+	          result.put("currentPage", page);
+	          result.put("totalPages", calculateTotalPages(category, pageSize)); // 이 메서드는 총 페이지 수를 계산하는데 필요한 로직을 추가하여야 합니다.
+
+	          return result;
+	      }
+	   
+	   private int calculateTotalPages(String category, int pageSize) {
+	       // 각 카테고리에 따라 전체 도서 수를 가져옴
+	       int totalBooks;
+	       if (category.equals("all")) {
+	           totalBooks = service.countBooks();
+	       } else if (category.equals("fic")) {
+	           totalBooks = service.countFicBooks();
+	       } else if (category.equals("comic")) {
+	           totalBooks = service.countCoBooks();
+	       } else if (category.equals("edu")) {
+	           totalBooks = service.countEduBooks();
+	       } else if (category.equals("young")) {
+	           totalBooks = service.countYoungBooks();
+	       } else {
+	           // Handle unknown category or return 0
+	           return 0;
+	       }
+
+	       // 총 페이지 수 계산
+	       return (int) Math.ceil((double) totalBooks / pageSize);
+	   }
 
 	@GetMapping("/edulist")
 	public String getEduBooks(Model model, @RequestParam(defaultValue = "1") int page) {
